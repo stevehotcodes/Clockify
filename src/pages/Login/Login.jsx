@@ -28,7 +28,7 @@ const Login = () => {
                 </div>
     
                 <div class="label-input-group">
-                    <input type="submit" class="sign-up-btn" value="Login" data-cy="login" />
+                    <input type="submit" class="sign-up-btn" value="Login"  />
                 </div>
                 </form>
 
