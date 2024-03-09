@@ -80,6 +80,12 @@
                         border-radius: 10px;
                         filter: drop-shadow(0 0 0.75rem rgb(206, 203, 203));
                       }
+
+
+                      .error-message{
+                        color:red;
+                        font-size:0.8rem
+                      }
                       .sign-up-btn {
                         margin: 8px auto;
                         background-color: #4c94b5;
