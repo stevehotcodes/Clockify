@@ -70,9 +70,9 @@
 
             .label-input-group {
                 width: 70%;
-                // margin: 0.2rem;
                 display: flex;
                 flex-direction: column;
+
                 label {
                     font-weight: 700;
                   }
@@ -85,7 +85,7 @@
                     filter: drop-shadow(0 0 0.75rem rgb(206, 203, 203));
                   }
                   .sign-up-btn {
-                    margin: 8px auto;
+                    margin: 10px auto;
                     background-color: #4c94b5;
                     color: white;
                     border: none;
