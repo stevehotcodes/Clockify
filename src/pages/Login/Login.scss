@@ -91,6 +91,21 @@
                         color: black;
                         border: 2px solid#4C94B5;
                       }
+
+                     
+                  }
+                  .form-footer{
+                    display: flex;
+                    flex-wrap:wrap;
+                        a{
+                            font-weight: 700;
+                            cursor: pointer;
+                            text-align: center;
+                            margin: 1rem;
+                        }
+                        a:hover{
+                            color: #4c94b5;
+                        }
                   }
               }
               

@@ -30,9 +30,11 @@ const Login = () => {
                 <div class="label-input-group">
                     <input type="submit" class="sign-up-btn" value="Login"  />
                 </div>
+                <div class="form-footer">
+                    <a href="/signup" Link="/signup">New Employee? Sign up</a>
+                    {/* <a href="/reset">Forgot Password?</a> */}
+                </div>
                 </form>
-
-
 
             </div>
         </div>
