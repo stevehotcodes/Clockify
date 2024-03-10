@@ -5,6 +5,10 @@ import './App.css'
 import Login from './pages/Login/Login'
 import { Routes } from 'react-router-dom'
 import { Route } from 'react-router-dom'
+import Signup from './pages/Signup/Signup'
+import HeaderAdmin from './layout/Header-Admin/HeaderAdmin'
+import AdminHome from './pages/Admin-Home/AdminHome'
+import SideNavbarAdmin from './layout/SideNavbarAdmin/SideNavbarAdmin'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,8 +17,10 @@ function App() {
     <>
       <Routes>
          <Route   path="/" element={<Login />} />
+         <Route path="/signup" element={<Signup/>}/>
+         <Route path="/admin" element={<AdminHome/>}/>
       </Routes>
-       
+      
     </>
   )
 }

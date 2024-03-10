@@ -27,8 +27,8 @@ const Signup = () => {
         emergency_contact_person_name:yup.string().required("emergency contact  person's name is required"),
         emergency_contact_person_number:yup.string().required("emergency contact person's number is required"),
         emergency_contact_person_relationship:yup.string().required("relationship is required"),
-        skills_languages:yup.string().required("languages is required"),
-        skills_technical:yup.string().required("technical skills is required"),
+        skills_languages:yup.string().required("languages are required"),
+        skills_technical:yup.string().required("technical skills are required"),
         password:yup.string().min(4).max(20).required("password is required "),
         confirm_password:yup.string().min(4).max(20).required("confirm password is required")
 
@@ -219,7 +219,7 @@ const onSubmit=(data)=>{
                                     <p className="error-message">{errors.emergency_contact_person_name?.message}</p>                 
                                 </div>
                                 <div class="label-input-group">
-                                    <label> Emergency contact: Person's Contact</label><br/>
+                                    <label> Emergency contact: Person's Number</label><br/>
                                     <input type="number" name="" id="" placeholder="07056576788" min="0"
                                      {...register("emergency_contact_person_number")}
                                     
@@ -229,7 +229,7 @@ const onSubmit=(data)=>{
                     
                                 <div class="label-input-group">
                                     <label> Emergency Contact:Relationship</label><br/>
-                                    <input type="date" name="" id="" placeholder="graduation year" min="1900-01-01"  max="today"
+                                    <input type="text" name="" id="" placeholder="Example: brother, father ,sister ,spouse"
                                     {...register("emergency_contact_relationship")}
                                     
                                     />
