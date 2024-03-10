@@ -7,8 +7,6 @@ const AdminHome = () => {
   return (
     <div className='admin-home-container'>
         <HeaderAdmin/>
-        {/* <SideNavbarAdmin/>
-         */}
          <MainContent/>
 
 
