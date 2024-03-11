@@ -9,6 +9,8 @@ import Signup from './pages/Signup/Signup'
 import HeaderAdmin from './layout/Header-Admin/HeaderAdmin'
 import AdminHome from './layout/Admin-Home/AdminHome'
 import SideNavbarAdmin from './layout/SideNavbarAdmin/SideNavbarAdmin'
+import '@emotion/styled';
+
 
 function App() {
   const [count, setCount] = useState(0)
