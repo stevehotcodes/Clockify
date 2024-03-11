@@ -6,7 +6,8 @@ import { RouterProvider } from 'react-router-dom'
 import { createBrowserRouter } from 'react-router-dom'
 import Login from './pages/Login/Login.jsx'
 import Signup from './pages/Signup/Signup.jsx'
-import AdminHome from './pages/Admin-Home/AdminHome.jsx'
+import AdminHome from './layout/Admin-Home/AdminHome.jsx'
+import AdminDashboard from './pages/AdminDashboard/AdminDashboard.jsx'
 
 
 const router=createBrowserRouter([
@@ -19,9 +20,10 @@ const router=createBrowserRouter([
     element:<Signup/>
   },
   {
-    path:'/admin',
+    path:'/*',
     element:<AdminHome/>
   },
+ 
   
 
 ])

@@ -7,7 +7,7 @@ import { Routes } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import Signup from './pages/Signup/Signup'
 import HeaderAdmin from './layout/Header-Admin/HeaderAdmin'
-import AdminHome from './pages/Admin-Home/AdminHome'
+import AdminHome from './layout/Admin-Home/AdminHome'
 import SideNavbarAdmin from './layout/SideNavbarAdmin/SideNavbarAdmin'
 
 function App() {

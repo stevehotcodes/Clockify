@@ -9,7 +9,7 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 const HeaderAdmin = () => {
   return (
     <div className='header-container'> 
-      <div class="logo-title-wrapper">
+      <div className="logo-title-wrapper">
       <div className='logo-wrapper'>
           <img src={logo} alt="logo" />
       </div>

@@ -4,8 +4,6 @@ import SideNavbarAdmin from '../SideNavbarAdmin/SideNavbarAdmin'
 import Content from '../Content/Content'
 
 
-
-
 const MainContent = () => {
   return (
     <div className='maincontent-container'>
@@ -14,5 +12,6 @@ const MainContent = () => {
     </div>
   )
 }
+
 
 export default MainContent
