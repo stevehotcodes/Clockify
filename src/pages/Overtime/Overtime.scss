@@ -14,6 +14,7 @@
 
         span{
            font-weight:700;
+           font-size:2rem;
         }
 
     }
@@ -71,6 +72,8 @@
             border-radius: 5px 5px 0 0;
             overflow: hidden;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            // display: flex;
+
             th{
                 background-color: #01073385;
                 color:white;
@@ -78,7 +81,7 @@
             }
 
             th, td{
-                padding: 0.7rem 4.7rem;
+                padding: 0.7rem 3rem;
             }
 
             tbody {

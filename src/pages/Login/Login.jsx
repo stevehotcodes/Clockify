@@ -5,6 +5,8 @@ import logo from '../../assets/Clockify-logo.png'
 import {useForm} from 'react-hook-form'
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
+import { Navigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 
 
@@ -73,9 +75,12 @@ const Login = () => {
                  
                 </div>
     
-                <div class="label-input-group">
-                    <input type="submit" class="sign-up-btn" value="Login"  />
-                </div>
+                <NavLink  to='/admin' className="label-input-group"  >
+                    <div className='label-input-group'>
+                             <input type="submit" class="sign-up-btn" value="Login"  />
+                    </div>
+                  
+                </NavLink>
                 <div class="form-footer">
                     <a href="/signup" Link="/signup">New Employee? Sign up</a>
                     {/* <a href="/reset">Forgot Password?</a> */}

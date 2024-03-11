@@ -11,60 +11,84 @@ import { LiaCashRegisterSolid } from "react-icons/lia";
 import { PiTimerFill } from "react-icons/pi";
 import { MdOutlinePayments } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
+import { NavLink } from 'react-router-dom';
 
 
 const SideNavbarAdmin = () => {
+
+    const sideNavAdminLinks=[
+        {
+            icon:<FaHome/>,
+            path:'/admin',
+            linkContent:"Home"
+        },
+        {
+            icon: <FaPeopleGroup/>,
+            path:'/employeelisting',
+            linkContent:'Employees'
+        },
+        {
+            icon: <FaBusinessTime/>,
+            path:'/attendance',
+            linkContent:'Attendance'
+        },
+        {
+            icon: <FaPeopleGroup/>,
+            path:'/positions',
+            linkContent:"Positions"
+        },
+        {
+            icon: <GrSchedules/> ,
+            path:'/schedules',
+            linkContent:'Schedules'
+        },
+        {
+            icon: <TbCashOff/> ,
+            path:'/deductions',
+            linkContent:'Deductions'
+        },
+        {
+            icon: <LiaCashRegisterSolid/> ,
+            path:'/advances',
+            linkContent:'Cash Advances'
+        },
+        {
+            icon:<LiaCashRegisterSolid/> ,
+            path:'/overtime',
+            linkContent:'Overtime'
+        },
+        {
+            icon: <MdOutlinePayments/>,
+            path:'/payroll',
+            linkContent:'Payroll'
+        },
+        {
+            icon: <CiLogout/>,
+            path:'/',
+            linkContent:'Log out'
+            
+        }
+        
+        
+
+    ]
   return (
     <div className='sidenavbar-container'>
-        <div className='nav-icon-wrapper'>
+       <div>
+  {sideNavAdminLinks && sideNavAdminLinks.map((item, index) => (
+    <NavLink className='nav-icon-wrapper' key={index} to={item.path}> 
+      {item.icon}
+      <span>{item.linkContent}</span>
+    </NavLink>
+  ))}
+</div>
+
+       {/* <div className='nav-icon-wrapper'>
           <FaHome/>
             <span>Home</span>
-        </div>
+        </div> */}
 
-        <div className='nav-icon-wrapper'>
-          <FaPeopleGroup/>
-            <span>Employees</span>
-        </div>
-        <div className='nav-icon-wrapper'>
-           <FaBusinessTime/>
-            <span>Attendance</span>
-        </div>
-        <div className='nav-icon-wrapper'>
-            <FaPeopleArrows/>
-            <span>Positions</span>
-        </div>
-
-        <div className='nav-icon-wrapper'>
-            <GrSchedules/>
-            <span>Schedules</span>
-        </div>
-
-        <div className='nav-icon-wrapper'>
-            <TbCashOff/>
-            <span>Deductions</span>
-        </div>
-
-        <div className='nav-icon-wrapper'>
-            <LiaCashRegisterSolid/>
-            <span>Cash Advances</span>
-        </div>
-
-        <div className='nav-icon-wrapper'>
-            <LiaCashRegisterSolid/>
-            <span>Overtime</span>
-        </div>
-
-        <div className='nav-icon-wrapper'>
-            <MdOutlinePayments/>
-            <span>Payroll</span>
-            
-        </div>
-
-
-        <div className='nav-icon-wrapper'>
-            <CiLogout/>
-            <span>Log out</span>
-        </div>
+        
 
         
 

@@ -9,6 +9,16 @@ const Overtime = () => {
         </div>
 
         <div className='content-wrapper'>
+        <div className='search-add-new-btn'>
+                <form action="">
+                        <input type="search" name="" id="" placeholder='search for an employee' />
+                </form>
+                <div  className='button-wrapper'>
+                        <button className='add-new-btn'> Add New</button>
+                </div>
+               
+            </div>
+
         <table>
                 <thead>
                     <tr>
