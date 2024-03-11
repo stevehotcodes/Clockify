@@ -4,6 +4,7 @@ import { Routes } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import AdminDashboard from '../../pages/AdminDashboard/AdminDashboard'
 import EmployeeListing from '../../pages/EmployeeListing/EmployeeListing'
+import Positions from '../../pages/Positions/Positions'
 
 
 
@@ -16,7 +17,7 @@ const Content = () => {
          <Routes>
             <Route path='/admin' element={<AdminDashboard/>}/>
             <Route path='/employeelisting' element={<EmployeeListing/>}/>
-            
+            <Route path='/positions' element={<Positions/>}/>
          </Routes>
     </div>
   )
