@@ -8,6 +8,7 @@ import Positions from '../../pages/Positions/Positions'
 import Attendance from '../../pages/Attendance/Attendance'
 import Schedules from '../../pages/Schedules/Schedules'
 import Deductions from '../../pages/Deductions/Deductions'
+import Overtime from '../../pages/Overtime/Overtime'
 
 
 
@@ -24,6 +25,7 @@ const Content = () => {
             <Route path='/attendance' element={<Attendance/>}/>
             <Route path='/schedules' element={<Schedules/>}/>
             <Route path='/deductions' element={<Deductions/>}/>
+            <Route path='/overtime' element={<Overtime/>}/>
          </Routes>
     </div>
   )
