@@ -5,6 +5,7 @@ import { Route } from 'react-router-dom'
 import AdminDashboard from '../../pages/AdminDashboard/AdminDashboard'
 import EmployeeListing from '../../pages/EmployeeListing/EmployeeListing'
 import Positions from '../../pages/Positions/Positions'
+import Attendance from '../../pages/Attendance/Attendance'
 
 
 
@@ -18,6 +19,7 @@ const Content = () => {
             <Route path='/admin' element={<AdminDashboard/>}/>
             <Route path='/employeelisting' element={<EmployeeListing/>}/>
             <Route path='/positions' element={<Positions/>}/>
+            <Route path='/attendance' element={<Attendance/>}/>
          </Routes>
     </div>
   )
