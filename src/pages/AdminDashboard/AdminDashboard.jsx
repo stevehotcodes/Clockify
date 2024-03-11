@@ -60,7 +60,7 @@ const AdminDashboard = () => {
                    ]}
                    height={290}
                    xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'band' }]}
-                   margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
+                   margin={{ top: 50, bottom: 30, left: 40, right: 10 }}
                
                
                
@@ -75,7 +75,7 @@ const AdminDashboard = () => {
                    ]}
                    height={290}
                    xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'band' }]}
-                   margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
+                   margin={{ top: 50, bottom: 30, left: 40, right: 10 }}
                
                
                
