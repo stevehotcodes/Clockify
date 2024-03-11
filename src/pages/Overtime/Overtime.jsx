@@ -29,7 +29,7 @@ const Overtime = () => {
                         <td>120</td>
                         <td>07045678907</td>
                         <td>14/03/2023</td>
-                        <td>View Edit</td>
+                        <td> <span>View </span><span>Edit</span></td>
                     </tr>
 
                     <tr>
@@ -39,8 +39,9 @@ const Overtime = () => {
                         <td>120</td>
                         <td>07045678907</td>
                         <td>14/03/2023</td>
-                        <td>View Edit</td>
+                        <td> <span>View </span><span>Edit</span></td>
                     </tr>
+
 
            
                    
