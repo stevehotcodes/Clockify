@@ -6,6 +6,7 @@ import AdminDashboard from '../../pages/AdminDashboard/AdminDashboard'
 import EmployeeListing from '../../pages/EmployeeListing/EmployeeListing'
 import Positions from '../../pages/Positions/Positions'
 import Attendance from '../../pages/Attendance/Attendance'
+import Schedules from '../../pages/Schedules/Schedules'
 
 
 
@@ -20,6 +21,7 @@ const Content = () => {
             <Route path='/employeelisting' element={<EmployeeListing/>}/>
             <Route path='/positions' element={<Positions/>}/>
             <Route path='/attendance' element={<Attendance/>}/>
+            <Route path='/schedules' element={<Schedules/>}/>
          </Routes>
     </div>
   )
