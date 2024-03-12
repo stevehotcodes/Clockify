@@ -1,8 +1,9 @@
-# React + Vite
+# Clockify
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Attendance and Payroll System 
 
-Currently, two official plugins are available:
+## Design-Figma
+[link to the figma design] (https://www.figma.com/file/F8fNhftlOgkTwzYRLdV3HZ/Attendance-and-Payroll-Systeme-Design?type=design&mode=design&t=ZD2M6riJ3RoFtSft-0)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[link to the figma wireframe] (https://www.figma.com/file/KuSJ3vfhwlSIz1K722V4aI/Attendance-and-Payroll-System?type=design&node-id=0-1&mode=design&t=cXUzvFeBs1RpQp8f-0)
+
