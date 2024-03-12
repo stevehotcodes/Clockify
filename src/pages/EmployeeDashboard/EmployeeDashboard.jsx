@@ -15,38 +15,38 @@ const EmployeeDashboard = () => {
              <div className='dashboard-card'>
               <div className='icon-title'>
                  <SlPeople />
-              <span className='card-title'>Active Employee</span>
+              <span className='card-title'>Current Position</span>
               </div>
             
-              <span className='numbers'> 100</span>
+              <span className='numbers'>Software Developer</span>
                   
              </div>
 
              <div className='dashboard-card'>
               <div className='icon-title'>
                  <SlPeople />
-              <span className='card-title'>Active Employee</span>
+              <span className='card-title'>Schedule</span>
               </div>
             
-              <span className='numbers'> 100</span>
+              <span className='numbers'>08:00am-05:00pm</span>
                   
              </div>
              <div className='dashboard-card'>
               <div className='icon-title'>
                  <SlPeople />
-              <span className='card-title'>Active Employee</span>
+              <span className='card-title'>Working Hours</span>
               </div>
             
-              <span className='numbers'> 100</span>
+              <span className='numbers'>9</span>
                   
              </div>
              <div className='dashboard-card'>
               <div className='icon-title'>
                  <SlPeople />
-              <span className='card-title'>Active Employee</span>
+              <span className='card-title'>Total Working Hours</span>
               </div>
             
-              <span className='numbers'> 100</span>
+              <span className='numbers'> 360</span>
                   
              </div>
         </div>
