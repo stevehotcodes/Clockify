@@ -6,7 +6,7 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 
 
 
-const HeaderAdmin = () => {
+const HeaderAdmin = ({Dashboard}) => {
   return (
     <div className='header-container'> 
       <div className="logo-title-wrapper">
@@ -15,7 +15,7 @@ const HeaderAdmin = () => {
       </div>
 
       <div className='admin-dashboard-title'>
-          <span>Admin dashboard</span>
+          <span>{Dashboard}</span>
       </div>
       </div>
 

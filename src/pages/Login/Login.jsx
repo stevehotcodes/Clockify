@@ -75,7 +75,7 @@ const Login = () => {
                  
                 </div>
     
-                <NavLink  to='/admin' className="label-input-group"  >
+                <NavLink  to='/employee' className="label-input-group"  >
                     <div className='label-input-group'>
                              <input type="submit" class="sign-up-btn" value="Login"  />
                     </div>

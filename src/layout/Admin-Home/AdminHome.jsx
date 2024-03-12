@@ -7,10 +7,11 @@ import MainContent from '../MainContent/MainContent'
 
 
 const AdminHome = () => {
+  const  DashboardType='Admin Dashboard'
   return (
     <div className='admin-home-container'>
       
-         <HeaderAdmin/>
+         <HeaderAdmin Dashboard={DashboardType}/>
          <MainContent/>
 
     </div>

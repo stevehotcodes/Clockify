@@ -11,6 +11,7 @@ import Deductions from '../../pages/Deductions/Deductions'
 import Overtime from '../../pages/Overtime/Overtime'
 import CashAdvances from '../../pages/CashAdvances/CashAdvances'
 import Payroll from '../../pages/Payroll/Payroll'
+import EmployeeDashboard from '../../pages/EmployeeDashboard/EmployeeDashboard'
 
 
 
@@ -30,6 +31,7 @@ const Content = () => {
             <Route path='/overtime' element={<Overtime/>}/>
             <Route path='/advances' element={<CashAdvances/>}/>
             <Route path='/payroll' element={<Payroll/>}/>
+            <Route path='/employee' elment={<EmployeeDashboard/>}/>
          </Routes>
     </div>
   )

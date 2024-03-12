@@ -8,6 +8,7 @@ import Login from './pages/Login/Login.jsx'
 import Signup from './pages/Signup/Signup.jsx'
 import AdminHome from './layout/Admin-Home/AdminHome.jsx'
 import AdminDashboard from './pages/AdminDashboard/AdminDashboard.jsx'
+import EmployeeHome from './layout/EmployeeHome/EmployeeHome.jsx'
 
 
 const router=createBrowserRouter([
@@ -21,8 +22,9 @@ const router=createBrowserRouter([
   },
   {
     path:'/*',
-    element:<AdminHome/>
-  },
+    element:<EmployeeHome/>             //will required auth to switch in between the two home dashboard admin and employee
+  },   
+
  
   
 
