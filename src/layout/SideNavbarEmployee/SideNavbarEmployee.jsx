@@ -31,13 +31,8 @@ const SideNavbarEmployee = () => {
             linkContent:'Time in /Time Out'
         },
         {
-            icon: <GrSchedules/>,
-            path:'/attendance-employee',
-            linkContent:'Attendance'
-        },
-        {
             icon: <MdOutlinePayments/>,
-            path:'/payroll',
+            path:'/payroll-employee',
             linkContent:'Payroll'
         },
         {
