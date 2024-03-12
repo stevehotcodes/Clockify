@@ -1,5 +1,6 @@
 import React from 'react'
 import '../EmployeeListing/EmployeeListing.scss'
+import { Link } from 'react-router-dom'
 
 const EmployeeListing = () => {
   return (
@@ -13,7 +14,7 @@ const EmployeeListing = () => {
                         <input type="search" name="" id="" placeholder='search for an employee' />
                 </form>
                 <div  className='button-wrapper'>
-                        <button className='add-new-btn'> Add New</button>
+                        <button className='add-new-btn'><Link to='/signup'>Add New</Link></button>
                 </div>
                
             </div>
