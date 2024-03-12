@@ -15,6 +15,7 @@ const Signup = () => {
         lastname:yup.string().required("lastname is required"),
         date_of_birth:yup.string().required("date of birth is required"),
         email:yup.string().email().required("email is required"),
+        gender:yup.string().min(3).required("gender is required"),
         phone_number:yup.number().positive().integer().min(0).required("phone is required "),
         place_of_residence:yup.string().required("place of residence is required"),
         identification_number:yup.string().required(" passport number/ national identification number is required"),
@@ -102,6 +103,18 @@ const onSubmit=(data)=>{
                                      /> 
                                      <p className="error-message">{errors.date_of_birth?.message}</p>                 
                                 </div>
+
+                                <div class="label-input-group">
+                                    <label>Gender</label><br/>
+                                    <input type="text"
+                                     name="gender" id="" placeholder=" for example :male, female or intersex" 
+                                     {...register("gender")}
+                                    
+                                     
+                                     /> 
+                                     <p className="error-message">{errors.gender?.message}</p>                 
+                                </div>
+
                                 <div class="label-input-group">
                                     <label> Email </label><br/>
                                     <input type="email" name="" id="" placeholder="username@example.com" 
