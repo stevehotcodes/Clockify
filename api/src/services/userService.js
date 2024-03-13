@@ -66,3 +66,28 @@ export const registerNewUserService = async (newUser) => {
 };
 
 
+export const getNewRegisterUsersService=async()=>{
+  try {
+      const result=await poolRequest()
+      .query(`SELECT  email FROM tbl_user WHERE  isWelcomed=0`);
+      return result.recordset
+      
+  } catch (error) {
+      return error
+  }
+}
+
+export const setStatusofEmailtoSentService=async(email)=>{
+  try {
+      const result=await poolRequest()
+      .input(`email`,mssql.VarChar,email)
+      .query(`UPDATE tbl_user
+              SET isWelcomed=1
+              WHERE email=@email
+          `);
+      return result
+      
+  } catch (error) {
+      return error
+  }
+}

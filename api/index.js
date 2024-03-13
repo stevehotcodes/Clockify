@@ -4,10 +4,11 @@ import { appPool } from './src/utils/sqlDbConnect.js'
 import logger from './src/utils/logger.js'
 import bodyParser from 'body-parser'
 import cors from 'cors'
-
+import cron from 'node-cron'
 import positionRouter from './src/routes/positionRoutes.js'
 import scheduleRouter from './src/routes/scheduleRoutes.js'
 import userRouter from './src/routes/userRoutes.js'
+import { sendWelcomeEmailToNewUsers } from './src/config/mailConfig.js'
 dotenv.config()
 
 
@@ -35,6 +36,12 @@ app.use('/api',userRouter)
 
 
 // console.log('the password is :',passcode);
+cron.schedule('*/5 * * * * *', () => {
+
+    logger.info("sending email after every five seconds ...............");
+    sendWelcomeEmailToNewUsers()
+
+});
 
 
 app.listen(port,()=>{
