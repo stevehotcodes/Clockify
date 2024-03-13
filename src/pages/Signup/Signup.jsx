@@ -14,13 +14,13 @@ const Signup = () => {
 
     const [registerNewUser,{error,isLoading}]=useRegisterNewUserMutation()
     const navigate=useNavigate()
-    if (error) {
-        return <h1>error..</h1>
-     }
-     if (isLoading) {
-        return <h1>loading...</h1>
+    // if (error) {
+    //     return <h1>error..</h1>
+    //  }
+    //  if (isLoading) {
+    //     return <h1>loading...</h1>
   
-     }
+    //  }
 
     const handleRegisterNewUser=()=>{
         try{
@@ -82,7 +82,7 @@ const submit=async(data)=>{
         
     
       console.log(response)
-
+    // console.log("isLaoding",isLoading)
       LoadingToast
       SuccessToast(response.message)
 
@@ -91,9 +91,11 @@ const submit=async(data)=>{
       },5000)
     
   } catch (error) {
+    console.log(error)
     console.log(error.data.message)
    
     ErrorToast(error.data.message)
+    
     
 
   }
