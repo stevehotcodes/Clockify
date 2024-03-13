@@ -9,4 +9,4 @@ Attendance and Payroll System
 
 
 
-[https://www.figma.com/file/KuSJ3vfhwlSIz1K722V4aI/Attendance-and-Payroll-System?type=design&node-id=0-1&mode=design&t=cXUzvFeBs1RpQp8f-0](link to the figma wireframe)
+[https://www.figma.com/file/KuSJ3vfhwlSIz1K722V4aI/Attendance-and-Payroll-System?type=design&node-id=0-1&mode=design&t=cXUzvFeBs1RpQp8f-0] (link to the figma wireframe)
