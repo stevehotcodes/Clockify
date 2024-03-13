@@ -20,8 +20,8 @@ const Signup = () => {
         place_of_residence:yup.string().required("place of residence is required"),
         identification_number:yup.string().required(" passport number/ national identification number is required"),
         marital_status:yup.string().required("marital status is requred"),
-        position:yup.string().required("job title or position  is required"),
-        gross_salary:yup.string().required("propose gross salary is required"),
+        // position:yup.string().required("job title or position  is required"),
+        // gross_salary:yup.string().required("propose gross salary is required"),
         course_of_study:yup.string().required("course of study is required"),
         institution:yup.string().required("institution of study is required"),
         graduation_date:yup.string().required("graduation date is required "),
@@ -30,8 +30,8 @@ const Signup = () => {
         emergency_contact_person_relationship:yup.string().required("relationship is required"),
         skills_languages:yup.string().required("languages are required"),
         skills_technical:yup.string().required("technical skills are required"),
-        password:yup.string().min(4).max(20).required("password is required "),
-        confirm_password:yup.string().min(4).max(20).required("confirm password is required")
+        // password:yup.string().min(4).max(20).required("password is required "),
+        // confirm_password:yup.string().min(4).max(20).required("confirm password is required")
 
     })
    const{
@@ -166,19 +166,21 @@ const onSubmit=(data)=>{
                                 <div class="label-input-group">
                                     <label> Job Title/Position </label><br/>
                                     <input type="text" name="" id="" placeholder="job title/position"
-                                      {...register("position")}
+                                    //   {...register("position")}
+                                      disabled
                                     
                                     
                                     />   
-                                    <p className="error-message">{errors.position?.message}</p>               
+                                    {/* <p className="error-message">{errors.position?.message}</p>                */}
                                 </div>
                                 <div class="label-input-group">
                                     <label> Proposed Gross Salary </label><br/>
                                     <input type="number" name="" id="" placeholder="Ksh 30000"  min='1'
-                                     {...register("gross_salary")}
+                                    //  {...register("gross_salary")}
+                                     disabled
 
                                     />  
-                                    <p className="error-message">{errors.gross_salary?.message}</p>                
+                                    {/* <p className="error-message">{errors.gross_salary?.message}</p>                 */}
                                 </div>
                     
                                
@@ -270,7 +272,6 @@ const onSubmit=(data)=>{
                                 <p className="error-message">{errors.skills_technical?.message}</p>                 
                             </div>
                     
-
                         </div>
                    
                    
@@ -278,18 +279,20 @@ const onSubmit=(data)=>{
                    <div class="label-input-group">
                         <label>Password</label><br/>
                         <input type="password" name="" id="" placeholder="password"
-                         {...register("password")}
+                        //  {...register("password")}  password is generated automatically in the server
+                        disabled
                         
                         />  
-                        <p className="error-message">{errors.password?.message}</p>                
+                        {/* <p className="error-message">{errors.password?.message}</p>                 */}
                     </div>
                     <div class="label-input-group">
                         <label> Confirm Password </label><br/>
                         <input type="password" name="" id="" placeholder=" confirm password" 
-                        {...register("confirm_password")}
+                        // {...register("confirm_password")}
+                        disabled
                          
                         /> 
-                        <p className="error-message">{errors.confirm_password?.message}</p>
+                        {/* <p className="error-message">{errors.confirm_password?.message}</p> */}
 
                     </div>
 

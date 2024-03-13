@@ -15,6 +15,7 @@
     "@mui/icons-material": "^5.15.12",
     "@mui/styled-engine": "^5.15.11",
     "@mui/x-charts": "^6.19.5",
+    "generate-password": "^1.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.0",
@@ -22,6 +23,7 @@
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.22.3",
     "sass": "^1.71.1",
+    "uuid": "^9.0.1",
     "yup": "^1.4.0"
   },
   "devDependencies": {
