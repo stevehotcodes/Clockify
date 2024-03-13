@@ -38,11 +38,14 @@ export const registerNewUser=async(req,res)=>{
              emergency_phone_number:req.body.emergency_phone_number,
              relationship:req.body.relationship
 
+
           }
 
 
           const response=await registerNewUserService(newUser, em_id,sk_id)
-          if(response.rowsAffected>0){
+          console.log(response)
+          if(response.result1){
+            
                sendCreated(res,`${newUser.firstname} has been registered successfully`)
           }
           else{
@@ -55,3 +58,5 @@ export const registerNewUser=async(req,res)=>{
         sendServerError(res,error.message)
     }
 }
+
+
