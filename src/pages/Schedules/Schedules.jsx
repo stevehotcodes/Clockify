@@ -4,12 +4,14 @@ import '../Positions/Positions.scss'
 import Modal from '../../components/Modal/Modal';
 import CreateSchedule from '../../features/Schedule/CreateSchedule';
 import { useState } from 'react';
+import { useGetAllSchedulesQuery } from '../../features/Schedule/scheduleApi';
 
 const Schedules = () => {
 
     const [isModalOpen, setModalOpen] = useState(false);
     const [isScheduleModalOpen, setScheduleModalOpen]=useState(false)
-    
+    const {data:schedule, isError, isLoading}=useGetAllSchedulesQuery()
+    console.log(`${schedule}, ${isLoading}, ${isError}`)
 
 
     const openModal = () => {
@@ -50,16 +52,20 @@ const Schedules = () => {
                 <thead>
                     <tr>
                         <th>Schedules</th>
-                        
+                        <th>Title</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>08:05am-05:00pm</td>
-                        
-                        <td>View Edit</td>
-                    </tr>
+                    {schedule&&schedule.map((item, index)=>(
+                          <tr key={index}> 
+                          <td>{item.in_time}-{item.out_time}</td>
+                          <td>{item.schedule_description}</td>
+                          <td>View Edit</td>
+                      </tr>
+
+                    ))}
+                  
                     <tr>
                         <td>07:00pm-02:00am</td>
                         
