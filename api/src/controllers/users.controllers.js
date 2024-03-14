@@ -1,8 +1,8 @@
 import { send } from "vite";
 import logger from "../utils/logger.js";
 import generator from 'generate-password'
-import { sendBadRequest, sendCreated, sendServerError } from "../helpers/helper.functions.js";
-import { registerNewUserService } from "../services/userService.js";
+import { sendBadRequest, sendCreated, sendNotFound, sendServerError } from "../helpers/helper.functions.js";
+import { getAllEmployeesService, registerNewUserService } from "../services/userService.js";
 import * as uuid from 'uuid'
 
 
@@ -59,4 +59,18 @@ export const registerNewUser=async(req,res)=>{
     }
 }
 
+export const getAllEmployees=async(req,res)=>{
+    try {
+          const  employees=await getAllEmployeesService()
+          if(employees.length){
+            return res.status(200).json(employees)
+          }
+          else{
+            sendNotFound(res,"no records of employees found")
+          }
 
+
+    } catch (error) {
+        sendServerError(res,error.message)
+    }
+}

@@ -1,8 +1,16 @@
 import React from 'react'
 import '../EmployeeListing/EmployeeListing.scss'
 import { Link } from 'react-router-dom'
+import { useGetAllEmployeesQuery } from '../../features/EmployeeListing/EmployeeListing'
 
 const EmployeeListing = () => {
+    const{data:employees, isError, isLoading}=useGetAllEmployeesQuery()
+
+   console.log(`data:${employees}, isError:${isError}, isLoading:${isLoading}`)
+
+
+
+
   return (
     <div className='employee-listing-container'>
          <div className='title-bar'>
@@ -31,44 +39,25 @@ const EmployeeListing = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <td>1</td>
-                    <td>stephen Ondieki</td>
-                    <td>Software Engineer</td>
-                    <td>Nyeri</td>
-                    <td>07045678907</td>
-                    <td>07/04/2024</td>
-                    <td>View Edit</td>
-                    </tr>
-                    <tr>
-                    <td>2</td>
-                    <td>stephen Ondieki</td>
-                    <td>Software Engineer</td>
-                    <td>Nyeri</td>
-                    <td>07045678907</td>
-                    <td>07/04/2024</td>
-                    <td>View Edit</td>
+                    {employees && employees.map((item,index)=>(
+                    <tr key={index}>
+                        <td>1{item.identification_number}</td>
+                        <td>{item.firstname}  {item.lastname}</td>
+                        <td></td>
+                        <td>{item.place_of_residence}</td>
+                        <td>{item.phone_number}</td>
+                        <td>{item.date_of_birth}</td>
+                        <td>View Edit</td>
                     </tr>
 
-                    <tr>
-                    <td>3</td>
-                    <td>stephen Ondieki</td>
-                    <td>Software Engineer</td>
-                    <td>Nyeri</td>
-                    <td>07045678907</td>
-                    <td>07/04/2024</td>
-                    <td>View Edit</td>
-                    </tr>
 
-                    <tr>
-                    <td>4</td>
-                    <td>stephen Ondieki</td>
-                    <td>Software Engineer</td>
-                    <td>Nyeri</td>
-                    <td>07045678907</td>
-                    <td>07/04/2024</td>
-                    <td>View Edit</td>
-                    </tr>
+                    ))}
+                    
+                   
+
+                  
+
+                   
 
                     
                    

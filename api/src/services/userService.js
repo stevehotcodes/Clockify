@@ -91,3 +91,16 @@ export const setStatusofEmailtoSentService=async(email)=>{
       return error
   }
 }
+
+export const getAllEmployeesService=async()=>{
+    try{
+        
+        const result=await poolRequest()
+        .query('SELECT * FROM tbl_user')
+
+        return result.recordset
+    }
+    catch(error){
+        return error
+    }
+}
