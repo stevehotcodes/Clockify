@@ -3,6 +3,9 @@ import mssql from 'mssql';
 import { poolRequest } from '../utils/sqlDbConnect.js';
 import logger from '../utils/logger.js';
 import * as uuid from 'uuid';
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+
 
 export const registerNewUserService = async (newUser) => {
 
@@ -103,4 +106,54 @@ export const getAllEmployeesService=async()=>{
     catch(error){
         return error
     }
+}
+
+export const findByCredentialsService = async (user) => {
+    try {
+        const userFoundResponse = await poolRequest()
+            .input('email', mssql.VarChar, user.email)
+            .query('SELECT * FROM tbl_user WHERE email = @email');
+            console.log(userFoundResponse)
+        if (userFoundResponse.recordset[0]) {
+
+
+            if (await bcrypt.compare(user.password, userFoundResponse.recordset[0].password)) {
+
+                let token = jwt.sign(
+                    {
+                        user_id: userFoundResponse.recordset[0].user_id,
+                        firstname: userFoundResponse.recordset[0].firstname,
+                        email: userFoundResponse.recordset[0].email
+                    },
+
+                    process.env.SECRET, { expiresIn: "12h" } 
+                );
+                const { password, ...user } = userFoundResponse.recordset[0];
+                console.log('user deatails:',user)
+                return { user, token: `JWT ${token}` };
+            } else{
+                // return { error: 'Invalid Credentials' };
+
+                let token = jwt.sign(
+                    {
+                        user_id: userFoundResponse.recordset[0].user_id,
+                        firstname: userFoundResponse.recordset[0].firstname,
+                        email: userFoundResponse.recordset[0].email
+                    },
+
+                    process.env.SECRET, { expiresIn: "12h" } 
+                );
+                const { password,graduation_date, ...user } = userFoundResponse.recordset[0];
+                console.log('user deatails:',user)
+                return { user, token: `JWT ${token}` };
+
+            }
+        } else {
+            return { error: 'Invalid Credentials' };
+        }
+
+    } catch (error) {
+        return error;
+    }
+
 }

@@ -2,8 +2,9 @@ import { send } from "vite";
 import logger from "../utils/logger.js";
 import generator from 'generate-password'
 import { sendBadRequest, sendCreated, sendNotFound, sendServerError } from "../helpers/helper.functions.js";
-import { getAllEmployeesService, registerNewUserService } from "../services/userService.js";
+import { findByCredentialsService, getAllEmployeesService, registerNewUserService } from "../services/userService.js";
 import * as uuid from 'uuid'
+import { userLoginValidator } from "../validators/user.validators.js";
 
 
 var passwordGenerated = generator.generate({ 
@@ -74,3 +75,29 @@ export const getAllEmployees=async(req,res)=>{
         sendServerError(res,error.message)
     }
 }
+
+
+export const loginUser = async (req, res) => {
+    const { email, password } = req.body;
+    const { error } = userLoginValidator({ email, password });
+    if (error) {
+        return res.status(400).send(error.details[0].message);
+    } else {
+        try {
+            const userResponse = await findByCredentialsService({ email, password });
+            if (userResponse.error) {
+                // notAuthorized(res, userResponse.error);
+                return res.status(400).json(userResponse.error)
+            } else {
+
+              console.log(userResponse)
+            //   return   res.status(200).send(userResponse);
+                console.log(userResponse)
+               return  res.status(200).json({user:userResponse.user, token:userResponse.token});
+
+            }
+        } catch (error) {
+            sendServerError(res, error.message)
+        }
+    }
+};
