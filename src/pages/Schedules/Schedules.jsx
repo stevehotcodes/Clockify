@@ -5,6 +5,8 @@ import Modal from '../../components/Modal/Modal';
 import CreateSchedule from '../../features/Schedule/CreateSchedule';
 import { useState } from 'react';
 import { useGetAllSchedulesQuery } from '../../features/Schedule/scheduleApi';
+import {PuffLoader} from 'react-spinners'
+
 
 const Schedules = () => {
 
@@ -25,6 +27,7 @@ const Schedules = () => {
 
   return (
     <div className='schedule-container'> 
+    {isLoading&&<PuffLoader color='000' size={150}/>}
               <div className='title-bar'>
             <span>Schedules</span>
         </div>
