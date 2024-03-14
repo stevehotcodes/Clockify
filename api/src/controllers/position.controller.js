@@ -1,5 +1,5 @@
-import { sendBadRequest, sendCreated, sendNotFound, sendServerError } from "../helpers/helper.functions.js"
-import { createNewPositionService, getAllPositionsService, getPositionByNameService } from "../services/positionsService.js"
+import { sendBadRequest, sendCreated, sendNotFound, sendServerError, sendSuccess } from "../helpers/helper.functions.js"
+import { createNewPositionService, editPositionService, getAllPositionsService, getPositionByIdService, getPositionByNameService } from "../services/positionsService.js"
 import logger from "../utils/logger.js"
 
 
@@ -60,5 +60,59 @@ export const getAllPositions=async(req,res)=>{
     } catch (error) {
         sendServerError(res,error.messsage)
         
+    }
+}
+
+
+export const getOnePosition=async(req,res)=>{
+    try {
+        const  position_id=req.params.position_id
+        const position=await getPositionByIdService(position_id);
+
+        if(position.length){
+            
+            console.log("position", position);
+            return res.status(200).json(position)
+
+        }
+        else{
+            sendNotFound(res,'position not found')
+        }
+
+        
+    } catch (error) {
+        sendServerError(res,error.message)
+    }
+}
+
+
+export const editPosition=async(req, res)=>{
+    try {
+           
+         const  position_id=req.params.position_id
+            let editedPositionDetails={
+                position_description:req.body.position_description,
+                gross_salary:req.body.gross_salary
+            }
+
+
+            console.log("position id",position_id)
+            const position=await getPositionByIdService(position_id);
+            console.log("position", position)
+
+            if(position.length>0){
+                const response=await editPositionService(position_id,editedPositionDetails)
+                console.log(response)
+                if(response.rowsAffected>0){
+                    sendSuccess(res,"position updated successfully")
+                }
+               
+            }
+            else{
+                sendNotFound(res,'Cannot edit a non existing position')
+            }     
+        
+    } catch (error) {
+        sendServerError(res,error.messsage)
     }
 }

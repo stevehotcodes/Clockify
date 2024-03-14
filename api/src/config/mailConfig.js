@@ -18,7 +18,7 @@ export const sendWelcomeMail=(email,password)=>{
         from: process.env.EMAIL,
         to: email,
         subject: 'WELCOME TO CLOCKIFY',
-        html:`
+        text:`
          <p>Hello ${email}</p>
           <h1> Welcome to Clockify</h3> 
         <p> Here is your logging credentials </p>
@@ -63,6 +63,8 @@ export const sendWelcomeEmailToNewUsers=async()=>{
                 console.log("email delivery status",emailDeliveryStatus)
             })
         }
+        
+
 
         
     } catch (error) {

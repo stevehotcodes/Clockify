@@ -23,6 +23,21 @@ export const positionApi=createApi({
                 method:"GET",
 
             })
+        }),
+        editPosition:builder.mutation({
+            query:(position_id,positionDetails)=>({
+                url:`position/${position_id}`,
+                method:`PATCH`,
+                body:positionDetails
+            }),
+            invalidatesTags:[`Position`]
+
+        }),
+        getOnePosition:builder.query({
+            query:(position_id)=>({
+                url:`position/${position_id}`,
+                method:`GET`
+            })
         })
 
 
@@ -30,4 +45,4 @@ export const positionApi=createApi({
     })
 })
 
-export const{useCreateNewPositionMutation,useGetAllPositionsQuery}=positionApi
+export const{useCreateNewPositionMutation,useGetAllPositionsQuery,useEditPositionMutation,useGetOnePositionQuery}=positionApi

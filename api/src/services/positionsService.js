@@ -44,3 +44,36 @@ export const getAllPositionsService=async()=>{
         return error
     }
 }
+
+export const getPositionByIdService=async(position_id)=>{
+    try {
+        const result =await poolRequest()
+        .input(`position_id`, mssql.VarChar,position_id)
+        .query(`SELECT * FROM position WHERE position_id=@position_id`)
+        return result.recordset
+        
+    } catch (error) {
+        return error
+    }
+}
+
+export const  editPositionService=async(position_id,updatedPositionDetails)=>{
+    try {
+
+         const{position_description,gross_salary}=updatedPositionDetails
+         const result=await poolRequest()
+         .input('position_id',mssql.VarChar,position_id)
+         .input('position_description',mssql.VarChar,position_description)
+         .input('gross_salary', mssql.VarChar,gross_salary)
+         .query(`
+                UPDATE position
+                SET position_description=@position_description , gross_salary=@gross_salary
+                WHERE position_id=@position_id
+         `)
+
+         return result 
+        
+    } catch (error) {
+        return error
+    }
+}

@@ -3,10 +3,17 @@ import '../Positions/Positions.scss'
 import { useState } from 'react';
 import CreatePosition from '../../features/Position/CreatePosition';
 import Modal from '../../components/Modal/Modal';
+import { useGetAllPositionsQuery } from '../../features/Position/positionApi';
+import EditPosition from '../../features/Position/EditPosition';
 
 const Positions = () => {
 
     const [isModalOpen, setModalOpen] = useState(false);
+    const [isEditModalOpen, setEditModalOpen]=useState(false)
+    const {data:positions,isError,isLoading }=useGetAllPositionsQuery();
+
+    console.log(`data:${positions}, error:${isError},isLoading:${isLoading}`)
+    
 
     const openModal = () => {
         setModalOpen(true);
@@ -16,6 +23,21 @@ const Positions = () => {
         setModalOpen(false);
       };
 
+
+      const openEditModal = (id) => {
+       
+        setEditModalOpen(true)
+      };
+    
+      const closeEidtModal = () => {
+       
+        setEditModalOpen(false)
+      };
+
+
+    const handleView=()=>{
+        alert("hey I am open ")
+    }
 
   return (
     <div className='positions-container'>
@@ -35,6 +57,7 @@ const Positions = () => {
             </Modal>
           )}
                 </div>
+
             
                
             </div>
@@ -47,22 +70,28 @@ const Positions = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Software Developer</td>
-                        <td>120</td>
-                        <td>View Edit</td>
-                    </tr>
-                    <tr>
-                        <td>Software Developer</td>
-                        <td>120</td>
-                        <td>View Edit</td>
-                    </tr>
-                    <tr>
-                        <td>Software Developer</td>
-                        <td>120</td>
-                        <td>View Edit</td>
-                    </tr>
-                    
+                    {positions&&positions.map((item,index)=>(
+                        
+                        <tr key={index}>
+                            <td>{item.position_description}</td>
+                            <td>{item.gross_salary}</td>
+                            <td> <button onClick={(e)=>{e.stopPropagation(); openEditModal(item.position_id);}}>Edit</button>
+                            {
+                                isEditModalOpen&& (
+                                    <Modal onClose={closeModal}>
+                                      <EditPosition closeGroup={closeModal} position={item} />
+                                    </Modal>
+                                  )
+                                
+                            }
+                            
+                            </td>
+
+                        </tr>
+
+
+                    ))}
+                   
 
                     
                    
