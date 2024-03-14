@@ -1,8 +1,11 @@
 import emailTemp from "../templates/welcomeTemplate.js";
+import ejs from 'ejs'
+// import welcomeEmail from "../templates/welcomeTemplate.ejs"
 import { transporter} from "../middlewares/mailTransporter.js";
 import dotenv from 'dotenv'
-import logger from "../utils/logger.js";
+import logger from "../utils/logger.js"
 import { getNewRegisterUsersService, setStatusofEmailtoSentService } from "../services/userService.js";
+
 
 
 
@@ -10,12 +13,20 @@ import { getNewRegisterUsersService, setStatusofEmailtoSentService } from "../se
 dotenv.config()
 
 
-export const sendWelcomeMail=(email)=>{
+export const sendWelcomeMail=(email,password)=>{
     const mailOptions = {
         from: process.env.EMAIL,
         to: email,
         subject: 'WELCOME TO CLOCKIFY',
-        html : emailTemp
+        html:`
+         <p>Hello ${email}</p>
+          <h1> Welcome to Clockify</h3> 
+        <p> Here is your logging credentials </p>
+        <p> Username/Email :${email}<p>
+        <p> Password:${password}<p>
+        
+        
+        `
     };
 
     transporter.sendMail(mailOptions, function(error, info) {
@@ -42,8 +53,11 @@ export const sendWelcomeEmailToNewUsers=async()=>{
         }
         else{
             console.log(newUsers);
+            
             newUsers.forEach(async (user)=>{
-                sendWelcomeMail(user.email)
+                console.log(user)
+                // ejs.renderFile(emailTemp(user),)
+                sendWelcomeMail(user.email,user.password)
                 //change teh state of the database of isEmailSent to 1
                 const emailDeliveryStatus= await setStatusofEmailtoSentService(user.email)
                 console.log("email delivery status",emailDeliveryStatus)
@@ -53,5 +67,6 @@ export const sendWelcomeEmailToNewUsers=async()=>{
         
     } catch (error) {
         console.error('Error fetching new users:', error);
+        logger.info(error)
     }
 }

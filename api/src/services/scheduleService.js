@@ -1,6 +1,7 @@
 import mssql from 'mssql'
 import { poolRequest } from '../utils/sqlDbConnect.js'
 import * as uuid from 'uuid'
+import { schedule } from 'node-cron'
 
 
 
@@ -30,5 +31,18 @@ export const getAllScheduleService=async()=>{
             return result.recordset
     } catch (error) {
         return error 
+    }
+}
+
+
+export const getAShiftByDescriptionService=async(schedule_description)=>{
+    try {
+            const result =await poolRequest()
+            .input('schedule_description', mssql.VarChar,schedule_description)
+            .query(`SELECT * FROM schedule WHERE schedule_description=@schedule_description`)
+            return result.recordset
+        
+    } catch (error) {
+        return error
     }
 }

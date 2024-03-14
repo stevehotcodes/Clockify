@@ -36,12 +36,12 @@ app.use('/api',userRouter)
 
 
 // console.log('the password is :',passcode);
-cron.schedule('*/5 * * * * *', () => {
+// cron.schedule('*/10 * * * * *', () => {
 
-    logger.info("sending email after every five seconds ...............");
-    sendWelcomeEmailToNewUsers()
+//     logger.info("sending email after every five seconds ...............");
+//     sendWelcomeEmailToNewUsers()
 
-});
+// });
 
 
 app.listen(port,()=>{
