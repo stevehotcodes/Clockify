@@ -1,8 +1,25 @@
 import React from 'react'
 import '../Schedules/Schedules.scss'
 import '../Positions/Positions.scss'
+import Modal from '../../components/Modal/Modal';
+import CreateSchedule from '../../features/Schedule/CreateSchedule';
+import { useState } from 'react';
 
 const Schedules = () => {
+
+    const [isModalOpen, setModalOpen] = useState(false);
+    const [isScheduleModalOpen, setScheduleModalOpen]=useState(false)
+    
+
+
+    const openModal = () => {
+        setScheduleModalOpen(true);
+      };
+    
+      const closeModal = () => {
+        setScheduleModalOpen(false);
+      };
+
 
   return (
     <div className='schedule-container'> 
@@ -16,9 +33,17 @@ const Schedules = () => {
                         <input type="search" name="" id="" placeholder='search for an position' />
                 </form>
                 <div  className='button-wrapper'>
-                        <button className='add-new-btn'> Add New</button>
+                        <button className='add-new-btn' onClick={openModal}> Add New</button>
+                        {
+                            isScheduleModalOpen&&(
+                                <Modal onClose={closeModal}>
+                                    <CreateSchedule closeModal={closeModal}/>
+
+                                </Modal>
+                            )
+                        }
                 </div>
-            
+
                
             </div>
             <table>
