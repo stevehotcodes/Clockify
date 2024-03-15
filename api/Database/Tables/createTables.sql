@@ -87,8 +87,18 @@ CREATE TABLE emergency_contact(
 )
 ---------deductions table
 CREATE TABLE deductions(
-deduction_id VARCHAR(300),
+deduction_id VARCHAR(300) PRIMARY KEY,
 description VARCHAR(300),
 amount DECIMAL(10,2),
-user_id VARCHAR(300) FOREIGN KEY REFERENCES tbl_user (user_id)
+user_id VARCHAR(300) FOREIGN KEY REFERENCES tbl_user (user_id),
+created_on DATETIME DEFAULT GETDATE()
 )
+
+---create cash advances table 
+CREATE TABLE cash_advances(
+    cash_advance_id  VARCHAR (300) PRIMARY KEY,
+    user_id VARCHAR(300) FOREIGN KEY REFERENCES tbl_user (user_id),
+    number_of_hours INT DEFAULT 0,
+    created_on DATETIME DEFAULT GETDATE()
+)
+

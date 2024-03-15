@@ -63,17 +63,12 @@ const Deductions = () => {
                          <tr key={index}>
                             <td>{item.deduction_id}</td>
                             <td>{item.firstname} {item.lastname}</td>
+                            <td>{item.description}</td>
                             <td>{item.amount}</td>
                             <td>{item.created_on}</td>
-                            <td>View Edit</td>
+                            <td><button>Edit</button></td>
                          </tr>
-
-
-
-                    ))}
-                   
-
-                    
+                    ))}                   
                    
                 </tbody>
             </table>

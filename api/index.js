@@ -10,6 +10,7 @@ import scheduleRouter from './src/routes/scheduleRoutes.js'
 import userRouter from './src/routes/userRoutes.js'
 import { sendWelcomeEmailToNewUsers } from './src/config/mailConfig.js'
 import deductionRouter from './src/routes/deductionRoutes.js'
+import cashAdvancesRouter from './src/routes/cashAdvancesRoutes.js'
 dotenv.config()
 
 
@@ -35,6 +36,7 @@ app.use('/api',positionRouter)
 app.use('/api',scheduleRouter)
 app.use('/api',userRouter)
 app.use('/api',deductionRouter)
+app.use('/api',cashAdvancesRouter)
 
 
 // console.log('the password is :',passcode);
