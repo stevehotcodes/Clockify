@@ -9,6 +9,7 @@ import positionRouter from './src/routes/positionRoutes.js'
 import scheduleRouter from './src/routes/scheduleRoutes.js'
 import userRouter from './src/routes/userRoutes.js'
 import { sendWelcomeEmailToNewUsers } from './src/config/mailConfig.js'
+import deductionRouter from './src/routes/deductionRoutes.js'
 dotenv.config()
 
 
@@ -33,6 +34,7 @@ app.get('/health',(req,res)=>{
 app.use('/api',positionRouter)
 app.use('/api',scheduleRouter)
 app.use('/api',userRouter)
+app.use('/api',deductionRouter)
 
 
 // console.log('the password is :',passcode);

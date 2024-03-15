@@ -95,6 +95,22 @@ export const setStatusofEmailtoSentService=async(email)=>{
   }
 }
 
+
+export const getOneEmployeeService=async(user_id)=>{
+    try{
+        
+        const result=await poolRequest()
+        .input('user_id',mssql.VarChar,user_id)
+        .query(`SELECT * FROM tbl_user WHERE user_id=@user_id`)
+
+        return result.recordset
+    }
+    catch(error){
+        return error
+    }
+}
+
+
 export const getAllEmployeesService=async()=>{
     try{
         
@@ -132,7 +148,8 @@ export const findByCredentialsService = async (user) => {
                 console.log('user deatails:',user)
                 return { user, token: `JWT ${token}` };
             } else{
-                // return { error: 'Invalid Credentials' };
+              
+                // if the use is new  user is new 
 
                 let token = jwt.sign(
                     {

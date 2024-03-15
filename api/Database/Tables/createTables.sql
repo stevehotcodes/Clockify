@@ -85,3 +85,10 @@ CREATE TABLE emergency_contact(
     relationship VARCHAR(MAX) DEFAULT 'no relationship',
     user_id  VARCHAR(300)  FOREIGN KEY REFERENCES tbl_user (user_id)
 )
+---------deductions table
+CREATE TABLE deductions(
+deduction_id VARCHAR(300),
+description VARCHAR(300),
+amount DECIMAL(10,2),
+user_id VARCHAR(300) FOREIGN KEY REFERENCES tbl_user (user_id)
+)

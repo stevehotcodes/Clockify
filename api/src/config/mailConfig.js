@@ -56,11 +56,10 @@ export const sendWelcomeEmailToNewUsers=async()=>{
             
             newUsers.forEach(async (user)=>{
                 console.log(user)
-                // ejs.renderFile(emailTemp(user),)
                 sendWelcomeMail(user.email,user.password)
                 //change teh state of the database of isEmailSent to 1
                 const emailDeliveryStatus= await setStatusofEmailtoSentService(user.email)
-                console.log("email delivery status",emailDeliveryStatus)
+                // console.log("email delivery status",emailDeliveryStatus)
             })
         }
         
