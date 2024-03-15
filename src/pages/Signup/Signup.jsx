@@ -83,7 +83,7 @@ const submit=async(data)=>{
     
       console.log(response)
     // console.log("isLaoding",isLoading)
-      LoadingToast
+      LoadingToast(true)
       SuccessToast(response.message)
 
       setTimeout(()=>{
@@ -100,7 +100,7 @@ const submit=async(data)=>{
 
   }
   finally{
-    LoadingToast
+    LoadingToast(false)
   }
     
     

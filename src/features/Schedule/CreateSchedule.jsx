@@ -48,11 +48,7 @@ const CreateSchedule = () => {
             e.target.reset()
         }
 
-        // const formattedIntime=inTime.toISOString()
-        // const formattedOutTime=outTime.toISOString()
-
-        // console.log(formattedIntime,formattedOutTime)
-
+ 
 
     }
 

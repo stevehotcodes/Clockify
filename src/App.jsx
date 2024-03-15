@@ -10,17 +10,22 @@ import HeaderAdmin from './layout/Header-Admin/HeaderAdmin'
 import AdminHome from './layout/Admin-Home/AdminHome'
 import SideNavbarAdmin from './layout/SideNavbarAdmin/SideNavbarAdmin'
 import '@emotion/styled';
+import useLocalStorage from './hooks/useLocalStorage'
+import EmployeeHome from './layout/EmployeeHome/EmployeeHome'
 
 
 function App() {
   const [count, setCount] = useState(0)
+  const [userDetails, setUserDetails] = useLocalStorage('user', null);
+  console.log(userDetails)
 
   return (
     <>
       <Routes>
          <Route   path="/" element={<Login />} />
          <Route path="/signup" element={<Signup/>}/>
-         <Route path="/admin" element={<AdminHome/>}/>
+         <Route path="/admin" element={(userDetails.role==='admin')? <AdminHome/>:<Login/>}/>
+         <Route path='/employee' element={(userDetails.role==='user')?<EmployeeHome/>:<Login/>}/>
          
       </Routes>
       

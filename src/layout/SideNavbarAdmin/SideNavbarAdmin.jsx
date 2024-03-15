@@ -12,9 +12,20 @@ import { PiTimerFill } from "react-icons/pi";
 import { MdOutlinePayments } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
 import { NavLink } from 'react-router-dom';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 
 const SideNavbarAdmin = () => {
+    // const [token , setToken]=useLocalStorage('')
+    const [token, setToken] = useLocalStorage('token ', null);
+
+
+    const logOut=()=>{
+        // localStorage.removeItem('token')
+        localStorage.removeItem('user')
+        setToken(null)
+
+    }
 
     const sideNavAdminLinks=[
         {
@@ -81,7 +92,8 @@ const SideNavbarAdmin = () => {
       <span>{item.linkContent}</span>
     </NavLink>
   ))}
-</div>
+
+  </div>
 
        {/* <div className='nav-icon-wrapper'>
           <FaHome/>
@@ -91,7 +103,7 @@ const SideNavbarAdmin = () => {
         
 
         
-
+<button onClick={logOut}>Log out </button>
          
       
 

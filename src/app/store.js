@@ -4,6 +4,8 @@ import {setupListeners} from '@reduxjs/toolkit/query'
 import { positionApi } from '../features/Position/positionApi.js'
 import { scheduleApi } from '../features/Schedule/scheduleApi.js'
 import { employeeListingApi } from '../features/EmployeeListing/EmployeeListing.js'
+import { loginApi } from '../features/Login/loginApi.js'
+import { deductionApi } from '../features/Deductions/deductionsApi.js'
 
 
 
@@ -14,6 +16,8 @@ export const store =configureStore({
         [positionApi.reducerPath]:positionApi.reducer,
         [scheduleApi.reducerPath]:scheduleApi.reducer,
         [employeeListingApi.reducerPath]:employeeListingApi.reducer,
+        [loginApi.reducerPath]:loginApi.reducer,
+        [deductionApi.reducerPath]:deductionApi.reducer
 
 
     },
@@ -22,7 +26,9 @@ export const store =configureStore({
         registerApi.middleware,
         positionApi.middleware,
         scheduleApi.middleware,
-        employeeListingApi.middleware
+        employeeListingApi.middleware,
+        loginApi.middleware,
+        deductionApi.middleware
     ),
 
 })

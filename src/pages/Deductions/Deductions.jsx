@@ -1,7 +1,30 @@
 import React from 'react'
 import '../Deductions/Deductions.scss'
+import { useState } from 'react';
+import Modal from '../../components/Modal/Modal';
+import CreateDeductions from '../../features/Deductions/CreateDeductions';
+import { useGetAllDeductionQuery } from '../../features/Deductions/deductionsApi';
 
 const Deductions = () => {
+
+    const [isModalOpen, setModalOpen] = useState(false);
+    const {data:deductions,isError,isLoading}=useGetAllDeductionQuery()
+
+    console.log(`data:${deductions}, isError:${isError},isLaoding:${isLoading}`)
+
+    const openModal = () => {
+        setModalOpen(true);
+      };
+    
+      const closeModal = () => {
+        setModalOpen(false);
+      };
+
+    
+
+   
+
+
   return (
     <div className='deductions-container'>
         <div className="title-bar">
@@ -13,7 +36,12 @@ const Deductions = () => {
                         <input type="search" name="" id="" placeholder='search for an employee' />
                 </form>
                 <div  className='button-wrapper'>
-                        <button className='add-new-btn'> Add New</button>
+                        <button className='add-new-btn' onClick={openModal}> Add New</button>
+                        {isModalOpen && (
+            <Modal onClose={closeModal}>
+              <CreateDeductions closeGroup={closeModal} />
+            </Modal>
+          )}
                 </div>
                
             </div>
@@ -24,31 +52,25 @@ const Deductions = () => {
                         <th>Employee Name</th>
                         <th>Deduction Type</th>
                         <th>Amount</th>
-                        <th>Telephone</th>
+            
                         <th>Date</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <td>1</td>
-                    <td>Stephen Ondieki</td>
-                    <td>NSSF</td>
-                    <td>2000</td>
-                    <td>07045678907</td>
-                    <td>07/04/2024</td>
-                    <td>View Edit</td>
-                    </tr>
 
-                    <tr>
-                    <td>2</td>
-                    <td>Stephen Ondieki</td>
-                    <td>NSSF</td>
-                    <td>2000</td>
-                    <td>07045678907</td>
-                    <td>07/04/2024</td>
-                    <td>View Edit</td>
-                    </tr>
+                    {deductions&& deductions.map((item,index)=>(
+                         <tr key={index}>
+                            <td>{item.deduction_id}</td>
+                            <td>{item.firstname} {item.lastname}</td>
+                            <td>{item.amount}</td>
+                            <td>{item.created_on}</td>
+                            <td>View Edit</td>
+                         </tr>
+
+
+
+                    ))}
                    
 
                     

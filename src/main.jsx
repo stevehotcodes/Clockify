@@ -11,6 +11,10 @@ import AdminDashboard from './pages/AdminDashboard/AdminDashboard.jsx'
 import EmployeeHome from './layout/EmployeeHome/EmployeeHome.jsx'
 import { Provider } from 'react-redux'
 import { store } from './app/store.js'
+import useLocalStorage from './hooks/useLocalStorage.js'
+
+
+
 
 const router=createBrowserRouter([
   {

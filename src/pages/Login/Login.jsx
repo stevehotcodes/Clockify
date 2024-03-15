@@ -7,11 +7,23 @@ import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
 import { Navigate } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
+import {ErrorToast, LoadingToast, SuccessToast, ToasterContainer} from '../../components/Toaster/Toaster'
+import { useLoginUserMutation } from '../../features/Login/loginApi'
+import useLocalStorage from '../../hooks/useLocalStorage'
+import { useNavigate } from 'react-router-dom'
+
 
 
 
 
 const Login = () => {
+
+
+    const [loginUser]=useLoginUserMutation()
+    const [userDetails, setUserDetails] = useLocalStorage('user', null);
+    const [token, setToken] = useLocalStorage('token ', null);
+    // console.log("user form the local storage ", userDetails,token )
+    const navigate=useNavigate()
 
     const schema=yup.object().shape({
         email:yup.string().email().required("email is required"),
@@ -27,8 +39,51 @@ const Login = () => {
         resolver:yupResolver(schema)
       });
      
-      const onSubmit=(data)=>{
-        console.log(data)
+      const onSubmit=async(data)=>{
+       LoadingToast()
+        try {
+            const response=await loginUser(data).unwrap();
+            console.log(response)
+            console.log("Response status:", response.status);
+            console.log("Response data:", response);
+         
+            LoadingToast(false)
+            setUserDetails(response.user);
+            setToken(response.token)
+            // navigate('/admin')
+            console.log(userDetails,token )
+
+            if(token){
+                if( userDetails.role==='admin'){
+                    SuccessToast(`Login in  successful as admin, Welcome ${data.email}`)
+                    setTimeout(()=>{
+                        navigate('/admin')
+                    },2000)
+
+                }
+                else{
+                    setTimeout(()=>{
+                        navigate('/employee')
+                    },2000)
+                }
+
+             
+               
+            }
+            else{
+                navigate('/')
+            }
+
+            
+        } catch (error) {
+            console.log(error)
+            ErrorToast(error.data)
+        }
+        finally{
+            LoadingToast(false)
+        }
+
+       
     }
 
 
@@ -38,6 +93,7 @@ const Login = () => {
 
   return (
     <div className='login-layout'>
+    <ToasterContainer/>
         <div className='login-container'>
             <div className='login-background-theme-image-wrapper'>
                 <img src={LoginFormbackgroundImage} alt=""  className='login-background-theme-image'/>
@@ -52,7 +108,7 @@ const Login = () => {
                     <label>Email</label><br/>
                     <input 
                         type="text"
-                         name="" id="" 
+                         name="" id="email" 
                          placeholder="Email" 
                          {...register("email")}
                         
@@ -65,7 +121,7 @@ const Login = () => {
                     <label>Password</label><br/>
                     <input 
                         type="password"
-                         name="" id="" 
+                         name="" id="password" 
                          placeholder="Password"
                          {...register("password")}
                          
