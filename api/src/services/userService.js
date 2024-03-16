@@ -172,3 +172,19 @@ export const findByCredentialsService = async (user) => {
     }
 
 }
+
+export const getUserById=async(user_id)=>{
+    try {
+         const response=await poolRequest()
+         .input('user_id', mssql.VarChar, user_id)
+         .query(`
+                SELECT * FROM tbl_user WHERE user_id=@user_id
+         `)
+
+         return response.recordset
+        
+    } catch (error) {
+        return error 
+    }
+
+}

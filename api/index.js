@@ -11,6 +11,7 @@ import userRouter from './src/routes/userRoutes.js'
 import { sendWelcomeEmailToNewUsers } from './src/config/mailConfig.js'
 import deductionRouter from './src/routes/deductionRoutes.js'
 import cashAdvancesRouter from './src/routes/cashAdvancesRoutes.js'
+import overtimeRouter from './src/routes/overtime.route.js'
 dotenv.config()
 
 
@@ -37,7 +38,7 @@ app.use('/api',scheduleRouter)
 app.use('/api',userRouter)
 app.use('/api',deductionRouter)
 app.use('/api',cashAdvancesRouter)
-
+app.use('/api',overtimeRouter)
 
 // console.log('the password is :',passcode);
 // cron.schedule('*/10 * * * * *', () => {

@@ -1,9 +1,17 @@
 import React from 'react'
 import  '../Overtime/Overtime.scss'
+import { useGetAllOvertimeQuery } from '../../features/Overtime/overtimeApi'
 
 const Overtime = () => {
+    const{data:overtimes, isLoading, isError}=useGetAllOvertimeQuery()
+
+    console.log(`data:${overtimes}, isLoading:${isLoading}`)
+    
+    
+
   return (
     <div className='overtime-container'>
+        
         <div className='title-bar'>
             <span>Overtime </span>
         </div>
@@ -26,38 +34,23 @@ const Overtime = () => {
                         <th>Employee Name</th>
                         <th>Number of Hours</th>
                         <th>Rate per hours</th>
-                        <th>Telephone</th>
                         <th>Created on</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Stephen Ondieki</td>
-                        <td>4</td>
-                        <td>120</td>
-                        <td>07045678907</td>
-                        <td>14/03/2023</td>
-                        <td> <span>View </span><span>Edit</span></td>
-                    </tr>
-
-                    <tr>
-                        <td>1</td>
-                        <td>Stephen Ondieki</td>
-                        <td>4</td>
-                        <td>120</td>
-                        <td>07045678907</td>
-                        <td>14/03/2023</td>
-                        <td> <span>View </span><span>Edit</span></td>
-                    </tr>
-
-
-           
-                   
-
+                    {overtimes&&overtimes.map((item,index)=>(
+                          <tr key={index}>
+                            <td>{item.overtime_id}</td>
+                            <td>{item.firstname} {item.lastname}</td>
+                            <td>{item.number_of_hours}</td>
+                            <td>{item.rate_per_hours}</td>
+                            <td>{item.created_on}</td>
+                            <td> <span>Edit</span></td>
+                      </tr>
                     
-                   
+                    ))}                   
+
                 </tbody>
             </table>
         </div>

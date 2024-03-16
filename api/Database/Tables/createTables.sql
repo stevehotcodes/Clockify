@@ -102,3 +102,13 @@ CREATE TABLE cash_advances(
     created_on DATETIME DEFAULT GETDATE()
 )
 
+
+-----create overtime table
+CREATE TABLE overtime (
+    overtime_id VARCHAR(300) PRIMARY KEY,
+    number_of_hours INT DEFAULT 0,
+    rate_per_hours  DECIMAL (10,2) DEFAULT 0,
+    created_on DATETIME DEFAULT GETDATE(),
+    user_id VARCHAR (300)  FOREIGN KEY REFERENCES tbl_user (user_id)
+)
+

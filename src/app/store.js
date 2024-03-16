@@ -7,6 +7,7 @@ import { employeeListingApi } from '../features/EmployeeListing/EmployeeListing.
 import { loginApi } from '../features/Login/loginApi.js'
 import { deductionApi } from '../features/Deductions/deductionsApi.js'
 import { cashAdvancesApi } from '../features/CashAdvances/cashAdvancesApi.js'
+import { overtimeApi } from '../features/Overtime/overtimeApi.js'
 
 
 
@@ -19,7 +20,8 @@ export const store =configureStore({
         [employeeListingApi.reducerPath]:employeeListingApi.reducer,
         [loginApi.reducerPath]:loginApi.reducer,
         [deductionApi.reducerPath]:deductionApi.reducer,
-        [cashAdvancesApi.reducerPath]:cashAdvancesApi.reducer
+        [cashAdvancesApi.reducerPath]:cashAdvancesApi.reducer,
+        [overtimeApi.reducerPath]:overtimeApi.reducer
 
 
     },
@@ -31,7 +33,8 @@ export const store =configureStore({
         employeeListingApi.middleware,
         loginApi.middleware,
         deductionApi.middleware,
-        cashAdvancesApi.middleware
+        cashAdvancesApi.middleware,
+        overtimeApi.middleware
     ),
 
 })
