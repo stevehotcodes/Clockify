@@ -6,6 +6,7 @@ import { scheduleApi } from '../features/Schedule/scheduleApi.js'
 import { employeeListingApi } from '../features/EmployeeListing/EmployeeListing.js'
 import { loginApi } from '../features/Login/loginApi.js'
 import { deductionApi } from '../features/Deductions/deductionsApi.js'
+import { cashAdvancesApi } from '../features/CashAdvances/cashAdvancesApi.js'
 
 
 
@@ -17,7 +18,8 @@ export const store =configureStore({
         [scheduleApi.reducerPath]:scheduleApi.reducer,
         [employeeListingApi.reducerPath]:employeeListingApi.reducer,
         [loginApi.reducerPath]:loginApi.reducer,
-        [deductionApi.reducerPath]:deductionApi.reducer
+        [deductionApi.reducerPath]:deductionApi.reducer,
+        [cashAdvancesApi.reducerPath]:cashAdvancesApi.reducer
 
 
     },
@@ -28,7 +30,8 @@ export const store =configureStore({
         scheduleApi.middleware,
         employeeListingApi.middleware,
         loginApi.middleware,
-        deductionApi.middleware
+        deductionApi.middleware,
+        cashAdvancesApi.middleware
     ),
 
 })

@@ -45,7 +45,6 @@ export const registerNewUserService = async (newUser) => {
             .input('emergency_phone_number',mssql.VarChar,emergency_phone_number)
             .input('relationship',mssql.VarChar,relationship)
             
-
             .query(
               `INSERT INTO tbl_user(user_id,firstname, middlename, lastname,identification_number,gender,marital_status,date_of_birth,email,phone_number,place_of_residence,course_of_study,institutiton,password)
             VALUES(@user_id,@firstname, @middlename, @lastname,@identification_number,@gender, @marital_status,@date_of_birth,@email,@phone_number,@place_of_residence,@course_of_study,@institutiton,@password)
@@ -55,7 +54,6 @@ export const registerNewUserService = async (newUser) => {
 
               INSERT INTO emergency_contact(emergency_id, emergency_person_name,emergency_phone_number,relationship,user_id)
              VALUES (@emergency_id,@emergency_person_name,@emergency_phone_number,@relationship,@user_id)
-
 
         `)
 

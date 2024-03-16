@@ -16,10 +16,11 @@ const dbConfig={
     port:Number(SQL_SERVER_PORT),
     options:{
         encrypt:Boolean(SQL_ENCRYPT),
-        trustServerCertificate:Boolean(SQL_TRUST_SERVER_CERTIFICATE)
+        trustServerCertificate:Boolean(SQL_TRUST_SERVER_CERTIFICATE) 
     }
 
 }
+
 
 let appPool
 let poolRequest
