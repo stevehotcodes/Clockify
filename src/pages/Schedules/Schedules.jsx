@@ -64,19 +64,12 @@ const Schedules = () => {
                           <tr key={index}> 
                           <td>{item.in_time}-{item.out_time}</td>
                           <td>{item.schedule_description}</td>
-                          <td>View Edit</td>
+                          <td><button>Edit</button></td>
                       </tr>
 
                     ))}
                   
-                    <tr>
-                        <td>07:00pm-02:00am</td>
-                        
-                        <td>View Edit</td>
-                    </tr>
-                    <tr>
-                      
-                    </tr>
+                   
                     
 
                     

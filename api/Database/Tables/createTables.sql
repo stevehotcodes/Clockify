@@ -112,3 +112,14 @@ CREATE TABLE overtime (
     user_id VARCHAR (300)  FOREIGN KEY REFERENCES tbl_user (user_id)
 )
 
+------create payroll table 
+CREATE TABLE payroll(
+payroll_id VARCHAR(300) PRIMARY KEY ,
+total_deductions DECIMAL(10,2) DEFAULT 0,
+gross_salary DECIMAL(10,2) DEFAULT 0,
+total_overtime DECIMAL (10,2) DEFAULT 0,
+total_cash_advances DECIMAL(10,2) DEFAULT 0,
+net_pay DECIMAL(10,2) DEFAULT 0,
+user_id VARCHAR(300) FOREIGN KEY REFERENCES tbl_user(user_id),
+created_on DATETIME DEFAULT GETDATE()
+)

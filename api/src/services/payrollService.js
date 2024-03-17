@@ -32,7 +32,11 @@ export const getPayRollRecordsService=async()=>{
     try {
 
             const result=await poolRequest()
-            .query(`SELECT * FROM payroll`)
+            .query(`SELECT payroll.*, tbl_user.*
+                    FROM payroll
+                    JOIN tbl_user ON tbl_user.user_id=payroll.user_id
+             
+             `)
 
             return result.recordset
         

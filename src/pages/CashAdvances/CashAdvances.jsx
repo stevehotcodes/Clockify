@@ -47,7 +47,7 @@ const CashAdvances = () => {
                         <th>Employee Id</th>
                         <th>Employee Name</th>
                         <th>Amount</th>
-                        <th>No of hours</th>
+                        {/* <th>No of hours</th> */}
                         <th>Date</th>
                         <th>Actions</th>
                     </tr>
@@ -60,9 +60,9 @@ const CashAdvances = () => {
                         <td>{item.firstname}  {item.lastname}</td>
                     
                         <td>{item.amount}</td>
-                        <td>{item.number_of_hours}</td>
+                        {/* <td>{item.number_of_hours}</td> */}
                         <td>{item.created_on}</td>
-                        <td>View Edit</td>
+                        <td><button>Edit </button></td>
                         </tr>
 
                     ))
@@ -71,15 +71,7 @@ const CashAdvances = () => {
 
                    
 
-                    <tr>
-                    <td>2</td>
-                    <td>Stephen Ondieki</td>
-                 
-                    <td>2000</td>
-                    <td>07045678907</td>
-                    <td>07/04/2024</td>
-                    <td>View Edit</td>
-                    </tr>
+                    
                    
 
                     
