@@ -43,7 +43,7 @@ const EmployeeListing = () => {
                     <tr key={index}>
                         <td>1{item.identification_number}</td>
                         <td>{item.firstname}  {item.lastname}</td>
-                        <td></td>
+                        <td>{item.position_description}</td>
                         <td>{item.place_of_residence}</td>
                         <td>{item.phone_number}</td>
                         <td>{item.date_of_birth}</td>

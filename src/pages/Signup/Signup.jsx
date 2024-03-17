@@ -4,16 +4,34 @@ import logo from '../../assets/Clockify-logo.png'
 import {useForm} from 'react-hook-form'
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
-import { useRegisterNewUserMutation } from '../../features/Register/registerApi'
+import { useGetPositionsQuery, useGetScheduleQuery, useRegisterNewUserMutation } from '../../features/Register/registerApi'
 import { ErrorToast, LoadingToast, SuccessToast, ToasterContainer } from '../../components/Toaster/Toaster'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 
 
 const Signup = () => {
 
-    const [registerNewUser,{error,isLoading}]=useRegisterNewUserMutation()
+    const [registerNewUser,{error,isLoading}]=useRegisterNewUserMutation();
+    const[selectedPosition, setSelectedPosition]=useState('')
+    const[selectedSchedule, setSelectedSchedule]=useState('')
     const navigate=useNavigate()
+    const {data:positions, isError, isFetching}=useGetPositionsQuery();
+    const {data:schedules}=useGetScheduleQuery()
+    console.log("schedueles",schedules)
+
+    const handleChange=(e)=>{
+        setSelectedPosition(e.target.value)
+    }
+
+    const handleChangeSchedule=(e)=>{
+        setSelectedSchedule(e.target.value)
+    }
+    console.log("selected  postion", selectedPosition,selectedSchedule)
+    
+
+    console.log(`data:${positions}, isFethcing :${isFetching}, isLoading:${isLoading}`)
     // if (error) {
     //     return <h1>error..</h1>
     //  }
@@ -72,7 +90,9 @@ const submit=async(data)=>{
             
             date_of_birth: data.date_of_birth.toISOString(), 
             graduation_date: data.graduation_date.toISOString(), 
-            phone_number: data.phone_number.toString() 
+            phone_number: data.phone_number.toString(),
+            position_id:selectedPosition,
+            schedule_id:selectedSchedule
         };
 
         console.log(formattedData)
@@ -225,16 +245,34 @@ const submit=async(data)=>{
 
                                     <p className="error-message">{errors.marital_status?.message}</p>
                                 </div>
-                                {/* <div class="label-input-group">
+                                 <div class="label-input-group">
                                     <label> Job Title/Position </label><br/>
-                                    <input type="text" name="" id="" placeholder="job title/position"
-                                    //   {...register("position")}
-                                      disabled
-                                    
-                                    
-                                    />   
-                                    <p className="error-message">{errors.position?.message}</p>               
-                                </div> */}
+                                  
+                                    <select onChange={handleChange} value={selectedPosition}>
+                                        <option value="">Select an Job/Position</option>
+                                        {positions&&positions.map((position,index)=>(
+                                             <option key={position.position_id} value={position.position_id}>{position.position_description}</option>
+                                        ))}
+                                    </select>
+                                             
+                                </div> 
+
+
+
+                                <div class="label-input-group">
+                                    <label> Assigned Schedule</label><br/>
+                                  
+                                    <select onChange={handleChangeSchedule} value={selectedSchedule}>
+                                        <option value="">Select a schedule for an employee</option>
+                                        {schedules&&schedules.map((schedule,index)=>(
+                                             <option key={schedule.schedule_id} value={schedule.schedule_id}>{schedule.schedule_description}</option>
+                                        ))}
+                                    </select>
+                                             
+                                </div> 
+                                
+
+
                                 {/* <div class="label-input-group">
                                     <label> Proposed Gross Salary </label><br/>
                                     <input type="number" name="" id="" placeholder="Ksh 30000"  min='1'
@@ -289,9 +327,7 @@ const submit=async(data)=>{
                                     <label>Emergency Contact : Person's Name</label><br/>
                                     <input type="text" name="emergency_person_name" id="emergency_person_name" placeholder="example:John Doe"
                                      {...register("emergency_contact_person_name")}
-                                    
-                                    
-                                    
+                                                                        
                                     /> 
                                     <p className="error-message">{errors.emergency_contact_person_name?.message}</p>                 
                                 </div>

@@ -14,8 +14,21 @@ export const registerApi=createApi({
                 body:user
             }),
             invalidatesTags:['Users']
+        }),
+        getPositions:builder.query({
+            query:()=>({
+                url:`position`,
+                method:'GET'
+            })
+        }),
+        getSchedule:builder.query({
+            query:()=>({
+                url:`schedule`,
+                method:'GET'
+
+            })
         })
     })
 })
 
-export const {useRegisterNewUserMutation}=registerApi
+export const {useRegisterNewUserMutation,useGetPositionsQuery,useGetScheduleQuery}=registerApi

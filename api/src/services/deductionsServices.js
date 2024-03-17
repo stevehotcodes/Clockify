@@ -37,10 +37,6 @@ export const getAllDeductionService=async()=>{
             	SELECT deductions.*,  tbl_user.firstname, tbl_user.lastname
                 FROM deductions
                 JOIN tbl_user ON tbl_user.user_id=deductions.user_id
-                
-         
-         
-         
          
          `)
          return response.recordset
@@ -49,3 +45,42 @@ export const getAllDeductionService=async()=>{
         return error
     }
 }
+
+export const getDeductionsforAnEmployeeService=async(user_id)=>{
+    try {
+            const response=await poolRequest()
+            .input('user_id',mssql.VarChar,user_id)
+            .query(`SELECT amount FROM deductions WHERE user_id=@user_id`)
+            return response.recordset
+        
+    } catch (error) {
+        return error
+    }
+}
+
+export const getOvertimeRecordforAnEmployeeService=async(user_id)=>{
+    try{
+        const response=await poolRequest()
+        .input('user_id',mssql.VarChar,user_id)
+        .query(`SELECT * FROM overtime WHERE user_id=@user_id`)
+        return response.recordset  
+
+    }
+    catch(error){
+        return error
+    }
+}
+
+export const getAllCashAdvancesRecordforAnEmployeeService=async(user_id)=>{
+    try {
+         const response=await poolRequest()
+         .input('user_id', mssql.VarChar,user_id)
+         .query(`SELECT amount FROM cash_advances WHERE user_id=@user_id`)
+         return response.recordset  
+    } catch (error) {
+        return error
+    }
+
+
+}
+

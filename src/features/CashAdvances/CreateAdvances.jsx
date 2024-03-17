@@ -23,7 +23,7 @@ const [createCashAdvance]=useCreateCashAdvanceMutation();
 const handleCreateCashAdvance=async(e)=>{
     e.preventDefault()
 
-    const  number_of_workedValue=e.target.number_of_worked.value
+   //  const  number_of_workedValue=e.target.number_of_worked.value
     const amountValue=e.target.amount.value
     const userIDValue=e.target.user_id.value
     
@@ -33,7 +33,7 @@ const handleCreateCashAdvance=async(e)=>{
     try {
 
 
-        if(number_of_workedValue=="" || amountValue=="" || userIDValue==""){
+        if( amountValue=="" || userIDValue==""){
             ErrorToast("The input fields cannot be empty")
              navigate('/advances')
 
@@ -41,7 +41,7 @@ const handleCreateCashAdvance=async(e)=>{
         }
         else{
             LoadingToast(true)
-            const response=await createCashAdvance({number_of_worked:number_of_workedValue,amount:amountValue,user_id:userIDValue}).unwrap()
+            const response=await createCashAdvance({amount:amountValue,user_id:userIDValue}).unwrap()
    
            SuccessToast(response.message)
            e.target.reset()
@@ -85,13 +85,13 @@ const handleCreateCashAdvance=async(e)=>{
 
  <form action="" onSubmit={handleCreateCashAdvance}>
    <h3 className='create-group-header'>Create Advances</h3>
-    <div className="textarea">
+    {/* <div className="textarea">
         <input  type='number' placeholder='number of hours worked ' id='number_of_worked'
            onChange={(e)=>{setHoursofWorked(e.target.value)}}
         
         />
 
-        </div>
+        </div> */}
 
    <div className="textarea">
       <input type="number" placeholder='amount' id='amount'

@@ -30,7 +30,6 @@ export const  createNewOvertime=async(req,res)=>{
             user_id:req.body.user_id
          }
 
-        
         const user=await getUserById(overtime.user_id)
        
         if(user.length){

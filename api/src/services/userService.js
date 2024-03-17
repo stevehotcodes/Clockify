@@ -5,6 +5,7 @@ import logger from '../utils/logger.js';
 import * as uuid from 'uuid';
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import { schedule } from 'node-cron';
 
 
 export const registerNewUserService = async (newUser) => {
@@ -18,7 +19,7 @@ export const registerNewUserService = async (newUser) => {
         console.log('Generated emergency_id:', emergency_id);
      
 
-        const { firstname, middlename, lastname, identification_number, marital_status, gender, date_of_birth, email, phone_number, place_of_residence, course_of_study, institutiton, password, language, technical, emergency_person_name, emergency_phone_number, relationship } = newUser;
+        const { firstname, middlename, lastname, identification_number, marital_status, gender, date_of_birth, email, phone_number, place_of_residence, course_of_study, institutiton, password, language, technical, emergency_person_name, emergency_phone_number, relationship,schedule_id,position_id } = newUser;
      
       
         // Insert user into tbl_user
@@ -44,10 +45,11 @@ export const registerNewUserService = async (newUser) => {
             .input('emergency_person_name', mssql.VarChar, emergency_person_name)
             .input('emergency_phone_number',mssql.VarChar,emergency_phone_number)
             .input('relationship',mssql.VarChar,relationship)
-            
+            .input ('schedule_id', mssql.VarChar,schedule_id)
+            .input('position_id',mssql.VarChar,position_id)
             .query(
-              `INSERT INTO tbl_user(user_id,firstname, middlename, lastname,identification_number,gender,marital_status,date_of_birth,email,phone_number,place_of_residence,course_of_study,institutiton,password)
-            VALUES(@user_id,@firstname, @middlename, @lastname,@identification_number,@gender, @marital_status,@date_of_birth,@email,@phone_number,@place_of_residence,@course_of_study,@institutiton,@password)
+              `INSERT INTO tbl_user(user_id,firstname, middlename, lastname,identification_number,gender,marital_status,date_of_birth,email,phone_number,place_of_residence,course_of_study,institutiton,password, schedule_id, position_id)
+                VALUES(@user_id,@firstname, @middlename, @lastname,@identification_number,@gender, @marital_status,@date_of_birth,@email,@phone_number,@place_of_residence,@course_of_study,@institutiton,@password,@schedule_id,@position_id)
 
               INSERT INTO employee_skill(skill_id,language,technical,user_id)
               VALUES(@skill_id,@language,@technical,@user_id)
@@ -113,7 +115,12 @@ export const getAllEmployeesService=async()=>{
     try{
         
         const result=await poolRequest()
-        .query('SELECT * FROM tbl_user')
+        .query(`SELECT tbl_user.*, position.*, schedule.*
+        FROM tbl_user
+        JOIN position ON tbl_user.position_id=position.position_id
+        JOIN schedule ON tbl_user.schedule_id=schedule.schedule_id
+                               
+                `)
 
         return result.recordset
     }

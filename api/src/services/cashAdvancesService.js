@@ -7,17 +7,16 @@ import  * as uuid from 'uuid'
 
 
 export const createCashAdvancesService=async(cashAdvances)=>{
-    const {user_id,amount,number_of_hours}=cashAdvances
+    const {user_id,amount}=cashAdvances
     try{
         const cash_advance_id=uuid.v4()
         const response=await poolRequest()
         .input('cash_advance_id',mssql.VarChar,cash_advance_id)
         .input('user_id', mssql.VarChar,user_id)
         .input('amount', mssql.Decimal,amount)
-        .input('number_of_hours',mssql.VarChar,number_of_hours)
         .query(`
-                INSERT INTO cash_advances(cash_advance_id,user_id,number_of_hours,amount)
-                VALUES(@cash_advance_id, @user_id,@number_of_hours,@amount)
+                INSERT INTO cash_advances(cash_advance_id,user_id,amount)
+                VALUES(@cash_advance_id, @user_id,@amount)
         `)
          return response
 

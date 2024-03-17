@@ -37,7 +37,9 @@ export const registerNewUser=async(req,res)=>{
              technical:req.body.technical,
              emergency_person_name:req.body.emergency_person_name,
              emergency_phone_number:req.body.emergency_phone_number,
-             relationship:req.body.relationship
+             relationship:req.body.relationship,
+             schedule_id:req.body.schedule_id,
+             position_id:req.body.position_id
 
 
           }
@@ -50,7 +52,7 @@ export const registerNewUser=async(req,res)=>{
                sendCreated(res,`${newUser.firstname} has been registered successfully`)
           }
           else{
-              sendBadRequest(res,`${newUser.firstname} records exists`)
+              sendBadRequest(res,`${newUser.firstname} records exists, or email assocaited with the person already exists kindly confirm the email and/or passport number or id no `)
           }
 
         
