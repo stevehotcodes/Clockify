@@ -21,7 +21,8 @@ export const overtimeApi=createApi({
             query:()=>({
                 url:`/overtime`,
                 method:'GET'
-            })
+            }),
+            providesTags:[`Overtime`]
         })
     })
 })

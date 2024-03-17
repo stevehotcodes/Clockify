@@ -1,11 +1,22 @@
 import React from 'react'
 import  '../Overtime/Overtime.scss'
 import { useGetAllOvertimeQuery } from '../../features/Overtime/overtimeApi'
+import { useState } from 'react'
+import Modal from '../../components/Modal/Modal';
+import CreateOvertime from '../../features/Overtime/CreateOvertime';
 
 const Overtime = () => {
     const{data:overtimes, isLoading, isError}=useGetAllOvertimeQuery()
+    const [isModalOpen,setModalOpen]=useState(false)
 
-    console.log(`data:${overtimes}, isLoading:${isLoading}`)
+    console.log(`data:${overtimes}, isLoading:${isLoading}`);
+
+    const openModal=()=>{
+        setModalOpen(true)
+    }
+    const closeModal=()=>{
+        setModalOpen(false)
+    }
     
     
 
@@ -22,7 +33,15 @@ const Overtime = () => {
                         <input type="search" name="" id="" placeholder='search for an employee' />
                 </form>
                 <div  className='button-wrapper'>
-                        <button className='add-new-btn'> Add New</button>
+                        <button className='add-new-btn' onClick={openModal}> Add New</button>
+
+                    {
+                        isModalOpen&&(
+                            <Modal onClose={closeModal}>
+                                <CreateOvertime closeModal={closeModal}/>
+                            </Modal>
+                        )
+                    }
                 </div>
                
             </div>

@@ -41,7 +41,7 @@ const CreateDeductions = () => {
         } catch (error) {
             console.log(error)
             ErrorToast(error.data.message)
-            LoadingToast(false)
+            LoadingToast(true)
             
         }
         finally{

@@ -8,9 +8,9 @@ import { useGetAllDeductionQuery } from '../../features/Deductions/deductionsApi
 const Deductions = () => {
 
     const [isModalOpen, setModalOpen] = useState(false);
-    const {data:deductions,isError,isLoading}=useGetAllDeductionQuery()
+    const {data:deductions,isError,isLoading,isFetching}=useGetAllDeductionQuery()
 
-    console.log(`data:${deductions}, isError:${isError},isLaoding:${isLoading}`)
+    console.log(`data:${deductions}, isError:${isError},isLaoding:${isLoading} ${isFetching}`)
 
     const openModal = () => {
         setModalOpen(true);
@@ -21,8 +21,6 @@ const Deductions = () => {
       };
 
     
-
-   
 
 
   return (
@@ -45,7 +43,7 @@ const Deductions = () => {
                 </div>
                
             </div>
-            <table>
+           {(isLoading)?<h3>Loading....</h3>: <table>
                 <thead>
                     <tr>
                         <th>Employee Id</th>
@@ -71,7 +69,7 @@ const Deductions = () => {
                     ))}                   
                    
                 </tbody>
-            </table>
+            </table>}
         </div>
 
 

@@ -18,7 +18,8 @@ export const cashAdvancesApi=createApi({
             query:()=>({
                 url:`cashadvances`,
                 method:`GET`
-            })
+            }),
+            providesTags:['cashAdvances']
          })
     })
 })

@@ -34,7 +34,7 @@ const CashAdvances = () => {
                 <div  className='button-wrapper'>
                         <button className='add-new-btn' onClick={openModal}> Add New</button>
                         {isModalOpen&&(
-                            <Modal closeModal={closeModal}>
+                            <Modal onClose={closeModal}>
                                  <CreateAdvances/>
                             </Modal>
                         )}
