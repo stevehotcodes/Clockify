@@ -13,6 +13,7 @@ import deductionRouter from './src/routes/deductionRoutes.js'
 import cashAdvancesRouter from './src/routes/cashAdvancesRoutes.js'
 import overtimeRouter from './src/routes/overtime.route.js'
 import payrollRouter from './src/routes/payrollRoutes.js'
+import { generatePayRoll } from './src/controllers/payroll.controller.js'
 dotenv.config()
 
 
@@ -43,12 +44,14 @@ app.use('/api',overtimeRouter)
 app.use('/api',payrollRouter)
 
 // console.log('the password is :',passcode);
-// cron.schedule('*/10 * * * * *', () => {
+cron.schedule('*/10 * * * * *', async() => {
 
-//     logger.info("sending email after every five seconds ...............");
-//     sendWelcomeEmailToNewUsers()
+    logger.info("sending email after every five seconds ...............");
+   await  sendWelcomeEmailToNewUsers()
+    // logger.info("generate payroll.........")
+    // generatePayRoll(req, res)
 
-// });
+});
 
 
 app.listen(port,()=>{

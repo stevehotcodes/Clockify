@@ -1,6 +1,8 @@
 import React from 'react'
 import '../Payroll/Payroll.scss'
 import { useGetPayRollRecordsQuery } from '../../features/Payroll/payrollApi'
+import { useRef } from 'react'
+import ReactToPrint from 'react-to-print'
 
 const Payroll = () => {
 
@@ -8,8 +10,23 @@ const Payroll = () => {
     const {data:payRecords,isLoading,isFetching}=useGetPayRollRecordsQuery()
 
     console.log(`data:${payRecords},isLoading:${isLoading}, isFetching:${isFetching}`)
+
+    const payrollRef=useRef();
+
+    const handlePrint=()=>{
+        alert("hey")
+        window.print()
+    }
+
+
+
+
+
+
+
+
   return (
-    <div className='payroll-container'>
+    <div className='payroll-container' ref={payrollRef}>
          <div className='title-bar'>
             <span>Payroll </span>
         </div>
@@ -18,8 +35,13 @@ const Payroll = () => {
         <div className='search-add-new-btn'>
                 
                 <div  className='button-wrapper'>
-                        <button className='add-new-btn'> Export to PDF </button>
-                </div>
+                        <button className='add-new-btn' onClick={handlePrint}> Export to PDF </button>
+                        <div ref={payrollRef}></div>
+                     <ReactToPrint
+                           trigger={() => <button>Print</button>}
+                             content={() => payrollRef.current}
+                      />
+                    </div>
                
             </div>
         <table>

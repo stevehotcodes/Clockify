@@ -13,7 +13,7 @@ import { getNewRegisterUsersService, setStatusofEmailtoSentService } from "../se
 dotenv.config()
 
 
-export const sendWelcomeMail=async(email,password)=>{
+export const sendWelcomeMail=(email,password)=>{
     const mailOptions = {
         from: process.env.EMAIL,
         to: 'stevehotcodes@gmail.com',
@@ -29,7 +29,7 @@ export const sendWelcomeMail=async(email,password)=>{
         `
     };
 
-   await transporter.sendMail(mailOptions, function(error, info) {
+    transporter.sendMail(mailOptions, function(error, info) {
         if (error) {
           console.log('Error sending email:', error);
         } else {
@@ -58,8 +58,8 @@ export const sendWelcomeEmailToNewUsers=async()=>{
                 console.log(user)
                 sendWelcomeMail(user.email,user.password)
                 //change teh state of the database of isEmailSent to 1
-                // const emailDeliveryStatus= await setStatusofEmailtoSentService(user.email)
-                // console.log("email delivery status",emailDeliveryStatus)
+                const emailDeliveryStatus= await setStatusofEmailtoSentService(user.email)
+                console.log("email delivery status",emailDeliveryStatus)
             })
         }
         
