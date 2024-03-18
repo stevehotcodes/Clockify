@@ -16,16 +16,14 @@ dotenv.config()
 export const sendWelcomeMail=async(email,password)=>{
     const mailOptions = {
         from: process.env.EMAIL,
-        to: 'stevehotcodes@gmail.com',
+        to: email,
         subject: 'WELCOME TO CLOCKIFY',
-        text:`
-         <p>Hello ${email}</p>
-          <h1> Welcome to Clockify</h3> 
-        <p> Here is your logging credentials </p>
-        <p> Username/Email :${email}<p>
-        <p> Password:${password}<p>
-        
-        
+        html:`
+        <h3>Registration Successful</h3>
+        <p>Email:${email}</p>
+        <p>Password:${password}</p>
+        Note: Kindly note you need to login and edit your password and profile 
+               
         `
     };
 
@@ -37,6 +35,7 @@ export const sendWelcomeMail=async(email,password)=>{
         
         }
       });
+    //   transporter.close()
     
 
 }
@@ -58,8 +57,8 @@ export const sendWelcomeEmailToNewUsers=async()=>{
                 console.log(user)
                 sendWelcomeMail(user.email,user.password)
                 //change teh state of the database of isEmailSent to 1
-                // const emailDeliveryStatus= await setStatusofEmailtoSentService(user.email)
-                // console.log("email delivery status",emailDeliveryStatus)
+                const emailDeliveryStatus= await setStatusofEmailtoSentService(user.email)
+                console.log("email delivery status",emailDeliveryStatus)
             })
         }
         

@@ -32,7 +32,7 @@ export const registerNewUser=async(req,res)=>{
              place_of_residence:req.body.place_of_residence,
              course_of_study:req.body.course_of_study,
              institutiton:req.body.institutiton,
-             password:passwordGenerated,
+             password:'Employee@123',
              language:req.body.language,
              technical:req.body.technical,
              emergency_person_name:req.body.emergency_person_name,

@@ -72,7 +72,7 @@ export const registerNewUserService = async (newUser) => {
 export const getNewRegisterUsersService=async()=>{
   try {
       const result=await poolRequest()
-      .query(`SELECT  firstname , middlename , lastname email, password FROM tbl_user WHERE  isWelcomed=0`);
+      .query(`SELECT  firstname , middlename , lastname, email, password FROM tbl_user WHERE  isWelcomed=0`);
       return result.recordset
       
   } catch (error) {
