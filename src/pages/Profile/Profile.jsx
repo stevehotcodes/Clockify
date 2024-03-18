@@ -4,14 +4,19 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 import { useState } from 'react';
 import Modal from '../../components/Modal/Modal'
 import EditProfile from '../../features/Profile/EditProfile';
+import noDp from '../../assets/no_profile_avatar.avif'
+import axios from "axios"
+import { SuccessToast } from '../../components/Toaster/Toaster';
 
 const Profile = () => {
     const [userDetails, setUserDetails] = useLocalStorage('user');
     const [isModalOpen,setModalOpen]=useState(false);
+    const [image, setImage]=useState(null);
+    const [imageUrl,setImageUrl]=useState('')
+    const [uploading, setUploading]=useState(false)
+
 
     
-
-
 
     const openModal=()=>{
     
@@ -22,6 +27,57 @@ const Profile = () => {
         setModalOpen(false)
     }
 
+    const handleImageChange=(e)=>{
+        const selectedImage=e.target.files[0]
+        setImage(selectedImage)
+    }
+
+    const handleImageUpload=async ()=>{
+          try {
+            alert("uploading")
+
+            const formData=new FormData()
+            formData.append('file',image)
+            formData.append("upload_preset", "maold1b5");
+            setUploading(true)
+    
+    
+            const uploadResponse = await fetch("https://api.cloudinary.com/v1_1/dorsnetyf/video/upload", {
+                method: "POST",
+                body: formData,
+              });
+            
+            
+              const uploadData=await uploadResponse.json()
+              setImageUrl(uploadData.secure_url)
+    
+    
+              const saveData = {
+                // "video_description": null,
+                "photo_url": uploadData.secure_url,
+              };
+    
+              const response = await axios.post(`http://localhost:3000/api/photo/${userDetails.user_id}`, saveData, {
+            headers: {
+              'Content-Type': 'application/json',
+             
+            },
+          });
+
+           console.log("uploading response", response)
+            
+          } catch (error) {
+            console.error('Error uploading video:', error.response ? error.response.data.error : error.message);
+          }
+          finally{
+            setUploading(false);
+          }
+
+    };
+
+
+
+    
 
 
 
@@ -43,8 +99,12 @@ const Profile = () => {
 
     <div className='content-wrapper'>
         <div className='profile-section-one'>
-            <img src="" alt="no profile image" className="profile-img" />
-             <button className='upload-image-btn'>Change photo</button>
+            {
+                image ?<img src={URL.createObjectURL(image)} alt="no profile image" className="profile-img" />:<img src={noDp} alt="no profile image" className="profile-img" />
+            }
+            {/* <img src="" alt="no profile image" className="profile-img" /> */}
+             <button className='upload-image-btn' onClick={handleImageUpload}>Change photo</button>
+             <input type="file" onChange={(e)=>setImage(e.target.files[0])} />
         </div>
 
         <div className='profile-section-two'>

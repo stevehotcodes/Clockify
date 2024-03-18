@@ -123,3 +123,22 @@ net_pay DECIMAL(10,2) DEFAULT 0,
 user_id VARCHAR(300) FOREIGN KEY REFERENCES tbl_user(user_id),
 created_on DATETIME DEFAULT GETDATE()
 )
+
+-----create table attendance
+CREATE  TABLE attendance(
+attendance_id VARCHAR (300) PRIMARY KEY,
+date DATETIME DEFAULT GETDATE(),
+time_in DATETIME,
+time_out DATETIME,
+user_id VARCHAR(300) FOREIGN KEY REFERENCES tbl_user(user_id)
+);
+
+ALTER TABLE attendance
+ADD CONSTRAINT unique_employee_date UNIQUE (user_id, date);
+------create photo table 
+CREATE TABLE photo(
+    photo_id VARCHAR(300) PRIMARY KEY,
+    photo_url VARCHAR(300) DEFAULT 'no photo' ,
+    created_on DATETIME DEFAULT GETDATE(),
+    user_id VARCHAR(300)  FOREIGN KEY REFERENCES tbl_user(user_id)
+)

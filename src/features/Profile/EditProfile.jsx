@@ -20,7 +20,6 @@ const EditProfile = () => {
     const[updateUserProfile]=useUpdateUserProfileMutation()
     const navigate=useNavigate()
 
-
     
 
 
@@ -34,8 +33,6 @@ const EditProfile = () => {
             if(password!==''||confirmPassword!==''){
                 if(password===confirmPassword){
                  
-
-
                     const data={
                         firstname:firstname,middlename:middlename,lastname:lastname,password:password,marital_status:maritalStatus,
                         user_id:userDetails.user_id

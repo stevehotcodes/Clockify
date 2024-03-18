@@ -15,6 +15,7 @@ import overtimeRouter from './src/routes/overtime.route.js'
 import payrollRouter from './src/routes/payrollRoutes.js'
 import { generatePayRoll } from './src/controllers/payroll.controller.js'
 import attendanceRouter from './src/routes/attendanceRoute.js'
+import photoRouter from './src/routes/photoRoute.js'
 dotenv.config()
 
 
@@ -44,7 +45,7 @@ app.use('/api',cashAdvancesRouter)
 app.use('/api',overtimeRouter)
 app.use('/api',payrollRouter)
 app.use('/api',attendanceRouter)
-
+app.use('/api',photoRouter)
 // console.log('the password is :',passcode);
 // cron.schedule('*/10 * * * * *', async() => {
 
