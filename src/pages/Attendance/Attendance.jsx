@@ -1,9 +1,12 @@
 import React from 'react'
 import '../Attendance/Attendance.scss'
 import {BarChart} from '@mui/x-charts/BarChart'
+import { useGetAllAttendanceRecordsQuery } from '../../features/Attendance/attendanceApi'
 
 
 const Attendance = () => {
+
+   
 
   return (
     <div className='attendance-container'>

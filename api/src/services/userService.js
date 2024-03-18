@@ -20,7 +20,7 @@ export const registerNewUserService = async (newUser) => {
      
 
         const { firstname, middlename, lastname, identification_number, marital_status, gender, date_of_birth, email, phone_number, place_of_residence, course_of_study, institutiton, password, language, technical, emergency_person_name, emergency_phone_number, relationship,schedule_id,position_id } = newUser;
-     
+        
       
         // Insert user into tbl_user
         const result1 = await poolRequest()
@@ -51,11 +51,11 @@ export const registerNewUserService = async (newUser) => {
               `INSERT INTO tbl_user(user_id,firstname, middlename, lastname,identification_number,gender,marital_status,date_of_birth,email,phone_number,place_of_residence,course_of_study,institutiton,password, schedule_id, position_id)
                 VALUES(@user_id,@firstname, @middlename, @lastname,@identification_number,@gender, @marital_status,@date_of_birth,@email,@phone_number,@place_of_residence,@course_of_study,@institutiton,@password,@schedule_id,@position_id)
 
-              INSERT INTO employee_skill(skill_id,language,technical,user_id)
-              VALUES(@skill_id,@language,@technical,@user_id)
+                INSERT INTO employee_skill(skill_id,language,technical,user_id)
+                VALUES(@skill_id,@language,@technical,@user_id)
 
               INSERT INTO emergency_contact(emergency_id, emergency_person_name,emergency_phone_number,relationship,user_id)
-             VALUES (@emergency_id,@emergency_person_name,@emergency_phone_number,@relationship,@user_id)
+            VALUES (@emergency_id,@emergency_person_name,@emergency_phone_number,@relationship,@user_id)
 
         `)
 
@@ -194,4 +194,19 @@ export const getUserById=async(user_id)=>{
         return error 
     }
 
+}
+
+
+export const getLoggedInUserService=async(user_id)=>{
+    try{
+        
+        const result=await poolRequest()
+        .input('user_id',mssql.VarChar,user_id)
+        .query(`SELECT * FROM tbl_user WHERE user_id=@user_id`)
+
+        return result.recordset
+    }
+    catch(error){
+        return error
+    }
 }

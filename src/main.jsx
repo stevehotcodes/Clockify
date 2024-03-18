@@ -27,7 +27,7 @@ const router=createBrowserRouter([
   },
   {
     path:'/*',
-    element:<AdminHome/>             //will required auth to switch in between the two home dashboard admin and employee
+    element:<EmployeeHome/>             //will required auth to switch in between the two home dashboard admin and employee
   },   
 
  

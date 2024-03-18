@@ -9,6 +9,7 @@ import { deductionApi } from '../features/Deductions/deductionsApi.js'
 import { cashAdvancesApi } from '../features/CashAdvances/cashAdvancesApi.js'
 import { overtimeApi } from '../features/Overtime/overtimeApi.js'
 import { payrollApi } from '../features/Payroll/payrollApi.js'
+import { attendanceApi } from '../features/Attendance/attendanceApi.js'
 
 
 
@@ -23,7 +24,8 @@ export const store =configureStore({
         [deductionApi.reducerPath]:deductionApi.reducer,
         [cashAdvancesApi.reducerPath]:cashAdvancesApi.reducer,
         [overtimeApi.reducerPath]:overtimeApi.reducer,
-        [payrollApi.reducerPath]:payrollApi.reducer
+        [payrollApi.reducerPath]:payrollApi.reducer,
+        [attendanceApi.reducerPath]:attendanceApi.reducer
 
 
     },
@@ -37,7 +39,8 @@ export const store =configureStore({
         deductionApi.middleware,
         cashAdvancesApi.middleware,
         overtimeApi.middleware,
-        payrollApi.middleware
+        payrollApi.middleware,
+        attendanceApi.middleware
     ),
 
 })
