@@ -4,9 +4,6 @@ import { poolRequest } from '../utils/sqlDbConnect.js'
 
 
 
-
-
-
 export const createTimeInService=async(user_id)=>{
     try {
          const attendance_id=uuid.v4()

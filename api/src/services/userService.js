@@ -133,7 +133,11 @@ export const findByCredentialsService = async (user) => {
     try {
         const userFoundResponse = await poolRequest()
             .input('email', mssql.VarChar, user.email)
-            .query('SELECT * FROM tbl_user WHERE email = @email');
+            .query(` SELECT tbl_user.*, position.*, schedule.*
+                     FROM tbl_user
+                     JOIN position ON position.position_id=tbl_user.position_id
+                     JOIN schedule ON schedule.schedule_id=tbl_user.schedule_id                    
+                     WHERE tbl_user.email = @email`);
             console.log(userFoundResponse)
         if (userFoundResponse.recordset[0]) {
 
@@ -207,6 +211,42 @@ export const getLoggedInUserService=async(user_id)=>{
         return result.recordset
     }
     catch(error){
+        return error
+    }
+}
+
+
+export const updateUserService=async(updatedUserDetail,user_id)=>{
+    try {
+       const  {
+            firstname,
+            middlename,
+            lastname,
+            marital_status,
+            password,
+         }=updatedUserDetail
+
+        console.log(firstname,user_id)
+         const response=await poolRequest()
+         .input(`firstname`, mssql.VarChar, firstname)
+         .input(`middlename`, mssql.VarChar,middlename)
+         .input(`lastname`, mssql.VarChar,lastname)
+         .input(`marital_status`, mssql.VarChar,marital_status)
+         .input(`password`,mssql.VarChar,password)
+         .input(`user_id`,mssql.VarChar,user_id)
+
+         .query(
+            `UPDATE tbl_user
+             SET firstname=@firstname, middlename=@middlename,lastname=@lastname,marital_status=@marital_status, password=@password, isPasswordChange=1
+             WHERE user_id=@user_id
+            
+            `
+         )
+
+         return response
+
+        
+    } catch (error) {
         return error
     }
 }

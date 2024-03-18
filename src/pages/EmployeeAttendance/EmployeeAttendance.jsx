@@ -1,7 +1,7 @@
 import React from 'react'
 import { BarChart } from '@mui/x-charts'
 import useLocalStorage from '../../hooks/useLocalStorage';
-import {useCreateCheckInMutation, useCreateCheckOutMutation } from '../../features/Attendance/attendanceApi';
+import {useCreateCheckInMutation, useCreateCheckOutMutation, useGetAllAttendanceRecordsQuery } from '../../features/Attendance/attendanceApi';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { ErrorToast, LoadingToast, SuccessToast, ToasterContainer } from '../../components/Toaster/Toaster';
@@ -16,7 +16,9 @@ const EmployeeAttendance = () => {
     // console.log(userDetails)
     const loggedInUser=userDetails.user_id
 
-    // const{data:attendance, isError, isLoading}=useGetAttendanceRecordsQuery()
+    const{data:attendance, isError, isLoading}=useGetAllAttendanceRecordsQuery()
+
+    console.log(`data:${attendance}, isError:${isError}`)
     
    const handleClockIn=async(e)=>{
        try {
@@ -24,8 +26,7 @@ const EmployeeAttendance = () => {
         console.log(response.message)
         LoadingToast(true)
         SuccessToast(response.message)
-        
-
+        LoadingToast(false)
         
         
        } catch (error) {
@@ -108,27 +109,23 @@ const EmployeeAttendance = () => {
               </tr>
           </thead>
           <tbody>
+            {attendance&&attendance.map((record,index)=>(
+             <tr key={index}>
+                 <td>{userDetails.user_id}</td>
+                 <td>{userDetails.firstname}{userDetails.lastname}</td>
+                 <td>{record.date}</td>
+                 <td>{record.time_in}</td>
+                 <td>{record.time_out}</td>
+                 {/* <td>8</td> */}
+                 <td>Edit</td>
+             </tr>
+
+
+
+            ))}
 
            
-              {/* <tr>
-                  <td>1</td>
-                  <td>stephen Ondieki</td>
-                  <td>12/02/2024</td>
-                  <td>08:04:00am</td>
-                  <td>05:05:56pm</td>
-                  <td>8</td>
-                  <td>View Edit</td>
-              </tr>
-
-              <tr>
-                  <td>2</td>
-                  <td>stephen Ondieki</td>
-                  <td>12/02/2024</td>
-                  <td>08:04:00am</td>
-                  <td>05:05:56pm</td>
-                  <td>8</td>
-                  <td>View Edit</td>
-              </tr> */}
+              
            
 
 

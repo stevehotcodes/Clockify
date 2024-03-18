@@ -1,10 +1,11 @@
 import { send } from "vite";
 import logger from "../utils/logger.js";
 import generator from 'generate-password'
-import { sendBadRequest, sendCreated, sendNotFound, sendServerError } from "../helpers/helper.functions.js";
-import { findByCredentialsService, getAllEmployeesService, registerNewUserService } from "../services/userService.js";
+import { sendBadRequest, sendCreated, sendNotFound, sendServerError, sendSuccess } from "../helpers/helper.functions.js";
+import { findByCredentialsService, getAllEmployeesService, getLoggedInUserService, registerNewUserService, updateUserService } from "../services/userService.js";
 import * as uuid from 'uuid'
 import { userLoginValidator } from "../validators/user.validators.js";
+import bcrypt from 'bcrypt'
 
 
 var passwordGenerated = generator.generate({ 
@@ -103,3 +104,76 @@ export const loginUser = async (req, res) => {
         }
     }
 };
+
+
+export const getLoggedInUser=async(req,res)=>{
+    try{
+           const user_id=req.user.user_id;
+           const user=await getLoggedInUserService(user_id)
+
+           console.log(user)
+           return  res.status(200).json(user)     
+
+
+    }
+    catch(error){
+         return res.status(500).json(error.message)
+
+    }
+}
+
+
+
+export const updateUser=async(req,res)=>{
+    const user_id=req.params.user_id;
+    const updateUserDetails={
+       firstname:req.body.firstname,
+       middlename:req.body.middlename,
+       lastname:req.body.lastname,
+       marital_status:req.body.marital_status,
+       password:req.body.password
+       
+
+    }
+
+    console.log(updateUserDetails)
+
+    console.log("user_id",user_id)
+    // 
+  
+
+    try {
+        const salt =await bcrypt.genSalt(10);
+        console.log('salt',salt)
+        const hashedPassword=await bcrypt.hash(updateUserDetails.password,salt);
+        console.log("hashpasswordd",hashedPassword)
+
+        
+         
+
+      
+         const  formattedUserDetails={
+            firstname:req.body.firstname,
+            middlename:req.body.middlename,
+            lastname:req.body.lastname,
+            marital_status:req.body.marital_status,
+            password:hashedPassword
+         }
+
+         const response=await updateUserService(formattedUserDetails,user_id)
+         console.log(response)
+         if(response.rowsAffected>0){
+
+            return res.status(200).json({message:`employee updated successfully`})
+         }
+         else{
+            sendServerError(res,'Error in updating the user details')
+         }
+        // sendSuccess(res,response)
+           
+        
+    } catch (error) {
+        console.log(error)
+        sendServerError(res,error.message)
+    }
+}

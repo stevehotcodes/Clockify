@@ -133,7 +133,7 @@ export const createTimeOut = async (req, res) => {
 export const getAttendanceforAUser=async(req,res)=>{
     try {   
 
-            const user_id =req.params.user_id
+            const user_id =req.user.user_id
             const user=await getUserById(user_id);
 
             if(user.length>0){

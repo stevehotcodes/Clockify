@@ -3,8 +3,18 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 
 export const attendanceApi=createApi({
     reducerPath:'attendance',
-    baseQuery:fetchBaseQuery({baseUrl:`http://localhost:3000/api/`}),
+    baseQuery:fetchBaseQuery({baseUrl:`http://localhost:3000/api/`,
+    prepareHeaders: (headers, { getState }) => {
+        const token = localStorage.getItem('token');
+        if (token) {
+          headers.set('Authorization', `Bearer ${token}`);
+        }
+        return headers;
+      }
+
+}),
     tagTypes:[`Attendance`],
+   
     endpoints:(builder)=>({
         createCheckIn:builder.mutation({
             query:(user_id)=>({
@@ -23,8 +33,8 @@ export const attendanceApi=createApi({
             invalidatesTags:[`Attendance`]
         }),
         getAttendanceforAUser:builder.query({
-            query:(user_id)=>({
-                url:`/attendance/user/${user_id}`,
+            query:()=>({
+                url:`/attendance/user`,
                 method:`GET`
             }),
             providesTags:[`Attendance`]

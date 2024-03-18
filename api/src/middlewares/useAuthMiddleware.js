@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { notAuthorized } from "../helpers/helper.function.js";
+import { notAuthorized } from "../helpers/helper.functions.js";
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -8,7 +8,7 @@ export const verifyUserIdentity = (req, res, next) => {
         jwt.verify(req.headers.authorization.split(' ')[1], process.env.SECRET, (err, decode) =>  {
             if (err) {
                 
-                return notAuthorized(res, 'Please login or create an account ');
+                return notAuthorized(res, 'Please Login  ');
             } else {
                 req.user = decode;
                 console.log(req.user)

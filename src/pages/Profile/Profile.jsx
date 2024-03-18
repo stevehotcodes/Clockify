@@ -1,12 +1,44 @@
 import React from 'react'
 import '../Profile/Profile.scss'
+import useLocalStorage from '../../hooks/useLocalStorage';
+import { useState } from 'react';
+import Modal from '../../components/Modal/Modal'
+import EditProfile from '../../features/Profile/EditProfile';
 
 const Profile = () => {
+    const [userDetails, setUserDetails] = useLocalStorage('user');
+    const [isModalOpen,setModalOpen]=useState(false);
+
+    
+
+
+
+    const openModal=()=>{
+    
+        setModalOpen(true)
+    }
+
+    const closeModal=()=>{
+        setModalOpen(false)
+    }
+
+
+
+
+
+    
   return (
     <div className='profile-container'>
     <div className='title-bar'>
         <span>Profile</span>
-        <button>Edit profile</button>
+        <button onClick={openModal}>Edit profile</button>
+
+        {
+            isModalOpen&&(<Modal onClose={closeModal}>
+                <EditProfile/>
+          
+            </Modal>)
+        }
     </div>
 
     <div className='content-wrapper'>
@@ -23,7 +55,7 @@ const Profile = () => {
                                     <input readonly type="text"
                                      name="firstname" id="" 
                                      placeholder="First name"
-                                     value="Stephen"
+                                     value={userDetails.firstname}
                                      
                                      />    
                                      
@@ -33,7 +65,7 @@ const Profile = () => {
                                     <input readonly type="text"
                                      name="middlename" id=""
                                      placeholder="Middle name" 
-                                     value="O."  
+                                     value={userDetails.middlename}  
                                      
                                      />   
                               
@@ -44,7 +76,7 @@ const Profile = () => {
                                     <input readonly type="text"
                                      name="lastname" id=""
                                      placeholder="Password" 
-                                     value="Ondieki" 
+                                     value={userDetails.lastname} 
                                       
                                       />
                                   
@@ -57,7 +89,7 @@ const Profile = () => {
                                     <input readonly type="text"
                                      name="email" id="" 
                                      placeholder="First name"
-                                     value="ondiekistephen00@gmail.com"
+                                     value={userDetails.email}
                                      
                                      />    
                                      
@@ -67,7 +99,7 @@ const Profile = () => {
                                     <input readonly type="text"
                                      name="identification" id=""
                                      placeholder="Middle name" 
-                                     value="84948404"  
+                                     value={userDetails.identification_number}
                                      
                                      />   
                               
@@ -78,7 +110,7 @@ const Profile = () => {
                                     <input readonly type="text"
                                      name="marital status" id=""
                                      placeholder="Password" 
-                                     value="Single" 
+                                     value={userDetails.marital_status}
                                       
                                       />
                                   
@@ -91,7 +123,7 @@ const Profile = () => {
                                     <input readonly type="text"
                                      name="position" id="" 
                                      placeholder="no position"
-                                     value="Software engineer"
+                                     value={userDetails.position_description}
                                      
                                      />    
                                      
@@ -100,8 +132,8 @@ const Profile = () => {
                                     <label> Gross Salary</label><br/>
                                     <input readonly type="text"
                                      name="identification" id=""
-                                     placeholder="Middle name" 
-                                     value="Ksh . 60,000"  
+                                     placeholder="Ksh XXXXXXX" 
+                                     value={userDetails.gross_salary} 
                                      
                                      />   
                               
@@ -112,7 +144,7 @@ const Profile = () => {
                                     <input readonly type="text"
                                      name="course of study" id=""
                                      placeholder="Course of study " 
-                                     value="Bsc. Computer Science" 
+                                     value={userDetails.course_of_study} 
                 
                                       />
                                   
@@ -124,7 +156,7 @@ const Profile = () => {
                         <div class="label-input-group">
                                 <label>Skills : Languages</label><br/>
                                 <input type="text" name="" id="" placeholder="English, Kiswahil, French ,etc"
-                                value='English, French, Swahili'
+                                value={userDetails.language}
                                 
                                 
                                 /> 
@@ -182,6 +214,7 @@ const Profile = () => {
                         <label>Password</label><br/>
                         <input type="password" name="" id="" placeholder="password"
                         value='kkekkkkw'
+                        disabled
                         
                         />  
                                        
@@ -190,7 +223,7 @@ const Profile = () => {
                         <label> Confirm Password </label><br/>
                         <input type="password" name="" id="" placeholder=" confirm password" 
                         value ='ddjdjdjdjdjdj'
-                         
+                         disabled
                         /> 
                         
 

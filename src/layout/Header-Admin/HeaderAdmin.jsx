@@ -3,10 +3,13 @@ import '../Header-Admin/HeaderAdmin.scss'
 import logo from '../../assets/Clockify-logo.png'
 import { FaSearch } from "react-icons/fa";
 import { IoIosNotificationsOutline } from "react-icons/io";
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 
 
 const HeaderAdmin = ({Dashboard}) => {
+
+  const [userDetails, setUserDetails]=useLocalStorage('user')
   return (
     <div className='header-container'> 
       <div className="logo-title-wrapper">
@@ -26,7 +29,7 @@ const HeaderAdmin = ({Dashboard}) => {
            <IoIosNotificationsOutline/>
           
           
-          <p className='logged-in-user'>Stephen Ondieki</p>
+          <p className='logged-in-user'>{userDetails.firstname} {userDetails.lastname}</p>
 
       </div>
     

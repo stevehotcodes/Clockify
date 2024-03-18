@@ -2,9 +2,14 @@ import React from 'react'
 import '../EmployeeDashboard/EmployeeDashboard.scss'
 import { SlPeople } from "react-icons/sl";
 import {BarChart} from '@mui/x-charts/BarChart'
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 
 const EmployeeDashboard = () => {
+ 
+   const [userDetails,setUserDetails]=useLocalStorage('user')
+
+
   return (
     <div className='employee-dashboard-container'>
     <div className='title-bar'>
@@ -18,7 +23,7 @@ const EmployeeDashboard = () => {
               <span className='card-title'>Current Position</span>
               </div>
             
-              <span className='numbers'>Software Developer</span>
+              <span className='numbers'>{userDetails.position_description}</span>
                   
              </div>
 
@@ -28,7 +33,7 @@ const EmployeeDashboard = () => {
               <span className='card-title'>Schedule</span>
               </div>
             
-              <span className='numbers'>08:00am-05:00pm</span>
+              <span className='numbers'>{userDetails.schedule_description}</span>
                   
              </div>
              <div className='dashboard-card'>
