@@ -17,15 +17,27 @@ import EmployeeHome from './layout/EmployeeHome/EmployeeHome'
 function App() {
   const [count, setCount] = useState(0)
   const [userDetails, setUserDetails] = useLocalStorage('user', null);
-  console.log(userDetails)
+  console.log("app rendering the user deatils", userDetails)
+const role=userDetails.role
+console.log(role)
+
 
   return (
     <>
       <Routes>
-         <Route   path="/" element={<Login />} />
+         <Route  path="/" element={<Login />} />
          <Route path="/signup" element={<Signup/>}/>
-         <Route path="/admin" element={(userDetails.role==='admin')? <AdminHome/>:<Login/>}/>
-         <Route path='/employee' element={(userDetails.role==='user')?<EmployeeHome/>:<Login/>}/>
+         <Route path='/*' element= {(userDetails.role==='user')?
+               <EmployeeHome/>:<AdminHome/>            
+             }/>
+            
+
+        
+
+
+
+         {/* <Route path="/admin" element={(userDetails.role==='admin')? <AdminHome/>:<Login/>}/>
+         <Route path='/employee' element={(userDetails.role==='user')?<EmployeeHome/>:<Login/>}/> */}
          
       </Routes>
       

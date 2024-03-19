@@ -12,10 +12,13 @@ import EmployeeHome from './layout/EmployeeHome/EmployeeHome.jsx'
 import { Provider } from 'react-redux'
 import { store } from './app/store.js'
 import useLocalStorage from './hooks/useLocalStorage.js'
+import ContentEmployee from './layout/ContentEmployee/ContentEmployee.jsx'
+import MainLayout from './layout/MainLayout/MainLayout.jsx'
 
 
 
-
+const userDetails=localStorage.getItem('user');
+console.log(userDetails)
 const router=createBrowserRouter([
   {
     path:'/',
@@ -25,10 +28,12 @@ const router=createBrowserRouter([
     path:'/signup',
     element:<Signup/>
   },
+  
+
   {
     path:'/*',
-    element:<EmployeeHome/>             //will required auth to switch in between the two home dashboard admin and employee
-  },   
+    element:<MainLayout/>
+  }
 
  
   

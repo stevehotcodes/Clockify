@@ -12,6 +12,7 @@ import Overtime from '../../pages/Overtime/Overtime'
 import CashAdvances from '../../pages/CashAdvances/CashAdvances'
 import Payroll from '../../pages/Payroll/Payroll'
 import EmployeeDashboard from '../../pages/EmployeeDashboard/EmployeeDashboard'
+import { Navigate } from 'react-router-dom'
 
 
 
@@ -22,6 +23,10 @@ const Content = () => {
         {/* <p>Content Container</p> */}
 
          <Routes>
+         <Route
+              path="/*"
+              element={<Navigate to="/admin" replace />}
+            />
             <Route path='/admin' element={<AdminDashboard/>}/>
             <Route path='/employeelisting' element={<EmployeeListing/>}/>
             <Route path='/positions' element={<Positions/>}/>

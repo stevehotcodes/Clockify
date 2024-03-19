@@ -11,6 +11,7 @@ import {ErrorToast, LoadingToast, SuccessToast, ToasterContainer} from '../../co
 import { useLoginUserMutation } from '../../features/Login/loginApi'
 import useLocalStorage from '../../hooks/useLocalStorage'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 
 
@@ -22,6 +23,7 @@ const Login = () => {
     const [loginUser]=useLoginUserMutation()
     const [userDetails, setUserDetails] = useLocalStorage('user', null);
     const [token, setToken] = useLocalStorage('token ', null);
+    const[isAdmin, setAdmin]=useState('')
     // console.log("user form the local storage ", userDetails,token )
     const navigate=useNavigate()
 
@@ -51,33 +53,48 @@ const Login = () => {
             setUserDetails(response.user);
             setToken(response.token)
             // navigate('/admin')
-            console.log(userDetails,token )
+            console.log("user details",userDetails.role,token )
+            
+            // console.log(isAdmin)
+            console.log("checking the user",(userDetails.role=='user'))
 
             if(token){
-                if( userDetails.role==='admin'){
-                    SuccessToast(`Login in  successful as admin, Welcome ${data.email}`)
+                if(userDetails.role=='admin'){
+                    SuccessToast(`Login successful Welcome ${data.email}`)
                     setTimeout(()=>{
-                        navigate('/admin')
-                    },2000)
+                     navigate('/admin')
+                    },3000)
 
                 }
-                else{
+                if(userDetails.role=='user'){
+                    SuccessToast(`login in successfull, Welcome${data.email}`)
                     setTimeout(()=>{
                         navigate('/employee')
-                    },2000)
+                       },3000)
+
                 }
+                  
+
+                // else{
+                //     ErrorToast(`Login unscuccessful`)
+                //     setTimeout(()=>{
+                //         navigate('/')
+                //     },3000)
+                   
+                // }
 
              
                
             }
             else{
+                ErrorToast('Invalid Credentials user does not exist')
                 navigate('/')
             }
 
             
         } catch (error) {
             console.log(error)
-            ErrorToast(error.data)
+            ErrorToast(`${error.data} or account does not exists`)
         }
         finally{
             LoadingToast(false)

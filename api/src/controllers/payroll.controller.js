@@ -1,3 +1,4 @@
+import e from "express";
 import { sendNotFound, sendServerError } from "../helpers/helper.functions.js";
 import { getAllCashAdvancesRecordforAnEmployeeService, getDeductionsforAnEmployeeService, getOvertimeRecordforAnEmployeeService } from "../services/deductionsServices.js";
 import { createPayrollforanService, getPayRollRecordsService } from "../services/payrollService.js";
@@ -9,7 +10,7 @@ import { getAllEmployeesService } from "../services/userService.js"
 
 export  const generatePayRoll=async(req,res)=>{
     try {
-            const employees=await getAllEmployeesService();
+            const employees=await getAllEmployeesService(); ///fetch all employees
             let  payroll=[]
         
 
@@ -29,12 +30,11 @@ export  const generatePayRoll=async(req,res)=>{
                 const payrollData={gross_salary:employee.gross_salary,totalDeductions,totaloverTime,totalcashAdvances,user_id:employee.user_id,netPay}
             
 
-
                 const employeePayroll=await createPayrollforanService(payrollData)
                 console.log("employeePayroll response",employeePayroll)
 
                 payroll.push(netPay)
-               
+        
 
             }
             
