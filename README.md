@@ -108,3 +108,7 @@ o Positions: Job positions (Position ID, Title)
 o Payroll: Payroll records (Employee ID, Gross Pay, Deductions, Net Pay, Payroll Date)
 
 · Use Other necessary tables if possible.
+## Login Page
+![Login Page](<src/assets/Screenshot 2024-03-19 170823.png>)
+## Sign up Page 
+![Register page](<src/assets/Screenshot 2024-03-19 171204.png>)
