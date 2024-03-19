@@ -19,6 +19,10 @@ import photoRouter from './src/routes/photoRoute.js'
 dotenv.config()
 
 
+var corsOptions = {
+    origin: 'http://localhost:5173',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 
 
@@ -26,10 +30,12 @@ dotenv.config()
 const app=express()
 const port =process.env.API_PORT 
 
+
+
 //configuring the middlewares
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
-app.use(cors())
+app.use(cors(corsOptions))
 
 
 app.get('/health',(req,res)=>{
@@ -52,8 +58,8 @@ app.use('/api',photoRouter)
 //     // logger.info("sending email after every five seconds ...............");
 // //    await  sendWelcomeEmailToNewUsers()
 //     // logger.info("generate payroll.........")
-//     // logger.info('generating payroll.............')
-//     // await generatePayRoll()
+//     logger.info('generating payroll.............')
+//     await generatePayRoll()
 
 // });
 

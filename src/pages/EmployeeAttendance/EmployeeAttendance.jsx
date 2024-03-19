@@ -5,6 +5,7 @@ import {useCreateCheckInMutation, useCreateCheckOutMutation, useGetAllAttendance
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { ErrorToast, LoadingToast, SuccessToast, ToasterContainer } from '../../components/Toaster/Toaster';
+import { PuffLoader } from 'react-spinners';
 
 
 const EmployeeAttendance = () => {
@@ -96,7 +97,12 @@ const EmployeeAttendance = () => {
       
          
       </div>
-          <table>
+      {(isLoading)? (<div className="status-loader">
+            <div className='status-loader-content'>
+               <PuffLoader loading={true} size={150} />
+                <p>Please wait .........</p>
+             </div>
+           </div>):   <table>
           <thead>
               <tr>
                   <th>Employee Id</th>
@@ -133,7 +139,7 @@ const EmployeeAttendance = () => {
               
              
           </tbody>
-      </table>
+      </table>}
       
   </div>
 

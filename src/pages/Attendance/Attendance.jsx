@@ -2,6 +2,7 @@ import React from 'react'
 import '../Attendance/Attendance.scss'
 import {BarChart} from '@mui/x-charts/BarChart'
 import { useGetAllAttendanceRecordsQuery } from '../../features/Attendance/attendanceApi'
+import { PuffLoader } from 'react-spinners'
 
 
 const Attendance = () => {
@@ -12,6 +13,9 @@ const Attendance = () => {
 
 
   return (
+
+
+
     <div className='attendance-container'>
           <div className='title-bar'>
             <span>Attendance </span>
@@ -43,7 +47,12 @@ const Attendance = () => {
             
                
             </div>
-                <table>
+                {(isLoading)? (<div className="status-loader">
+            <div className='status-loader-content'>
+               <PuffLoader loading={true} size={150} />
+                <p>Please wait .........</p>
+             </div>
+           </div>): <table>
                 <thead>
                     <tr>
                         <th>Employee Id</th>
@@ -73,7 +82,7 @@ const Attendance = () => {
                 ))}                  
                    
                 </tbody>
-            </table>
+            </table>}
             
         </div>
 

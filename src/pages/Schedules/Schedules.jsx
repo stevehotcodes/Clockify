@@ -27,7 +27,7 @@ const Schedules = () => {
 
   return (
     <div className='schedule-container'> 
-    {isLoading&&<PuffLoader color='000' size={150}/>}
+    
               <div className='title-bar'>
             <span>Schedules</span>
         </div>
@@ -51,7 +51,12 @@ const Schedules = () => {
 
                
             </div>
-            <table>
+            {(isLoading)? (<div className="status-loader">
+            <div className='status-loader-content'>
+               <PuffLoader loading={true} size={150} />
+                <p>Please wait .........</p>
+             </div>
+           </div>):  <table>
                 <thead>
                     <tr>
                         <th>Schedules</th>
@@ -75,7 +80,7 @@ const Schedules = () => {
                     
                    
                 </tbody>
-            </table>
+            </table>}
 
         </div>
 

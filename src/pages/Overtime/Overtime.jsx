@@ -4,6 +4,7 @@ import { useGetAllOvertimeQuery } from '../../features/Overtime/overtimeApi'
 import { useState } from 'react'
 import Modal from '../../components/Modal/Modal';
 import CreateOvertime from '../../features/Overtime/CreateOvertime';
+import { PuffLoader } from 'react-spinners';
 
 const Overtime = () => {
     const{data:overtimes, isLoading, isError}=useGetAllOvertimeQuery()
@@ -46,7 +47,12 @@ const Overtime = () => {
                
             </div>
 
-        <table>
+            {(isLoading)? (<div className="status-loader">
+            <div className='status-loader-content'>
+               <PuffLoader loading={true} size={150} />
+                <p>Please wait .........</p>
+             </div>
+           </div>): <table>
                 <thead>
                     <tr>
                         <th>Employee Id</th>
@@ -71,7 +77,7 @@ const Overtime = () => {
                     ))}                   
 
                 </tbody>
-            </table>
+            </table>}
         </div>
     </div>
   )

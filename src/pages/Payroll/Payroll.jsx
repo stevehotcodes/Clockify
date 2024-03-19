@@ -3,6 +3,7 @@ import '../Payroll/Payroll.scss'
 import { useGetPayRollRecordsQuery } from '../../features/Payroll/payrollApi'
 import { useRef } from 'react'
 import ReactToPrint from 'react-to-print'
+import { PuffLoader } from 'react-spinners'
 
 const Payroll = () => {
 
@@ -44,7 +45,12 @@ const Payroll = () => {
                     </div>
                
             </div>
-        <table>
+            {(isLoading)? (<div className="status-loader">
+            <div className='status-loader-content'>
+               <PuffLoader loading={true} size={150} />
+                <p>Please wait .........</p>
+             </div>
+           </div>):  <table>
                 <thead>
                     <tr>
                         <th>Employee Id</th>
@@ -85,7 +91,7 @@ const Payroll = () => {
                     
                    
                 </tbody>
-            </table>
+            </table>}
         </div>
     </div>
   )

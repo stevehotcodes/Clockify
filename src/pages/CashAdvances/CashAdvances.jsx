@@ -4,6 +4,7 @@ import Modal from '../../components/Modal/Modal';
 import CreateAdvances from '../../features/CashAdvances/CreateAdvances';
 import { useState } from 'react';
 import { useGetAllCashAdvanceQuery } from '../../features/CashAdvances/cashAdvancesApi';
+import { PuffLoader } from 'react-spinners';
 
 const CashAdvances = () => {
 
@@ -41,6 +42,13 @@ const CashAdvances = () => {
                 </div>
                
             </div>
+
+            {(isLoading)? (<div className="status-loader">
+            <div className='status-loader-content'>
+               <PuffLoader loading={true} size={150} />
+                <p>Please wait .........</p>
+             </div>
+           </div>): 
             <table>
                 <thead>
                     <tr>
@@ -77,7 +85,7 @@ const CashAdvances = () => {
                     
                    
                 </tbody>
-            </table>
+            </table>}
             </div>
     </div>
   )

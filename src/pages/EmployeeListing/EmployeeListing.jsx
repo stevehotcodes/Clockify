@@ -2,6 +2,7 @@ import React from 'react'
 import '../EmployeeListing/EmployeeListing.scss'
 import { Link } from 'react-router-dom'
 import { useGetAllEmployeesQuery } from '../../features/EmployeeListing/EmployeeListing'
+import { PuffLoader } from 'react-spinners'
 
 const EmployeeListing = () => {
     const{data:employees, isError, isLoading}=useGetAllEmployeesQuery()
@@ -26,7 +27,12 @@ const EmployeeListing = () => {
                 </div>
                
             </div>
-            <table>
+            {(isLoading)? (<div className="status-loader">
+            <div className='status-loader-content'>
+               <PuffLoader loading={true} size={150} />
+                <p>Please wait .........</p>
+             </div>
+           </div>):          <table>
                 <thead>
                     <tr>
                         <th>Employee Id</th>
@@ -52,17 +58,10 @@ const EmployeeListing = () => {
 
 
                     ))}
-                    
-                   
-
-                  
-
-                   
-
-                    
+                                    
                    
                 </tbody>
-            </table>
+            </table>}
 
         </div>
 

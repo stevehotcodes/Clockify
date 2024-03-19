@@ -5,6 +5,7 @@ import CreatePosition from '../../features/Position/CreatePosition';
 import Modal from '../../components/Modal/Modal';
 import { useGetAllPositionsQuery } from '../../features/Position/positionApi';
 import EditPosition from '../../features/Position/EditPosition';
+import { PuffLoader } from 'react-spinners';
 
 const Positions = () => {
 
@@ -61,7 +62,12 @@ const Positions = () => {
             
                
             </div>
-            <table>
+            {(isLoading)? (<div className="status-loader">
+            <div className='status-loader-content'>
+               <PuffLoader loading={true} size={150} />
+                <p>Please wait .........</p>
+             </div>
+           </div>):  <table>
                 <thead>
                     <tr>
                         <th>Description</th>
@@ -96,7 +102,7 @@ const Positions = () => {
                     
                    
                 </tbody>
-            </table>
+            </table>}
         </div>
 
 

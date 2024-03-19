@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Modal from '../../components/Modal/Modal';
 import CreateDeductions from '../../features/Deductions/CreateDeductions';
 import { useGetAllDeductionQuery } from '../../features/Deductions/deductionsApi';
+import { PuffLoader } from 'react-spinners';
 
 const Deductions = () => {
 
@@ -43,7 +44,12 @@ const Deductions = () => {
                 </div>
                
             </div>
-           {(isLoading)?<h3>Loading....</h3>: <table>
+           {(isLoading)? (<div className="status-loader">
+            <div className='status-loader-content'>
+               <PuffLoader loading={true} size={150} />
+                <p>Please wait .........</p>
+             </div>
+           </div>): <table>
                 <thead>
                     <tr>
                         <th>Employee Id</th>
@@ -71,6 +77,7 @@ const Deductions = () => {
                 </tbody>
             </table>}
         </div>
+        {(!deductions)&&<h3>no records found</h3>}
 
 
     </div>
