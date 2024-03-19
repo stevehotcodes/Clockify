@@ -14,7 +14,7 @@ Attendance and Payroll System
 
 ## Databse-Design
 
-[src/assets/drawSQL-image-export-2024-03-19.png](Database Design)
+![Database Design](src/assets/drawSQL-image-export-2024-03-19.png)
 
 ## Project Description
 This project is aimed at simplifying the management of employee attendance, payroll, and related functionalities within a company. It will be developed using React.js for the front end, Express.js for the backend, and Microsoft SQL for the database.
