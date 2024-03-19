@@ -6,7 +6,10 @@ import { useGetAllAttendanceRecordsQuery } from '../../features/Attendance/atten
 
 const Attendance = () => {
 
-   
+   const{data:attendance,isLoading, isFetching}=useGetAllAttendanceRecordsQuery()
+   console.log(`data:${attendance} , isLoading:${isLoading} ,isFetching:${isFetching}`)
+
+
 
   return (
     <div className='attendance-container'>
@@ -53,30 +56,21 @@ const Attendance = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>stephen Ondieki</td>
-                        <td>12/02/2024</td>
-                        <td>08:04:00am</td>
-                        <td>05:05:56pm</td>
-                        <td>8</td>
-                        <td>View Edit</td>
-                    </tr>
-
-                    <tr>
-                        <td>2</td>
-                        <td>stephen Ondieki</td>
-                        <td>12/02/2024</td>
-                        <td>08:04:00am</td>
-                        <td>05:05:56pm</td>
-                        <td>8</td>
-                        <td>View Edit</td>
-                    </tr>
-                 
+                {attendance&&attendance.map((record, index)=>(
+                <tr key={index}>
+                       
+                     <td>{record.attendance_id}</td>
+                     <td>{record.firstname} {record.lastname}</td>
+                     <td>{record.date}</td>
+                     <td>{record.time_in}</td>
+                     <td>{record.time_out}</td>
+                     <td>7</td>
+                     <td>View Edit</td>
+                 </tr>
 
 
 
-                    
+                ))}                  
                    
                 </tbody>
             </table>

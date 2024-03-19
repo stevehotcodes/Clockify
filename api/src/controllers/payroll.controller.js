@@ -37,6 +37,8 @@ export  const generatePayRoll=async(req,res)=>{
         
 
             }
+            console.log("this is the payroll", payroll)
+
             
             return res.status(200).json(payroll)
         

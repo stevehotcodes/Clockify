@@ -24,7 +24,8 @@ export const deductionApi=createApi({
                 url:`deduction`,
                 method:`GET`,
                 
-            })
+            }),
+            providesTags:[`Deductions`]
         })
     })
 })

@@ -49,10 +49,11 @@ app.use('/api',photoRouter)
 // console.log('the password is :',passcode);
 // cron.schedule('*/10 * * * * *', async() => {
 
-//     logger.info("sending email after every five seconds ...............");
-//    await  sendWelcomeEmailToNewUsers()
+//     // logger.info("sending email after every five seconds ...............");
+// //    await  sendWelcomeEmailToNewUsers()
 //     // logger.info("generate payroll.........")
-//     // generatePayRoll(req, res)
+//     // logger.info('generating payroll.............')
+//     // await generatePayRoll()
 
 // });
 
