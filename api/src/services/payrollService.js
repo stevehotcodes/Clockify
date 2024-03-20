@@ -44,3 +44,19 @@ export const getPayRollRecordsService=async()=>{
         return error
     }
 }
+
+export const getPayRollRecordsforAUserService=async(user_id)=>{
+    try {
+         const result=await poolRequest()
+         .input('user_id', mssql.VarChar,user_id)
+         .query(`SELECT payroll.*, tbl_user.*
+                 FROM payroll
+                 JOIN tbl_user ON tbl_user.user_id=payroll.user_id
+                 WHERE payroll.user_id=@user_id
+  
+            `)
+        
+    } catch (error) {
+        return error
+    }
+}

@@ -1,8 +1,8 @@
 import e from "express";
 import { sendNotFound, sendServerError } from "../helpers/helper.functions.js";
 import { getAllCashAdvancesRecordforAnEmployeeService, getDeductionsforAnEmployeeService, getOvertimeRecordforAnEmployeeService } from "../services/deductionsServices.js";
-import { createPayrollforanService, getPayRollRecordsService } from "../services/payrollService.js";
-import { getAllEmployeesService } from "../services/userService.js"
+import { createPayrollforanService, getPayRollRecordsService, getPayRollRecordsforAUserService } from "../services/payrollService.js";
+import { getAllEmployeesService, getUserById } from "../services/userService.js"
 
 
 
@@ -52,6 +52,24 @@ export const getPayRollRecords=async(req,res)=>{
              const result =await getPayRollRecordsService()   
 
              result.length?(res.status(200).json(result)):(sendNotFound(res,"no records for payroll"))
+
+            
+    } catch (error) {
+       return sendServerError(res,error.message) 
+    }
+}
+
+export const getPayRollRecordsforAUser=async(req,res)=>{
+    try {    
+             const user_id=req.params.user_id;
+             const user=await getUserById(user_id);
+             if(user[0]){
+                const result =await getPayRollRecordsforAUserService(user_id);
+                result.length?(res.status(200).json(result)):(sendNotFound(res,"no records for payroll"))
+             }
+             else{
+                sendNotFound(res, 'User records not found')
+             }       
 
             
     } catch (error) {

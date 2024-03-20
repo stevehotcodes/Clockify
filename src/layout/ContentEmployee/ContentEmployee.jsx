@@ -7,6 +7,7 @@ import EmployeeAttendance from '../../pages/EmployeeAttendance/EmployeeAttendanc
 import EmployeePayroll from '../../pages/EmployeePayroll/EmployeePayroll'
 import TimeInOut from '../../pages/TimeInOut/TimeInOut'
 import Profile from '../../pages/Profile/Profile'
+import PayrollEmployee from '../../pages/Payroll-Employee/PayrollEmployee'
 
 const ContentEmployee = () => {
   return (
@@ -18,7 +19,7 @@ const ContentEmployee = () => {
             />
             <Route path='/employee' exact element={<EmployeeDashboard/>}/>
             <Route path='/attendance-employee' element={<EmployeeAttendance/>}/>
-            <Route path='/payroll-employee' element={<EmployeePayroll/>}/>
+            <Route path='/payroll-employee' element={<PayrollEmployee/>}/>
             <Route  path='/checkinout' element={<TimeInOut/>}/>
             <Route  path='/profile' element={<Profile/>}/>
         </Routes>

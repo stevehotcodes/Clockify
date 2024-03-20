@@ -27,7 +27,8 @@ export const store =configureStore({
         [overtimeApi.reducerPath]:overtimeApi.reducer,
         [payrollApi.reducerPath]:payrollApi.reducer,
         [attendanceApi.reducerPath]:attendanceApi.reducer,
-        [profileApi.reducerPath]:profileApi.reducer
+        [profileApi.reducerPath]:profileApi.reducer,
+        
 
 
     },

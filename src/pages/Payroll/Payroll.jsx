@@ -15,7 +15,6 @@ const Payroll = () => {
     const payrollRef=useRef();
 
     const handlePrint=()=>{
-        alert("hey")
         window.print()
     }
 
@@ -24,7 +23,7 @@ const Payroll = () => {
 
 
 
-
+ 
 
   return (
     <div className='payroll-container' ref={payrollRef}>

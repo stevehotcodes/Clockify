@@ -45,53 +45,6 @@ export const createTimeIn=async(req,res)=>{
 
 }
 
-
-
-// export const createTimeOut=async(req,res)=>{
-//     try {
-
-//             const user_id=req.params.user_id
-//             const user=await getUserById(user_id);
-//             const checkIn=await getcheckInService(user_id)
-//             const checkOut=await getcheckoutService(user_id)
-//             console.log(checkOut)
-//             const currentDate = new Date().toISOString().split('T')[0]
-            
-//             if(user.length>0){
-                
-//                if(checkIn[0]&&checkIn[0].date.toISOString().split('T')[0]===currentDate && !checkOut[0].time_out ){
-//                     // if(checkOut[0]){ sendBadRequest(res,"you cant check out twice for a day") }
-              
-//                   const response=await createTimeOutService(user_id)
-                
-//                 if(response.rowsAffected>0){
-//                     sendCreated(res,`Time out for  ${user[0].firstname} ${user[0].lastname} has been recorded successfully`)
-//                 }
-             
-//                }
-//                else{
-                
-//                     sendBadRequest(res, 'You have not check in for today so cant checkout')
-//                }
-               
-//             }
-//             else{
-//                 sendNotFound(res, `The employee does not exist`)
-//             }
-        
-//     } catch (error) {
-//         sendServerError(res, error.message)
-//     }
-
-
-// }
-
-
-
-
-
-
-
 export const createTimeOut = async (req, res) => {
     try {
         const user_id = req.params.user_id;

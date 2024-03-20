@@ -119,6 +119,7 @@ export const getAllEmployeesService=async()=>{
         FROM tbl_user
         JOIN position ON tbl_user.position_id=position.position_id
         JOIN schedule ON tbl_user.schedule_id=schedule.schedule_id
+        WHERE tbl_user.role='user'
                                
                 `)
 
@@ -171,7 +172,7 @@ export const findByCredentialsService = async (user) => {
                 );
                 const { password,graduation_date, ...user } = userFoundResponse.recordset[0];
                 console.log('user deatails:',user)
-                return { user, token: `JWT ${token}` };
+                return { user, token: `JWT ${token}`  };
 
             }
         } else {
