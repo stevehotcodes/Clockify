@@ -2,8 +2,28 @@ import React from 'react'
 import '../AdminDashboard/AdminDashboard.scss'
 import { SlPeople } from "react-icons/sl";
 import {BarChart} from '@mui/x-charts/BarChart'
+import { useGetAllEmployeesQuery } from '../../features/EmployeeListing/EmployeeListing';
+import { useState } from 'react';
+import { useGetAllPositionsQuery } from '../../features/Position/positionApi';
+import { useGetAllSchedulesQuery } from '../../features/Schedule/scheduleApi';
 
 const AdminDashboard = () => {
+
+
+   const{data:employees, isError, isLoading}=useGetAllEmployeesQuery()
+   const [numberofEmployees, setNumberofEmployees]=useState(employees.length)
+
+   const {data:positions }=useGetAllPositionsQuery();
+   const [numberofPositions, setNumberofPositions]=useState(positions.length)
+
+   const{data:schedules}=useGetAllSchedulesQuery()
+   const[numberofSchedules,setNumberofSchedules]=useState(schedules.length)
+
+
+
+   console.log(typeof(employees))
+     
+   
   return (
     <div className='admin-dashboard-container'>
         <div className='title-bar'>
@@ -14,29 +34,29 @@ const AdminDashboard = () => {
                  <div className='dashboard-card'>
                   <div className='icon-title'>
                      <SlPeople />
-                  <span className='card-title'>Active Employee</span>
+                  <span className='card-title'> Employees</span>
                   </div>
                 
-                  <span className='numbers'> 100</span>
+                  <span className='numbers'>{numberofEmployees}</span>
                       
                  </div>
 
                  <div className='dashboard-card'>
                   <div className='icon-title'>
                      <SlPeople />
-                  <span className='card-title'>Active Employee</span>
+                  <span className='card-title'>Positions</span>
                   </div>
                 
-                  <span className='numbers'> 100</span>
+                  <span className='numbers'> {numberofPositions}</span>
                       
                  </div>
                  <div className='dashboard-card'>
                   <div className='icon-title'>
                      <SlPeople />
-                  <span className='card-title'>Active Employee</span>
+                  <span className='card-title'>Schedules </span>
                   </div>
                 
-                  <span className='numbers'> 100</span>
+                  <span className='numbers'>{numberofSchedules}</span>
                       
                  </div>
                  <div className='dashboard-card'>

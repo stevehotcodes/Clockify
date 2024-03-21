@@ -50,7 +50,7 @@ export const getDeductionsforAnEmployeeService=async(user_id)=>{
     try {
             const response=await poolRequest()
             .input('user_id',mssql.VarChar,user_id)
-            .query(`SELECT amount FROM deductions WHERE user_id=@user_id`)
+            .query(`SELECT description, amount FROM deductions WHERE user_id=@user_id`)
             return response.recordset
         
     } catch (error) {

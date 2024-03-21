@@ -130,7 +130,10 @@ attendance_id VARCHAR (300) PRIMARY KEY,
 date DATETIME DEFAULT GETDATE(),
 time_in DATETIME,
 time_out DATETIME,
+reporting_state VARCHAR (300),
 user_id VARCHAR(300) FOREIGN KEY REFERENCES tbl_user(user_id)
+
+
 );
 
 ALTER TABLE attendance

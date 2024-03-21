@@ -25,7 +25,12 @@
         .admin-dashboard-title{
             display: flex;
             align-items:center;
+            justify-content: space-between;
+            .time{
+                margin:2rem;
+            }
         }
+
     
     }
 

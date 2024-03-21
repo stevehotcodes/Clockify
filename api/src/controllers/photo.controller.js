@@ -13,9 +13,9 @@ export const uploadPhoto=async(req,res)=>{
           }
 
           const uploadResponse=await uploadPhotoService(photoDetails, user_id)
-          console.log(uploadResponse)
+          // console.log(uploadResponse)
 
-         (uploadResponse.rowsAffected>0)? sendCreated(res, 'photo uploaded successfully'):""
+         if(uploadResponse.rowsAffected>0){ sendCreated(res, 'photo uploaded successfully')}
 
     }
     catch(error){

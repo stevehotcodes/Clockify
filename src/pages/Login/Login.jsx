@@ -154,10 +154,7 @@ const Login = () => {
                     </div>
                   
                 {/* </NavLink> */}
-                <div class="form-footer">
-                    <a href="/signup" Link="/signup">New Employee? Sign up</a>
-                    {/* <a href="/reset">Forgot Password?</a> */}
-                </div>
+             
                 </form>
 
             </div>

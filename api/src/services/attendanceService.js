@@ -15,9 +15,21 @@ export const createTimeInService=async(user_id)=>{
          .input('time_in', mssql.DateTime,timeIn)
          .input('user_id',mssql.VarChar,user_id)
          .query(`
-                INSERT INTO attendance(attendance_id,time_in,user_id)
-                VALUES(@attendance_id,@time_in,@user_id)
-         
+                    BEGIN TRANSACTION;
+                
+                    INSERT INTO attendance (attendance_id, time_in, user_id)
+                    VALUES (@attendance_id, @time_in, @user_id);
+                
+                    UPDATE attendance
+                    SET reporting_state = 
+                        CASE 
+                            WHEN DATEPART(HOUR, @time_in) < 9 THEN 'Early'
+                            WHEN DATEPART(HOUR, @time_in) = 9 THEN 'On Time'
+                            ELSE 'Late'
+                        END
+                    WHERE user_id = @user_id;
+                
+                    COMMIT TRANSACTION;
          `)
 
          return result

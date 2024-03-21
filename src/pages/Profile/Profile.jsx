@@ -37,12 +37,13 @@ const Profile = () => {
             alert("uploading")
 
             const formData=new FormData()
-            formData.append('file',image)
-            formData.append("upload_preset", "maold1b5");
+            formData.append('file',image)   
+            formData.append("upload_preset", "Talky2")
+            formData.append("cloud_name", "dpxmkgoty")
             setUploading(true)
     
     
-            const uploadResponse = await fetch("https://api.cloudinary.com/v1_1/dorsnetyf/video/upload", {
+            const uploadResponse = await fetch('https://api.cloudinary.com/v1_1/dpxmkgoty/image/upload', {
                 method: "POST",
                 body: formData,
               });

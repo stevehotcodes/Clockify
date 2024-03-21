@@ -19,7 +19,7 @@ export const registerNewUserService = async (newUser) => {
         console.log('Generated emergency_id:', emergency_id);
      
 
-        const { firstname, middlename, lastname, identification_number, marital_status, gender, date_of_birth, email, phone_number, place_of_residence, course_of_study, institutiton, password, language, technical, emergency_person_name, emergency_phone_number, relationship,schedule_id,position_id } = newUser;
+        const { firstname, middlename, lastname, identification_number, marital_status, gender, date_of_birth, email, phone_number, place_of_residence, course_of_study, institution, password, language, technical, emergency_person_name, emergency_phone_number, relationship,schedule_id,position_id } = newUser;
         
       
         // Insert user into tbl_user
@@ -36,7 +36,7 @@ export const registerNewUserService = async (newUser) => {
             .input('phone_number', mssql.Int,phone_number)
             .input('place_of_residence',mssql.VarChar, place_of_residence)
             .input('course_of_study',mssql.VarChar,course_of_study)
-            .input('institutiton', mssql.VarChar,institutiton)
+            .input('institution', mssql.VarChar,institution)
             .input('password',mssql.VarChar,password)
             .input('skill_id', mssql.VarChar,skill_id)            
             .input('language',mssql.VarChar,language)
@@ -47,17 +47,33 @@ export const registerNewUserService = async (newUser) => {
             .input('relationship',mssql.VarChar,relationship)
             .input ('schedule_id', mssql.VarChar,schedule_id)
             .input('position_id',mssql.VarChar,position_id)
-            .query(
-              `INSERT INTO tbl_user(user_id,firstname, middlename, lastname,identification_number,gender,marital_status,date_of_birth,email,phone_number,place_of_residence,course_of_study,institutiton,password, schedule_id, position_id)
-                VALUES(@user_id,@firstname, @middlename, @lastname,@identification_number,@gender, @marital_status,@date_of_birth,@email,@phone_number,@place_of_residence,@course_of_study,@institutiton,@password,@schedule_id,@position_id)
+            .query(`
+            BEGIN TRANSACTION; -- Start the transaction
 
-                INSERT INTO employee_skill(skill_id,language,technical,user_id)
-                VALUES(@skill_id,@language,@technical,@user_id)
+            BEGIN TRY
+                -- First INSERT statement
+                INSERT INTO tbl_user(user_id, firstname, middlename, lastname, identification_number, gender, marital_status, date_of_birth, email, phone_number, place_of_residence, course_of_study, institution, password, schedule_id, position_id)
+                VALUES(@user_id, @firstname, @middlename, @lastname, @identification_number, @gender, @marital_status, @date_of_birth, @email, @phone_number, @place_of_residence, @course_of_study, @institution, @password, @schedule_id, @position_id);
+            
+                -- Second INSERT statement
+                INSERT INTO employee_skill(skill_id, language, technical, user_id)
+                VALUES(@skill_id, @language, @technical, @user_id);
+            
+                -- Third INSERT statement
+                INSERT INTO emergency_contact(emergency_id, emergency_person_name, emergency_phone_number, relationship, user_id)
+                VALUES (@emergency_id, @emergency_person_name, @emergency_phone_number, @relationship, @user_id);
+            
+                COMMIT TRANSACTION; -- Commit the transaction if all statements succeed
+                SELECT 'Success' AS [Result]; -- Optionally, return a success message
+            END TRY
+            BEGIN CATCH
+                ROLLBACK TRANSACTION; -- Roll back the transaction if any error occurs
+                SELECT ERROR_MESSAGE() AS [Error]; -- Optionally, return the error message
+            END CATCH;
+            
+            `
 
-              INSERT INTO emergency_contact(emergency_id, emergency_person_name,emergency_phone_number,relationship,user_id)
-            VALUES (@emergency_id,@emergency_person_name,@emergency_phone_number,@relationship,@user_id)
-
-        `)
+           )
 
 
         return { result1};

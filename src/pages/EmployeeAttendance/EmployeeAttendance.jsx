@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { ErrorToast, LoadingToast, SuccessToast, ToasterContainer } from '../../components/Toaster/Toaster';
 import { PuffLoader } from 'react-spinners';
+import { calculateTheNumberofHourWorked } from '../Attendance/Attendance';
 
 
 const EmployeeAttendance = () => {
@@ -88,7 +89,7 @@ const EmployeeAttendance = () => {
           </div>
           <div className='search-add-new-btn'>
           <form action="">
-                  <input type="search" name="" id="" placeholder='search for an position' />
+                  {/* <input type="search" name="" id="" placeholder='search for an position' /> */}
           </form>
           <div  className='button-wrapper'>
                   <button className='add-new-btn'  onClick={handleClockIn}>Clock In</button>
@@ -110,20 +111,28 @@ const EmployeeAttendance = () => {
                   <th>Created At</th>
                   <th>Time in</th>
                   <th>Time Out</th>
-                  {/* <th>No of hours worked</th> */}
-                  <th>Actions</th>
+                  <th>Working hours</th>
+                  <th>Reporting State</th>
+                  
               </tr>
           </thead>
           <tbody>
             {attendance&&attendance.map((record,index)=>(
+
              <tr key={index}>
+
+
+                
                  <td>{userDetails.user_id}</td>
                  <td>{userDetails.firstname}{userDetails.lastname}</td>
-                 <td>{record.date}</td>
-                 <td>{record.time_in}</td>
-                 <td>{record.time_out}</td>
-                 {/* <td>8</td> */}
-                 <td>Edit</td>
+                 <td>{formatDate(record.date)}</td>
+                 <td>{record.time_in ? formatDate(record.time_in):'-'}</td>
+                 {/* <td>{Date(record.time_out)}</td> */}
+                 <td>{record.time_out ? formatDate(record.time_out) : '-'}</td>
+                 <td>{(calculateTheNumberofHourWorked(record.time_in,record.time_out)).toFixed(4)}</td>
+                 <td>{record.reporting_state}</td>
+            
+                 
              </tr>
 
 
@@ -146,6 +155,16 @@ const EmployeeAttendance = () => {
 </div>
   )
 }
+
+
+export const formatDate = (time) => {
+    const formattedTime = new Date(time).toUTCString(); 
+    return formattedTime;
+};
+
+
+
+
 
 export default EmployeeAttendance
 

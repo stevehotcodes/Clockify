@@ -22,7 +22,7 @@ const Attendance = () => {
         </div>
         <div className='content-wrapper'>
             <div className='graphs'>
-                <BarChart
+                {/* <BarChart
                     series={[
                         { data: [35, 44, 24, 34] },
                         { data: [51, 6, 49, 30] },
@@ -33,16 +33,16 @@ const Attendance = () => {
                     xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'band' }]}
                     margin={{ top: 50, bottom: 30, left: 40, right: 10 }}
                 
-                />
+                /> */}
             
 
                 </div>
                 <div className='search-add-new-btn'>
                 <form action="">
-                        <input type="search" name="" id="" placeholder='search for an position' />
+                        {/* <input type="search" name="" id="" placeholder='search for an position' /> */}
                 </form>
                 <div  className='button-wrapper'>
-                        <button className='add-new-btn'> Add New</button>
+                        {/* <button className='add-new-btn'> Add New</button> */}
                 </div>
             
                
@@ -55,26 +55,26 @@ const Attendance = () => {
            </div>): <table>
                 <thead>
                     <tr>
-                        <th>Employee Id</th>
-                        <th>Employee Name</th>
+                    <th>Employee Name</th>
+                        <th>Reporting state</th>
+                        
                         <th>Created At</th>
                         <th>Time in</th>
                         <th>Time Out</th>
                         <th>No of hours worked</th>
-                        <th>Actions</th>
+                        {/* <th>Actions</th> */}
                     </tr>
                 </thead>
                 <tbody>
                 {attendance&&attendance.map((record, index)=>(
                 <tr key={index}>
-                       
-                     <td>{record.attendance_id}</td>
-                     <td>{record.firstname} {record.lastname}</td>
-                     <td>{record.date}</td>
-                     <td>{record.time_in}</td>
-                     <td>{record.time_out}</td>
-                     <td>7</td>
-                     <td>View Edit</td>
+                    <td>{record.firstname} {record.lastname}</td>
+                     <td>{record.reporting_state}</td>
+                     <td>{record.date?Date(record.date):'-'}</td>
+                     <td>{record.time_in ?formatDate(record.time_in):'-'}</td>
+                     <td>{record.time_out ? formatDate(record.time_out):'-'}</td>
+                     <td>{(calculateTheNumberofHourWorked(record.time_in,record.time_out)).toFixed(4)}</td>
+                     {/* <td>View Edit</td> */}
                  </tr>
 
 
@@ -89,6 +89,23 @@ const Attendance = () => {
     </div>
   )
 
+}
+
+export const formatDate = (time) => {
+    const formattedTime = new Date(time).toUTCString(); 
+    return formattedTime;
+};
+
+
+export const calculateTheNumberofHourWorked=(time_in, time_out)=>{
+        const date1=new Date(time_in)
+        const date2=new Date(time_out)
+
+        const timeDifferenceInMilliseconds = date2 - date1;
+
+        const timeDifferenceInHours = timeDifferenceInMilliseconds / (1000 * 60 * 60);
+
+        return timeDifferenceInHours
 }
 
 export default Attendance

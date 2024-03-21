@@ -3,9 +3,14 @@ import '../EmployeeListing/EmployeeListing.scss'
 import { Link } from 'react-router-dom'
 import { useGetAllEmployeesQuery } from '../../features/EmployeeListing/EmployeeListing'
 import { PuffLoader } from 'react-spinners'
+import { useState } from 'react'
 
 const EmployeeListing = () => {
     const{data:employees, isError, isLoading}=useGetAllEmployeesQuery()
+
+   
+
+   
 
    console.log(`data:${employees}, isError:${isError}, isLoading:${isLoading}`)
 
