@@ -1,5 +1,5 @@
 import { sendBadRequest, sendCreated, sendNotFound, sendServerError } from "../helpers/helper.functions.js";
-import { createTimeInService, createTimeOutService, getAttendanceforAUserService, getAttendanceforAllUserService, getcheckInService, getcheckoutService } from "../services/attendanceService.js";
+import { createTimeInService, createTimeOutService, getAttendanceReportService, getAttendanceforAUserService, getAttendanceforAllUserService, getcheckInService, getcheckoutService } from "../services/attendanceService.js";
 import { getUserById } from "../services/userService.js";
 
 
@@ -126,6 +126,21 @@ export const getAttendanceforAllUsers=async(req,res)=>{
             
     } catch (error) {
         sendServerError(res,error.message)
+    }
+}
+
+export const getAttendanceReport=async(req,res)=>{
+    try{
+         const attendance=await getAttendanceReportService()
+         if(attendance.length){
+            return res.status(200).json(attendance)
+         }
+         else{
+            sendNotFound(res,`attendance reports not found`)
+         }
+    }
+    catch(error){
+        sendServerError(res, error.message)
     }
 }
 

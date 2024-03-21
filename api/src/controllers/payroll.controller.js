@@ -70,7 +70,6 @@ export const getPayRollRecordsforAUser=async(req,res)=>{
              else{
                 sendNotFound(res, 'User records not found')
              }       
-
             
     } catch (error) {
        return sendServerError(res,error.message) 

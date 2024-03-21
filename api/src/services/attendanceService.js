@@ -125,3 +125,29 @@ export const getcheckoutService=async(user_id)=>{
         return error
     }
 }
+
+export const getAttendanceReportService=async()=>{
+    try{
+         const result=await poolRequest()
+            .query(`
+            SELECT 
+                CAST( time_in AS DATE) AS reporting_day,
+                reporting_state,
+                COUNT(*) AS count
+            FROM 
+                attendance
+            GROUP BY 
+                CAST (time_in AS DATE),
+                reporting_state
+            ORDER BY 
+                reporting_day,
+                reporting_state;
+         `)
+
+         return result.recordset
+
+    }
+    catch(error){
+        return error
+    }
+}

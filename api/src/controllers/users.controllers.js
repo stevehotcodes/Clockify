@@ -2,7 +2,7 @@ import { send } from "vite";
 import logger from "../utils/logger.js";
 import generator from 'generate-password'
 import { sendBadRequest, sendCreated, sendNotFound, sendServerError, sendSuccess } from "../helpers/helper.functions.js";
-import { findByCredentialsService, getAllEmployeesService, getLoggedInUserService, registerNewUserService, updateUserService } from "../services/userService.js";
+import { findByCredentialsService, getAllEmployeesService, getAllUsersbyGenderService, getLoggedInUserService, registerNewUserService, updateUserService } from "../services/userService.js";
 import * as uuid from 'uuid'
 import { userLoginValidator } from "../validators/user.validators.js";
 import bcrypt from 'bcrypt'
@@ -174,6 +174,22 @@ export const updateUser=async(req,res)=>{
         
     } catch (error) {
         console.log(error)
+        sendServerError(res,error.message)
+    }
+}
+
+export const getAllUsersbyGender=async(req, res)=>{
+    try{
+         const usersByGender=await getAllUsersbyGenderService()
+         if(usersByGender.length){
+            return res.status(200).json(usersByGender)
+         }
+         else{
+            sendNotFound(res,'No users found')
+         }
+
+    }
+    catch(error){
         sendServerError(res,error.message)
     }
 }

@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const employeeListingApi=createApi({
     reducerPath:'employeeListingApi',
-    baseQuery:fetchBaseQuery({baseUrl:`http://localhost:3000/api`}),
+    baseQuery:fetchBaseQuery({baseUrl:`http://localhost:3000/api/`}),
     tagTypes:['Employees'],
     endpoints:(builder)=>({
         getAllEmployees:builder.query({
@@ -12,9 +12,16 @@ export const employeeListingApi=createApi({
 
             })
            
+        }),
+
+        getAllEmployeesByGender:builder.query({
+            query:()=>({
+                url:`user/gender`,
+                method:`GET`
+            })
         })
     })
 
 })
 
-export const{useGetAllEmployeesQuery}=employeeListingApi
+export const{useGetAllEmployeesQuery,useGetAllEmployeesByGenderQuery}=employeeListingApi

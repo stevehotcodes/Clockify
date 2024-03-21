@@ -267,3 +267,21 @@ export const updateUserService=async(updatedUserDetail,user_id)=>{
         return error
     }
 }
+
+ 
+export const getAllUsersbyGenderService=async()=>{
+    try { 
+            const request=await poolRequest()
+            .query(`SELECT gender, COUNT(*) as count 
+                    FROM  tbl_user
+                    GROUP BY gender
+                    
+                    `)
+                     
+            return request.recordset
+        
+    } catch (error) {
+        return response
+    }
+}
+

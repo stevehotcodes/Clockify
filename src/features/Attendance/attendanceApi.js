@@ -45,6 +45,14 @@ export const attendanceApi=createApi({
                 method:`GET`
             }),
             providesTags:[`Attendance`]
+        }),
+
+        getAttendanceReportStatistics:builder.query({
+            query:()=>({
+                url:`/attendance/report`,
+                method:`GET`
+            }),
+            providesTags:[`Attendance`]
         })
 
         
@@ -53,4 +61,4 @@ export const attendanceApi=createApi({
 
 })
 
-export const{useCreateCheckInMutation,useCreateCheckOutMutation,useGetAllAttendanceRecordsQuery,useGetAttendanceforAUserQuery}=attendanceApi
+export const{useCreateCheckInMutation,useCreateCheckOutMutation,useGetAllAttendanceRecordsQuery,useGetAttendanceforAUserQuery,useGetAttendanceReportStatisticsQuery}=attendanceApi

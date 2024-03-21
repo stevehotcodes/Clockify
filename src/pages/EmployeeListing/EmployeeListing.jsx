@@ -7,15 +7,8 @@ import { useState } from 'react'
 
 const EmployeeListing = () => {
     const{data:employees, isError, isLoading}=useGetAllEmployeesQuery()
-
-   
-
-   
-
+ 
    console.log(`data:${employees}, isError:${isError}, isLoading:${isLoading}`)
-
-
-
 
   return (
     <div className='employee-listing-container'>
@@ -50,7 +43,8 @@ const EmployeeListing = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {employees && employees.map((item,index)=>(
+                    {employees ? employees.map((item,index)=>(
+
                     <tr key={index}>
                         <td>1{item.identification_number}</td>
                         <td>{item.firstname}  {item.lastname}</td>
@@ -62,7 +56,7 @@ const EmployeeListing = () => {
                     </tr>
 
 
-                    ))}
+                    )):<PuffLoader loading={true} size={150} />}
                                     
                    
                 </tbody>

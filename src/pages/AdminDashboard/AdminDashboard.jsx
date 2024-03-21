@@ -2,27 +2,38 @@ import React from 'react'
 import '../AdminDashboard/AdminDashboard.scss'
 import { SlPeople } from "react-icons/sl";
 import {BarChart} from '@mui/x-charts/BarChart'
-import { useGetAllEmployeesQuery } from '../../features/EmployeeListing/EmployeeListing';
+import { useGetAllEmployeesByGenderQuery, useGetAllEmployeesQuery } from '../../features/EmployeeListing/EmployeeListing';
 import { useState } from 'react';
 import { useGetAllPositionsQuery } from '../../features/Position/positionApi';
 import { useGetAllSchedulesQuery } from '../../features/Schedule/scheduleApi';
+import { useGetAttendanceReportStatisticsQuery } from '../../features/Attendance/attendanceApi';
+import { useEffect } from 'react';
+import GenderChart from '../../components/GenderChart/GenderChart';
+
 
 const AdminDashboard = () => {
 
 
    const{data:employees, isError, isLoading}=useGetAllEmployeesQuery()
-   const [numberofEmployees, setNumberofEmployees]=useState(employees.length)
+   const [numberofEmployees, setNumberofEmployees]=useState()
 
    const {data:positions }=useGetAllPositionsQuery();
-   const [numberofPositions, setNumberofPositions]=useState(positions.length)
+   const [numberofPositions, setNumberofPositions]=useState()
 
    const{data:schedules}=useGetAllSchedulesQuery()
-   const[numberofSchedules,setNumberofSchedules]=useState(schedules.length)
+   const[numberofSchedules,setNumberofSchedules]=useState()
+
+   const{data:gendersStatistics}=useGetAllEmployeesByGenderQuery()
+   const[genders,setGenders]=useState(gendersStatistics)
+
+   console.log('gender statistics',gendersStatistics)
+
+   const{data:attendanceStatistics}=useGetAttendanceReportStatisticsQuery()
+
+   console.log(attendanceStatistics)
+   const[attendanceStats,setAttendanceStatistics]=useState(attendanceStatistics)
 
 
-
-   console.log(typeof(employees))
-     
    
   return (
     <div className='admin-dashboard-container'>
@@ -37,7 +48,7 @@ const AdminDashboard = () => {
                   <span className='card-title'> Employees</span>
                   </div>
                 
-                  <span className='numbers'>{numberofEmployees}</span>
+                  <span className='numbers'>{employees? employees.length : '-'}</span>
                       
                  </div>
 
@@ -47,7 +58,7 @@ const AdminDashboard = () => {
                   <span className='card-title'>Positions</span>
                   </div>
                 
-                  <span className='numbers'> {numberofPositions}</span>
+                  <span className='numbers'> {positions? positions.length:'-'}</span>
                       
                  </div>
                  <div className='dashboard-card'>
@@ -56,7 +67,7 @@ const AdminDashboard = () => {
                   <span className='card-title'>Schedules </span>
                   </div>
                 
-                  <span className='numbers'>{numberofSchedules}</span>
+                  <span className='numbers'>{schedules? schedules.length :'-'}</span>
                       
                  </div>
                  <div className='dashboard-card'>
@@ -71,7 +82,14 @@ const AdminDashboard = () => {
             </div>
 
             <div className='graphs'>
-               <BarChart
+
+
+             <GenderChart genderData={gendersStatistics}/>
+       
+
+
+
+               {/* <BarChart
                    series={[
                      { data: [35, 44, 24, 34] },
                      { data: [51, 6, 49, 30] },
@@ -97,10 +115,9 @@ const AdminDashboard = () => {
                    xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'band' }]}
                    margin={{ top: 50, bottom: 30, left: 40, right: 10 }}
                
+               /> */}
+
                
-               
-               
-               />
 
             </div>
 
