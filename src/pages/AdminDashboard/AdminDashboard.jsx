@@ -9,6 +9,7 @@ import { useGetAllSchedulesQuery } from '../../features/Schedule/scheduleApi';
 import { useGetAttendanceReportStatisticsQuery } from '../../features/Attendance/attendanceApi';
 import { useEffect } from 'react';
 import GenderChart from '../../components/GenderChart/GenderChart';
+import AttendanceChart from '../../components/AttendanceChart/AttendanceChart';
 
 
 const AdminDashboard = () => {
@@ -85,6 +86,7 @@ const AdminDashboard = () => {
 
 
              <GenderChart genderData={gendersStatistics}/>
+             <AttendanceChart reportingData={attendanceStatistics}/>
        
 
 

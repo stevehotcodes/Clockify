@@ -274,6 +274,7 @@ export const getAllUsersbyGenderService=async()=>{
             const request=await poolRequest()
             .query(`SELECT gender, COUNT(*) as count 
                     FROM  tbl_user
+                    WHERE role='user'
                     GROUP BY gender
                     
                     `)

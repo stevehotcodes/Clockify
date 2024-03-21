@@ -53,15 +53,15 @@ app.use('/api',payrollRouter)
 app.use('/api',attendanceRouter)
 app.use('/api',photoRouter)
 // console.log('the password is :',passcode);
-// cron.schedule('*/10 * * * * *', async() => {
+cron.schedule('*/10 * * * * *', async() => {
 
-//     // logger.info("sending email after every five seconds ...............");
-// //    await  sendWelcomeEmailToNewUsers()
-//     // logger.info("generate payroll.........")
-//     logger.info('generating payroll.............')
-//     await generatePayRoll()
+    logger.info("sending email after every five seconds ...............");
+   await  sendWelcomeEmailToNewUsers()
+    // logger.info("generate payroll.........")
+    // logger.info('generating payroll.............')
+    // await generatePayRoll()
 
-// });
+});
 
 
 app.listen(port,()=>{
