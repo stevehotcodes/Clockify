@@ -1,6 +1,6 @@
 import { send } from "vite"
 import { sendBadRequest, sendCreated, sendNotFound, sendServerError, sendSuccess } from "../helpers/helper.functions.js"
-import { createNewDeductionService, getAllDeductionService } from "../services/deductionsServices.js"
+import { createNewDeductionService, editDeductionforAnEmployeeService, getAllDeductionService } from "../services/deductionsServices.js"
 import { getOneEmployeeService } from "../services/userService.js"
 
 
@@ -48,5 +48,33 @@ export const getAlllDeductions=async(req,res)=>{
         
     } catch (error) {
         sendServerError(res,error.message)
+    }
+}
+
+
+export const editDeductionforAnEmployee=async(req,res)=>{
+    try {
+         const user_id=req.params.user_id;
+
+         const editedDeductionsDetails={
+                description:req.body.description,
+                amount:req.body.amount          
+            
+         }
+
+         const response=await editDeductionforAnEmployeeService(user_id,editedDeductionsDetails);
+         console.log(response)
+
+         if(response>0)
+         {
+            sendSuccess(res,'deductions for the user was successful')
+         }
+         else{
+            sendServerError(res,"editing operation failed")
+         }
+
+        
+    } catch (error) {
+        sendServerError(res, error.message)
     }
 }

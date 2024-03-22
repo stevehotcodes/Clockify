@@ -59,11 +59,11 @@ export const editOvertimeforAnEmployee=async(req,res)=>{
           const user_id= req.params.user_id
           const editedDetails={
             number_of_hours:req.body.number_of_hours,
-            rate_per_hours:req.body.rate_per_hours,
+            rate_per_hours:req.body.rate_per_hours
           
           }
 
-          console.log()
+        
           
           const response=await editOvertimeforAnEmployeeService(user_id, editedDetails);
           console.log(response)

@@ -2,9 +2,6 @@ import { createApi ,fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
 
 
-
-
-
 export const deductionApi=createApi({
     reducerPath:'dedcutionApi',
     baseQuery:fetchBaseQuery({baseUrl:`http://localhost:3000/api/`}),
@@ -26,9 +23,18 @@ export const deductionApi=createApi({
                 
             }),
             providesTags:[`Deductions`]
+        }),
+
+        editDeduction:builder.mutation({
+            query:(deduction)=>({
+                url:`dedcution/${deduction.user_id}`,
+                method:`PUT`,
+                body:deduction
+            }),
+            invalidatesTags:[`Deductions`]
         })
     })
 })
 
 
-export const {useCreateNewDeductionMutation,useGetAllDeductionQuery}=deductionApi
+export const {useCreateNewDeductionMutation,useGetAllDeductionQuery,useEditDeductionMutation}=deductionApi

@@ -84,3 +84,23 @@ export const getAllCashAdvancesRecordforAnEmployeeService=async(user_id)=>{
 
 }
 
+export const editDeductionforAnEmployeeService=async(user_id, deductions)=>{
+    try {
+        
+         const { description, amount } =deductions
+         const response=await poolRequest()
+        //  .input('deduction_id',mssql.VarChar,deductions.deduction_id)
+         .input('description',mssql.VarChar,description)
+         .input('amount',mssql.Decimal,amount)
+         .input('user_id',mssql.VarChar,user_id)
+         .query(`UPDATE deductions
+                 SET description=@description,
+                    amount=@amount                    
+                 WHERE user_id=@user_id 
+         `)
+         return response.rowsAffected
+        
+    } catch (error) {
+        return error
+    }
+}
