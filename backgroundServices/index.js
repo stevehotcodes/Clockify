@@ -34,14 +34,14 @@ app.get('/health',(req,res)=>{
 
 
 
-cron.schedule('*/20 * * * * *', () => {
+// cron.schedule('*/20 * * * * *', () => {
 
-    logger.info("sending email after every five seconds ...............");
-    sendWelcomeEmailToNewUsers()
-    // logger.info("generate payroll.........")
-    // generatePayRoll(req, res)
+//     logger.info("sending email after every five seconds ...............");
+//     sendWelcomeEmailToNewUsers()
+//     logger.info("generate payroll.........")
+//     generatePayRoll(req, res)
 
-});
+// });
 
 
 app.listen(port,()=>{

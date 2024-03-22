@@ -56,7 +56,7 @@ app.use('/api',photoRouter)
 cron.schedule('*/10 * * * * *', async() => {
 
     logger.info("sending email after every five seconds ...............");
-   await  sendWelcomeEmailToNewUsers()
+//    await  sendWelcomeEmailToNewUsers()
     // logger.info("generate payroll.........")
     // logger.info('generating payroll.............')
     // await generatePayRoll()

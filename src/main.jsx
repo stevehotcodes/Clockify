@@ -17,8 +17,6 @@ import MainLayout from './layout/MainLayout/MainLayout.jsx'
 
 
 
-const userDetails=localStorage.getItem('user');
-console.log(userDetails)
 const router=createBrowserRouter([
   {
     path:'/',

@@ -3,11 +3,17 @@ import '../EmployeeDashboard/EmployeeDashboard.scss'
 import { SlPeople } from "react-icons/sl";
 import {BarChart} from '@mui/x-charts/BarChart'
 import useLocalStorage from '../../hooks/useLocalStorage';
+import { useGetAttendanceReportStatisticsByUserQuery } from '../../features/Attendance/attendanceApi';
+import AttendanceChart from '../../components/AttendanceChart/AttendanceChart';
+import LineChartAttendance from '../../components/LineChartAttendance/LineChartAttendance';
 
 
 const EmployeeDashboard = () => {
  
    const [userDetails,setUserDetails]=useLocalStorage('user')
+   const {data:userAttendanceData}=useGetAttendanceReportStatisticsByUserQuery(userDetails.user_id)
+
+   console.log(userAttendanceData)
 
 
   return (
@@ -57,36 +63,12 @@ const EmployeeDashboard = () => {
         </div>
 
         <div className='graphs'>
-           <BarChart
-               series={[
-                 { data: [35, 44, 24, 34] },
-                 { data: [51, 6, 49, 30] },
-                 { data: [15, 25, 30, 50] },
-                 { data: [60, 50, 15, 25] },
-               ]}
-               height={290}
-               xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'band' }]}
-               margin={{ top: 50, bottom: 30, left: 40, right: 10 }}
+
+           <AttendanceChart reportingData={userAttendanceData}/>
+           <LineChartAttendance  attendanceData={userAttendanceData}/>
            
-           
-           
-           
-           />
-            <BarChart
-               series={[
-                 { data: [35, 44, 24, 34] },
-                 { data: [51, 6, 49, 30] },
-                 { data: [15, 25, 30, 50] },
-                 { data: [60, 50, 15, 25] },
-               ]}
-               height={290}
-               xAxis={[{ data: ['Q1', 'Q2', 'Q3', 'Q4'], scaleType: 'band' }]}
-               margin={{ top: 50, bottom: 30, left: 40, right: 10 }}
-           
-           
-           
-           
-           />
+
+          
 
         </div>
 

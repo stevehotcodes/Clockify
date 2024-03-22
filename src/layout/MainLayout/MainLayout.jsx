@@ -16,7 +16,13 @@ const MainLayout = () => {
 
   return (
     <>
-    {(userDetails.role=='user')?<EmployeeHome/>:<AdminHome/>}
+    {(token&&userDetails.role=='user')?<EmployeeHome/>:<AdminHome/>}
+    {(!userDetails)?<div className="status-loader">
+            <div className='status-loader-content'>
+               <PuffLoader loading={true} size={150} />
+                <p>Please wait .........</p>
+             </div>
+           </div>:''}
     
     
     </>

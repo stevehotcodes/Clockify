@@ -64,7 +64,9 @@ export const getPayRollRecordsforAUser=async(req,res)=>{
              const user_id=req.params.user_id;
              const user=await getUserById(user_id);
              if(user[0]){
+                
                 const result =await getPayRollRecordsforAUserService(user_id);
+                console.log(result)
                 result.length?(res.status(200).json(result)):(sendNotFound(res,"no records for payroll"))
              }
              else{

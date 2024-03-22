@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createTimeIn, createTimeOut, getAttendanceReport, getAttendanceforAUser, getAttendanceforAllUsers } from "../controllers/attendance.controller.js";
+import { createTimeIn, createTimeOut, getAttendanceByUserReport, getAttendanceReport, getAttendanceforAUser, getAttendanceforAllUsers } from "../controllers/attendance.controller.js";
 import { verifyUserIdentity } from "../middlewares/useAuthMiddleware.js";
 
 
@@ -12,7 +12,7 @@ attendanceRouter.patch('/attendance/out/:user_id',createTimeOut)
 attendanceRouter.get('/attendance/user', verifyUserIdentity, getAttendanceforAUser)
 attendanceRouter.get('/attendance',getAttendanceforAllUsers)
 attendanceRouter.get('/attendance/report',getAttendanceReport)
-
+attendanceRouter.get('/attendance/user/report/:user_id',getAttendanceByUserReport);
 
 
 

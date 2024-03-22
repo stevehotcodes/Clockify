@@ -44,6 +44,7 @@ export const registerNewUser=async(req,res)=>{
 
 
           }
+          
 
 
           const response=await registerNewUserService(newUser, em_id,sk_id)
@@ -63,6 +64,7 @@ export const registerNewUser=async(req,res)=>{
     }
 }
 
+
 export const getAllEmployees=async(req,res)=>{
     try {
           const  employees=await getAllEmployeesService()
@@ -78,6 +80,7 @@ export const getAllEmployees=async(req,res)=>{
         sendServerError(res,error.message)
     }
 }
+
 
 
 export const loginUser = async (req, res) => {

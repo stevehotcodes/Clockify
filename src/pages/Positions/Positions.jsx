@@ -52,15 +52,14 @@ const Positions = () => {
                 </form>
                 <div  className='button-wrapper'>
                         <button className='add-new-btn' onClick={openModal}> Add New</button>
-                        {isModalOpen && (
-            <Modal onClose={closeModal}>
-              <CreatePosition closeGroup={closeModal} />
-            </Modal>
-          )}
+                                  {isModalOpen && (
+                      <Modal onClose={closeModal}>
+                        <CreatePosition closeGroup={closeModal} />
+                      </Modal>
+                    )}
                 </div>
 
             
-               
             </div>
             {(isLoading)? (<div className="status-loader">
             <div className='status-loader-content'>
@@ -98,11 +97,12 @@ const Positions = () => {
 
                     ))}
                    
-
+                {!positions&&(<PuffLoader/>)}
                     
                    
                 </tbody>
             </table>}
+
         </div>
 
 

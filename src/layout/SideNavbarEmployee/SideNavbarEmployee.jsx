@@ -25,11 +25,11 @@ const SideNavbarEmployee = () => {
             path:'/attendance-employee',
             linkContent:'Attendance'
         },
-        {
-            icon: <FaBusinessTime/>,
-            path:'/checkinout',
-            linkContent:'Time in /Time Out'
-        },
+        // {
+        //     icon: <FaBusinessTime/>,
+        //     path:'/checkinout',
+        //     linkContent:'Time in /Time Out'
+        // },
         {
             icon: <MdOutlinePayments/>,
             path:'/payroll-employee',

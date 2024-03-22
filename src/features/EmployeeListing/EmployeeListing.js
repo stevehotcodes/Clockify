@@ -10,7 +10,8 @@ export const employeeListingApi=createApi({
                 url:`user`,
                 method:`GET`
 
-            })
+            }),
+            providesTags:[`Employees`]
            
         }),
 
@@ -18,7 +19,8 @@ export const employeeListingApi=createApi({
             query:()=>({
                 url:`user/gender`,
                 method:`GET`
-            })
+            }),
+            providesTags:[`Employees`]
         })
     })
 

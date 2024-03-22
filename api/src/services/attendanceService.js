@@ -151,3 +151,33 @@ export const getAttendanceReportService=async()=>{
         return error
     }
 }
+
+export const getAttendanceReportByUserService=async(user_id)=>{
+    
+    try{
+         const result=await poolRequest()
+            .input('user_id', mssql.VarChar,user_id)
+            .query(`
+            SELECT 
+                CAST( time_in AS DATE) AS reporting_day,
+                reporting_state,
+                COUNT(*) AS count
+            FROM 
+                attendance
+            WHERE 
+                user_id=@user_id
+            GROUP BY 
+                CAST (time_in AS DATE),
+                reporting_state
+            ORDER BY 
+                reporting_day,
+                reporting_state;
+         `)
+
+         return result.recordset
+
+    }
+    catch(error){
+        return error
+    }
+}

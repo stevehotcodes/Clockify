@@ -45,16 +45,17 @@ export const getPayRollRecordsService=async()=>{
     }
 }
 
+
 export const getPayRollRecordsforAUserService=async(user_id, created_on)=>{
     try {
          const result=await poolRequest()
          .input('user_id', mssql.VarChar,user_id)
          .input('created_on', mssql.Date,created_on)
          .query(`SELECT payroll.*, tbl_user.*
-                 FROM payroll
-                 JOIN tbl_user ON tbl_user.user_id=payroll.user_id
-                 WHERE payroll.user_id=@user_id AND DATE(created_on)=@
-  
+                    FROM payroll
+                    JOIN tbl_user ON tbl_user.user_id = payroll.user_id
+                    WHERE payroll.user_id = @user_id
+         
             `)
             return result.recordset
         

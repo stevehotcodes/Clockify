@@ -17,4 +17,5 @@ userRouter.get('/user/gender', getAllUsersbyGender);
 
 
 
+
 export default userRouter
