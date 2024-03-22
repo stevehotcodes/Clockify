@@ -27,7 +27,7 @@ export const deductionApi=createApi({
 
         editDeduction:builder.mutation({
             query:(deduction)=>({
-                url:`dedcution/${deduction.user_id}`,
+                url:`deduction/${deduction.user_id}`,
                 method:`PUT`,
                 body:deduction
             }),

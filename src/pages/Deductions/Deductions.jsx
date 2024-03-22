@@ -5,10 +5,13 @@ import Modal from '../../components/Modal/Modal';
 import CreateDeductions from '../../features/Deductions/CreateDeductions';
 import { useGetAllDeductionQuery } from '../../features/Deductions/deductionsApi';
 import { PuffLoader } from 'react-spinners';
+import EditDeductions from '../../features/Deductions/EditDeductions';
 
 const Deductions = () => {
 
     const [isModalOpen, setModalOpen] = useState(false);
+    const[isEditModalDeductionOpen,setEditModalOpen]=useState(false)
+    const[selectedDeduction, setSelectedDeduction]=useState('')
     const {data:deductions,isError,isLoading,isFetching}=useGetAllDeductionQuery()
 
     console.log(`data:${deductions}, isError:${isError},isLaoding:${isLoading} ${isFetching}`)
@@ -20,6 +23,19 @@ const Deductions = () => {
       const closeModal = () => {
         setModalOpen(false);
       };
+
+      const editModalOpen=(item)=>{
+
+        setEditModalOpen(true)
+        setSelectedDeduction(item)
+        console.log(selectedDeduction)
+        
+      }
+      const editModalClose=(item)=>{
+        setEditModalOpen(false)
+      
+      }
+
 
     
 
@@ -70,7 +86,18 @@ const Deductions = () => {
                             <td>{item.description}</td>
                             <td>{item.amount}</td>
                             <td>{item.created_on}</td>
-                            <td><button>Edit</button></td>
+                            <td><button onClick={()=>editModalOpen(item)}>Edit</button>
+                            {
+                              isEditModalDeductionOpen? (<Modal onClose={editModalClose}>
+                                  <EditDeductions  onClose={editModalClose}  deduction={selectedDeduction}/>
+
+                              </Modal>):''
+                            }
+                            
+                            
+                            
+                            
+                            </td>
                          </tr>
                     ))}                   
                    
