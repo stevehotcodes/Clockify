@@ -23,8 +23,15 @@ export const overtimeApi=createApi({
                 method:'GET'
             }),
             providesTags:[`Overtime`]
+        }),
+        editOvertime:builder.mutation({
+            query:(overtime)=>({
+                url:`/overtime/:${overtime.user_id}`,
+                method:'PUT',
+                body:overtime
+            })
         })
     })
 })
 
-export const {useCreateNewOverTimeMutation,useGetAllOvertimeQuery}=overtimeApi
+export const {useCreateNewOverTimeMutation,useGetAllOvertimeQuery, useEditOvertimeMutation}=overtimeApi
