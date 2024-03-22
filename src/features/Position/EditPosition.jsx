@@ -44,11 +44,6 @@ const EditPosition = ({position}) => {
       </form>
 
 
-   
-   
-   
-      
-    
     </div>
     </div>
   )

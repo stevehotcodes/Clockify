@@ -26,10 +26,11 @@ export const overtimeApi=createApi({
         }),
         editOvertime:builder.mutation({
             query:(overtime)=>({
-                url:`/overtime/:${overtime.user_id}`,
+                url:`/overtime/${overtime.user_id}`,
                 method:'PUT',
                 body:overtime
-            })
+            }),
+            invalidatesTags:[`Overtime`]
         })
     })
 })

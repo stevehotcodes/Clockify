@@ -5,10 +5,13 @@ import { useState } from 'react'
 import Modal from '../../components/Modal/Modal';
 import CreateOvertime from '../../features/Overtime/CreateOvertime';
 import { PuffLoader } from 'react-spinners';
+import EditOvertime from '../../features/Overtime/EditOvertime';
 
 const Overtime = () => {
     const{data:overtimes, isLoading, isError}=useGetAllOvertimeQuery()
     const [isModalOpen,setModalOpen]=useState(false)
+    const [isEditModalOpen, setEditModalOpen]=useState(false)
+    const [selectedOvertime, setSelectedOvertime] = useState(null);
 
     console.log(`data:${overtimes}, isLoading:${isLoading}`);
 
@@ -17,6 +20,16 @@ const Overtime = () => {
     }
     const closeModal=()=>{
         setModalOpen(false)
+        setEditModalOpen(false)
+    }
+
+    const openEditModal=(overtime)=>{
+        setEditModalOpen(true)
+        setSelectedOvertime(overtime);
+    }
+
+    const closeEditModal=()=>{
+        setEditModalOpen(false)
     }
     
     
@@ -71,7 +84,13 @@ const Overtime = () => {
                             <td>{item.number_of_hours}</td>
                             <td>{item.rate_per_hours}</td>
                             <td>{item.created_on}</td>
-                            <td> <span>Edit</span></td>
+                            <td> <button onClick={()=>openEditModal(item)}>Edit</button>
+                           {isEditModalOpen?<Modal onClose={closeEditModal}>
+                                <EditOvertime overtime={selectedOvertime}/>
+                            </Modal> :''
+                            }
+                            
+                            </td>
                       </tr>
                     
                     ))}                   

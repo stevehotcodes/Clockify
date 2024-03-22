@@ -62,12 +62,21 @@ export const editOvertimeforAnEmployee=async(req,res)=>{
             rate_per_hours:req.body.rate_per_hours,
           
           }
+
+          console.log()
           
           const response=await editOvertimeforAnEmployeeService(user_id, editedDetails);
           console.log(response)
-          
+
+          if(response>0){
+            sendSuccess(res, 'Editing done successfully')
+          }
+          else{
+            sendServerError(res,'Editing overtime for user failed')
+          }
         
     } catch (error) {
         console.log(error)
+        sendServerError(res,error.message)
     }
 }
