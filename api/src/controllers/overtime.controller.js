@@ -1,4 +1,4 @@
-import { createNewOvertimeService, getAllOvertimeService } from "../services/overtimeService.js"
+import { createNewOvertimeService, editOvertimeforAnEmployeeService, getAllOvertimeService } from "../services/overtimeService.js"
 import { sendBadRequest, sendCreated, sendNotFound, sendServerError, sendSuccess } from "../helpers/helper.functions.js"
 import { getOneEmployeeService, getUserById } from "../services/userService.js"
 
@@ -50,5 +50,24 @@ export const  createNewOvertime=async(req,res)=>{
     } 
     catch (error) {
         sendServerError(res,error.message)
+    }
+}
+
+export const editOvertimeforAnEmployee=async(req,res)=>{
+    try {
+
+          const user_id= req.params.user_id
+          const editedDetails={
+            number_of_hours:req.body.number_of_hours,
+            rate_per_hours:req.body.rate_per_hours,
+          
+          }
+          
+          const response=await editOvertimeforAnEmployeeService(user_id, editedDetails);
+          console.log(response)
+          
+        
+    } catch (error) {
+        console.log(error)
     }
 }

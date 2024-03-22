@@ -37,11 +37,29 @@ export const getAllOvertimeService=async()=>{
         .query(`SELECT overtime.*,tbl_user.firstname,tbl_user.lastname
                 FROM overtime
                 INNER JOIN tbl_user ON tbl_user.user_id=overtime.user_id
-        
          `)
 
         return result.recordset
         
+    } catch (error) {
+        return error
+    }
+}
+
+export const editOvertimeforAnEmployeeService=async(user_id,editedDetails)=>{
+    try {  
+            const{number_of_hours,rate_per_hours}=editedDetails
+            const result=await poolRequest()
+            .input(`user_id`, mssql.VarChar, user_id)
+            .input(`number_of_hours`, mssql.Int, number_of_hours)
+            .input(`rate_per_hours`, mssql.Decimal, rate_per_hours)
+            .query(`
+                    UPDATE overtime
+                    SET number_of_hours=@number_of_hours, rate_per_hours=@rate_per_hours
+                    WHERE user_id=@user_id
+                        
+            `)
+            return result.rowsAffected
     } catch (error) {
         return error
     }
