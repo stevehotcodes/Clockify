@@ -8,7 +8,7 @@ import { PuffLoader } from 'react-spinners';
 import EditOvertime from '../../features/Overtime/EditOvertime';
 
 const Overtime = () => {
-    const{data:overtimes, isLoading, isError}=useGetAllOvertimeQuery()
+    const{data:overtimes, isLoading, isError, isFetching}=useGetAllOvertimeQuery()
     const [isModalOpen,setModalOpen]=useState(false)
     const [isEditModalOpen, setEditModalOpen]=useState(false)
     const [selectedOvertime, setSelectedOvertime] = useState(null);
@@ -31,6 +31,17 @@ const Overtime = () => {
     const closeEditModal=()=>{
         setEditModalOpen(false)
     }
+    if(isFetching==false){
+        return (<>
+        
+        
+        <div className='status-loader-content'>
+            <p>Technical Error Occurred</p>
+      </div>
+        </>
+        
+        )
+      }
     
     
 

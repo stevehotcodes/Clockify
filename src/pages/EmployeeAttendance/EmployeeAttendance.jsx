@@ -18,7 +18,7 @@ const EmployeeAttendance = () => {
     // console.log(userDetails)
     const loggedInUser=userDetails.user_id
 
-    const{data:attendance, isError, isLoading}=useGetAllAttendanceRecordsQuery()
+    const{data:attendance, isError, isLoading,isFetching}=useGetAllAttendanceRecordsQuery()
 
     console.log(`data:${attendance}, isError:${isError}`)
     
@@ -57,6 +57,17 @@ const EmployeeAttendance = () => {
         LoadingToast(false)
        }
    }
+   if(isFetching==false){
+    return (<>
+    
+    
+    <div className='status-loader-content'>
+        <p>Technical Error Occurred</p>
+  </div>
+    </>
+    
+    )
+  }
 
 
 

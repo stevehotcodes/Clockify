@@ -6,9 +6,23 @@ import { PuffLoader } from 'react-spinners'
 import { useState } from 'react'
 
 const EmployeeListing = () => {
-    const{data:employees, isError, isLoading}=useGetAllEmployeesQuery()
+    const{data:employees, isError, isLoading,isFetching}=useGetAllEmployeesQuery()
  
    console.log(`data:${employees}, isError:${isError}, isLoading:${isLoading}`)
+
+
+
+   if(isFetching==false){
+    return (<>
+    
+    
+    <div className='status-loader-content'>
+        <p>Technical Error Occurred</p>
+  </div>
+    </>
+    
+    )
+  }
 
   return (
     <div className='employee-listing-container'>

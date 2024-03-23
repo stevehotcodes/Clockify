@@ -1,5 +1,5 @@
 ;import React from 'react'
-// import '../Deductions/CreatDedcutions.scss'
+import '../Position/CreatePosition.scss'
 import { useState } from 'react';
 import { useEditDeductionMutation } from './deductionsApi';
 import { useNavigate } from 'react-router-dom';
@@ -13,13 +13,13 @@ const EditDeductions = ({deduction,onClose}) => {
     const[user_id, setUserID]=useState(deduction?deduction.user_id:'');
     const[editDeduction]=useEditDeductionMutation()
     const navigate=useNavigate()
-   //  console.log(deduction)
+  
     
     const handleEditDeduction=async(e)=>{
        e.preventDefault()
        try {
             const response=await editDeduction({description:description, amount:amount, user_id:user_id}).unwrap()
-            console.log(response.message)
+         
             LoadingToast(true)
             SuccessToast(response.message)
             e.target.reset()
@@ -45,7 +45,7 @@ const EditDeductions = ({deduction,onClose}) => {
  
 
  <form action="" onSubmit={handleEditDeduction}>
-   <h3 className='create-group-header'>Create Deductions</h3>
+   <h3 className='create-group-header'>Edit Deductions for {deduction.firstname} {deduction.lastname}</h3>
     <div className="textarea">
         <input  type='text' placeholder='description ' id='description'
            onChange={(e)=>{setDescription(e.target.value)}}

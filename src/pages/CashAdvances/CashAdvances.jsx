@@ -9,7 +9,7 @@ import { PuffLoader } from 'react-spinners';
 const CashAdvances = () => {
 
     const[isModalOpen, setModalOpen]=useState(false);
-    const{data:advances,isError,isLoading}=useGetAllCashAdvanceQuery()
+    const{data:advances,isError,isLoading, isFetching}=useGetAllCashAdvanceQuery()
 
     console.log(`data:${advances},isError:${isError}, isLoading:${isLoading}`)
 
@@ -20,6 +20,19 @@ const CashAdvances = () => {
     const closeModal=()=>{
         setModalOpen(false)
     }
+    
+    
+    if(isFetching==false){
+        return (
+        <>
+
+     <div className='status-loader-content'>
+            <p>Technical Error Occurred</p>
+      </div>
+        </>
+        
+        )
+      }
 
     
   return (

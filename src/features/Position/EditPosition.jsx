@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useEditPositionMutation, useGetOnePositionQuery } from './positionApi';
 
-const EditPosition = ({position}) => {
+const EditPosition = ({position, closeGroup}) => {
  console.log(position)
     // const [position,setPositionDescription]=useState('');
     const[gross_salary,setGrossSalary]=useState('');

@@ -29,6 +29,13 @@ const handleEditOverTime=async(e)=>{
         
         SuccessToast(response.message)
         console.log(response)
+        LoadingToast(true)
+        // SuccessToast(response.message)
+        e.target.reset()
+        setTimeout(()=>{
+           navigate('/overtime')
+           onClose()
+        },3000)
         LoadingToast(false)
         
     } catch (error) {

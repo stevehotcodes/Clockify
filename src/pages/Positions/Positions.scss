@@ -22,7 +22,6 @@
     .content-wrapper{
         width:100%;
         min-height:100vh;
-        // border:2px solid red;
         display: flex;
         flex-direction: column;
         .search-add-new-btn{
@@ -33,7 +32,6 @@
                 input{
                     padding:0.7rem;
                     width:20rem;
-                    // padding: 20px 15px;
                     border:none;
                     background-color: #f9f8f8;
                     border-radius: 10px;

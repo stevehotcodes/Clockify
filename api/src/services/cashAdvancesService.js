@@ -43,3 +43,27 @@ export const getAllCashAdvancesServices=async()=>{
         return error
     }
 }
+
+
+export const editcashAdvanceService=async(cashAdvances,user_id)=>{
+    const {amount}=cashAdvances
+
+    try {
+    
+        const response=await poolRequest()
+        
+        .input('user_id', mssql.VarChar,user_id)
+        .input('amount', mssql.Decimal,amount)
+        .query(`
+            UPDATE cash_advances
+            SET amount=@amount
+            WHERE user_id=@user_id 
+        `)
+
+
+         return response.recordset
+        
+    } catch (error) {
+        return error
+    }
+}

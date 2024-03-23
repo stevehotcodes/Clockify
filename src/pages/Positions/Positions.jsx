@@ -11,7 +11,7 @@ const Positions = () => {
 
     const [isModalOpen, setModalOpen] = useState(false);
     const [isEditModalOpen, setEditModalOpen]=useState(false)
-    const {data:positions,isError,isLoading }=useGetAllPositionsQuery();
+    const {data:positions,isError,isLoading, isFetching }=useGetAllPositionsQuery();
 
     console.log(`data:${positions}, error:${isError},isLoading:${isLoading}`)
     
@@ -30,7 +30,7 @@ const Positions = () => {
         setEditModalOpen(true)
       };
     
-      const closeEidtModal = () => {
+      const closeEditModal = () => {
        
         setEditModalOpen(false)
       };
@@ -38,6 +38,18 @@ const Positions = () => {
 
     const handleView=()=>{
         alert("hey I am open ")
+    }
+
+    if(isFetching==false){
+      return (<>
+      
+      
+      <div className='status-loader-content'>
+          <p>Technical Error Occurred</p>
+    </div>
+      </>
+      
+      )
     }
 
   return (
@@ -82,11 +94,11 @@ const Positions = () => {
                             <td>{item.gross_salary}</td>
                             <td> <button onClick={(e)=>{e.stopPropagation(); openEditModal(item.position_id);}}>Edit</button>
                             {
-                                isEditModalOpen&& (
+                                isEditModalOpen? (
                                     <Modal onClose={closeModal}>
-                                      <EditPosition closeGroup={closeModal} position={item} />
-                                    </Modal>
-                                  )
+                                      <EditPosition closeGroup={closeEditModal} position={item} />
+                                    </Modal> 
+                                  ):''
                                 
                             }
                             

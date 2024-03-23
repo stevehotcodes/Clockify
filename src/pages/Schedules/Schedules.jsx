@@ -12,8 +12,20 @@ const Schedules = () => {
 
     const [isModalOpen, setModalOpen] = useState(false);
     const [isScheduleModalOpen, setScheduleModalOpen]=useState(false)
-    const {data:schedule, isError, isLoading}=useGetAllSchedulesQuery()
+    const {data:schedule, isError, isLoading, isFetching}=useGetAllSchedulesQuery()
     console.log(`${schedule}, ${isLoading}, ${isError}`)
+
+    if(isFetching==false){
+        return (<>
+        
+        
+        <div className='status-loader-content'>
+            <p>Technical Error Occurred</p>
+      </div>
+        </>
+        
+        )
+      }
 
 
     const openModal = () => {

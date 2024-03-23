@@ -1,5 +1,5 @@
 import { sendCreated, sendNotFound, sendServerError } from "../helpers/helper.functions.js"
-import { createCashAdvancesService, getAllCashAdvancesServices } from "../services/cashAdvancesService.js"
+import { createCashAdvancesService, editcashAdvanceService, getAllCashAdvancesServices } from "../services/cashAdvancesService.js"
 import { getOneEmployeeService } from "../services/userService.js"
 
 export const createCashAdvances=async(req,res)=>{
@@ -43,5 +43,26 @@ export const getAllCashAdvances=async(req,res)=>{
     } catch (error) {
         sendServerError(res, error.message)
         
+    }
+}
+
+export const editcashAdvances=async(req,res)=>{
+    try {
+        const user_id=req.params.user_id;
+        const editedcashDeductionsDetails={
+            amount:req.body.amount          
+        
+        }
+
+        const response=await editcashAdvanceService(editedcashDeductionsDetails, user_id)
+
+        console.log(response)
+        return res.status(200).json(response)
+      
+
+
+        
+    } catch (error) {
+        sendServerError(res,error.message)
     }
 }

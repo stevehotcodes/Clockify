@@ -10,6 +10,18 @@ const Attendance = () => {
    const{data:attendance,isLoading, isFetching}=useGetAllAttendanceRecordsQuery()
    console.log(`data:${attendance} , isLoading:${isLoading} ,isFetching:${isFetching}`)
 
+   if(isFetching==false){
+    return (<>
+    
+    
+    <div className='status-loader-content'>
+        <p>Technical Error Occurred</p>
+  </div>
+    </>
+    
+    )
+  }
+
 
 
   return (
