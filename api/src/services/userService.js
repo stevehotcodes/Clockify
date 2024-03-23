@@ -56,11 +56,11 @@ export const registerNewUserService = async (newUser) => {
                 VALUES(@user_id, @firstname, @middlename, @lastname, @identification_number, @gender, @marital_status, @date_of_birth, @email, @phone_number, @place_of_residence, @course_of_study, @institution, @password, @schedule_id, @position_id);
             
                 -- Second INSERT statement
-                INSERT INTO employee_skill(skill_id, language, technical, user_id)
+                INSERT INTO employee_skill(id, language, technical, user_id)
                 VALUES(@skill_id, @language, @technical, @user_id);
             
                 -- Third INSERT statement
-                INSERT INTO emergency_contact(emergency_id, emergency_person_name, emergency_phone_number, relationship, user_id)
+                INSERT INTO emergency_contact(id, person_name, phone_number, relationship, user_id)
                 VALUES (@emergency_id, @emergency_person_name, @emergency_phone_number, @relationship, @user_id);
             
                 COMMIT TRANSACTION; -- Commit the transaction if all statements succeed

@@ -1,4 +1,4 @@
-import e from "express";
+// import e from "express";
 import { sendNotFound, sendServerError } from "../helpers/helper.functions.js";
 import { getAllCashAdvancesRecordforAnEmployeeService, getDeductionsforAnEmployeeService, getOvertimeRecordforAnEmployeeService } from "../services/deductionsServices.js";
 import { createPayrollforanService, getPayRollRecordsService, getPayRollRecordsforAUserService } from "../services/payrollService.js";
@@ -40,10 +40,11 @@ export  const generatePayRoll=async(req,res)=>{
             console.log("this is the payroll", payroll)
 
             
-            return res.status(200).json(payroll)
+            // return res.status(200).json(payroll)
         
     } catch (error) {
-        return res.status(500).json("Error in creating the payroll")
+        // return res.status(500).json("Error in creating the payroll")
+        console.log(error)
     }
 }
 
@@ -66,8 +67,8 @@ export const getPayRollRecordsforAUser=async(req,res)=>{
              if(user[0]){
                 
                 const result =await getPayRollRecordsforAUserService(user_id);
-                console.log(result)
-                result.length?(res.status(200).json(result)):(sendNotFound(res,"no records for payroll"))
+                console.log("payroll result", result)
+                if(result.length){return res.status(200).json(result)}else{sendNotFound(res,"no records for payroll")}
              }
              else{
                 sendNotFound(res, 'User records not found')

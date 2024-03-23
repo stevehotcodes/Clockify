@@ -68,7 +68,7 @@ const Schedules = () => {
                 <tbody>
                     {schedule&&schedule.map((item, index)=>(
                           <tr key={index}> 
-                          <td>{item.in_time}-{item.out_time}</td>
+                          <td>{item?`${formatDate(item.in_time)}h` :'-'}-{item?`${formatDate(item.out_time)}h`:'-'}</td>
                           <td>{item.schedule_description}</td>
                           <td><button>Edit</button></td>
                       </tr>
@@ -91,5 +91,13 @@ const Schedules = () => {
     </div>
   )
 }
+
+
+
+export const formatDate = (time) => {
+    const formattedTime = new Date(time)
+    const formattedStandardHours=formattedTime.getUTCHours()
+    return formattedStandardHours;
+};
 
 export default Schedules

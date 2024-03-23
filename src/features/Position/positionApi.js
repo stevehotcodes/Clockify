@@ -14,7 +14,7 @@ export const positionApi=createApi({
                     method:`POST`,
                     body:position
                 }),
-                invalidatesTags:[`Position`]
+                invalidatesTags:[`Positions`]
         }),
 
         getAllPositions:builder.query({

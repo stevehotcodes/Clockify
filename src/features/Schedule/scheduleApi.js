@@ -22,7 +22,8 @@ export const scheduleApi=createApi({
                     url:`schedule`,
                     method:`GET`,
 
-                })
+                }),
+                providesTags:[`Schedules`]
 
             })
 
