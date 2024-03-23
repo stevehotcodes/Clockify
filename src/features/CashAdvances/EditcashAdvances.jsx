@@ -1,58 +1,44 @@
 import React from 'react'
-import { useCreateCashAdvanceMutation } from './cashAdvancesApi'
 import { useState } from 'react';
-import { ErrorToast, LoadingToast, SuccessToast, ToasterContainer } from '../../components/Toaster/Toaster'
 import { useNavigate } from 'react-router-dom';
+import { ErrorToast, LoadingToast, SuccessToast, ToasterContainer } from '../../components/Toaster/Toaster';
+import { useEditcashAdvancesforAnEmployeeMutation } from './cashAdvancesApi';
 
+const EditcashAdvances = ({cashadvanceDetails,onClose}) => {
+    
 
+ const [amount,setAmount]=useState( cashadvanceDetails?cashadvanceDetails.amount:'');
+ const [user_id, setUserID]=useState(cashadvanceDetails?cashadvanceDetails.user_id[0]:'');
+ const [editcashAdvancesforAnEmployee]=useEditcashAdvancesforAnEmployeeMutation();
 
-
-
-
-const CreateAdvances = () => {
-
-const [createCashAdvance]=useCreateCashAdvanceMutation();
-
- const [number_of_worked,setHoursofWorked]=useState('');
- const [amount,setAmount]=useState('')
- const [user_id, setUserID]=useState('')
  const navigate=useNavigate();
  const[loading, setLoading]=useState('')
 
-
-const handleCreateCashAdvance=async(e)=>{
+ const handleEditCashAdvance=async(e)=>{
     e.preventDefault()
 
    
     const amountValue=e.target.amount.value
     const userIDValue=e.target.user_id.value
     
-
-
-
     try {
-
 
         if( amountValue=="" || userIDValue==""){
             ErrorToast("The input fields cannot be empty")
              navigate('/advances')
-
              
         }
         else{
-            LoadingToast(true)
-            const response=await createCashAdvance({amount:amountValue,user_id:userIDValue}).unwrap()
-   
-           SuccessToast(response.message)
-           e.target.reset()
-           LoadingToast(false)
-           setTimeout(()=>{
+           
+            const response=await editcashAdvancesforAnEmployee({amount:amount, user_id:user_id}).unwrap()
+            console.log(response)
+            SuccessToast(response.message)     
+
+            setTimeout(()=>{
               navigate('/advances')
-           },1000)
-
-           setLoading(true)
-
-
+              onClose()
+            },3000)
+           
         }
       
 
@@ -62,61 +48,55 @@ const handleCreateCashAdvance=async(e)=>{
         LoadingToast(false)
         setTimeout(()=>{
             navigate('/advances')
+            onClose()
          },1000)
     }
 
     finally{
-        // LoadingToast(true)
         navigate('/advances')
+        // onClose()
     }
+
 }
 
 
 
-
-
-
   return (
+                
     <div className='create-position-container'>
-    <ToasterContainer/>
-  
+        <ToasterContainer/>
             <div className='add-group-modal'>
- 
 
- <form action="" onSubmit={handleCreateCashAdvance}>
-   <h3 className='create-group-header'>Create Advances</h3>
+    <form action="" onSubmit={handleEditCashAdvance}>
+   <h3 className='create-group-header'>Edit Advances  for {cashadvanceDetails.firstname} {cashadvanceDetails.lastname}</h3>
    
 
    <div className="textarea">
       <input type="number" placeholder='amount' id='amount'
             onChange={(e)=>{setAmount(e.target.value)}}
-         
+             value={amount}
+
          />
    </div>
 
    <div className="textarea">
       <input type="text" placeholder='employee id' id='user_id'
             onChange={(e)=>{setUserID(e.target.value)}}
-         
+             value={user_id}
+
          />
    </div>
        
         <div className="footer">
          <div className="btn">
-            <button type='submit' >Create</button>
+            <button type='submit' >Edit</button>
          </div>
          </div>
       </form>
-
-
+      </div>
+      </div>
    
-   
-   
-      
-    
-    </div>
-    </div>
   )
 }
 
-export default CreateAdvances
+export default EditcashAdvances

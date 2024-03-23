@@ -35,17 +35,7 @@ const Deductions = () => {
         setEditModalOpen(false)
       
       }
-    if(isFetching==false){
-      return (<>
-      
-      
-      <div className='status-loader-content'>
-          <p>Technical Error Occurred</p>
-    </div>
-      </>
-      
-      )
-    }
+  
     
      
 

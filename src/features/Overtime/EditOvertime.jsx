@@ -2,14 +2,16 @@ import React from 'react'
 import { useEditOvertimeMutation } from './overtimeApi';
 import { useState } from 'react';
 import { ErrorToast, LoadingToast, SuccessToast, ToasterContainer } from '../../components/Toaster/Toaster';
+import { useNavigate } from 'react-router-dom';
 
-const EditOvertime = ({overtime,id}) => {
+const EditOvertime = ({overtime, onClose}) => {
 
     const[userId,setUserId]=useState(overtime?overtime.user_id:'');
     const[rateperhour, setRateperHour]=useState(overtime?overtime.rate_per_hours:'');
     const[numberofhours,setNumberofHours]=useState(overtime?overtime.number_of_hours:'');
     const[EditOvertime]=useEditOvertimeMutation()
-    console.log("overtime",overtime);
+    const navigate=useNavigate()
+    
 
       
 
@@ -27,20 +29,24 @@ const handleEditOverTime=async(e)=>{
          console.log(ratePerHourValue,userIdValue,numberofHoursValue)
         const response=await EditOvertime({rate_per_hours:ratePerHourValue,number_of_hours:numberofHoursValue,user_id:userIdValue}).unwrap()
         
-        SuccessToast(response.message)
+       
         console.log(response)
-        LoadingToast(true)
-        // SuccessToast(response.message)
+        // LoadingToast(true)
+        SuccessToast(response.message)
         e.target.reset()
         setTimeout(()=>{
            navigate('/overtime')
            onClose()
+          
         },3000)
-        LoadingToast(false)
+        
         
     } catch (error) {
         console.log(error)
         ErrorToast(error.data.message)
+    }
+    finally{
+      LoadingToast(false)
     }
 
 }

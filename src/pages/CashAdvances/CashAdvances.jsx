@@ -5,10 +5,13 @@ import CreateAdvances from '../../features/CashAdvances/CreateAdvances';
 import { useState } from 'react';
 import { useGetAllCashAdvanceQuery } from '../../features/CashAdvances/cashAdvancesApi';
 import { PuffLoader } from 'react-spinners';
+import EditcashAdvances from '../../features/CashAdvances/EditcashAdvances';
 
 const CashAdvances = () => {
 
     const[isModalOpen, setModalOpen]=useState(false);
+    const[isEditCashAdvanceOpen, setEditCashAdvance]=useState(false)
+    const[selectedCashAdvance, setSelectedCashAdvance]=useState('')
     const{data:advances,isError,isLoading, isFetching}=useGetAllCashAdvanceQuery()
 
     console.log(`data:${advances},isError:${isError}, isLoading:${isLoading}`)
@@ -20,19 +23,17 @@ const CashAdvances = () => {
     const closeModal=()=>{
         setModalOpen(false)
     }
-    
-    
-    if(isFetching==false){
-        return (
-        <>
 
-     <div className='status-loader-content'>
-            <p>Technical Error Occurred</p>
-      </div>
-        </>
-        
-        )
-      }
+    const openEditCashAdvanceModal=(item)=>{
+        setEditCashAdvance(true)
+        setSelectedCashAdvance(item)
+    }
+    
+    const closeEditCashAdvanceModal=()=>{
+        setEditCashAdvance(false)
+    }
+    
+    
 
     
   return (
@@ -68,7 +69,6 @@ const CashAdvances = () => {
                         <th>Employee Id</th>
                         <th>Employee Name</th>
                         <th>Amount</th>
-                        {/* <th>No of hours</th> */}
                         <th>Date</th>
                         <th>Actions</th>
                     </tr>
@@ -81,9 +81,21 @@ const CashAdvances = () => {
                         <td>{item.firstname}  {item.lastname}</td>
                     
                         <td>{item.amount}</td>
-                        {/* <td>{item.number_of_hours}</td> */}
                         <td>{item.created_on}</td>
-                        <td><button>Edit </button></td>
+                        <td><button  onClick={()=>openEditCashAdvanceModal(item)}   >Edit </button>
+                        {
+                            isEditCashAdvanceOpen?
+                            (<Modal onClose={closeEditCashAdvanceModal}>
+                                
+                                  <EditcashAdvances cashadvanceDetails={selectedCashAdvance} onClose={closeEditCashAdvanceModal} />
+
+
+                            </Modal>) :''
+                        }
+                        
+                        
+                        
+                        </td>
                         </tr>
 
                     ))

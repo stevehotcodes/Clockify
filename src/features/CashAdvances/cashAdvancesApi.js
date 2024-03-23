@@ -20,9 +20,17 @@ export const cashAdvancesApi=createApi({
                 method:`GET`
             }),
             providesTags:['cashAdvances']
+         }),
+         editcashAdvancesforAnEmployee:builder.mutation({
+            query:(details)=>({
+                url:`cashadvances/${details.user_id}`,
+                method:`PUT`,
+                body:details
+            }),
+            invalidatesTags:[`cashAdvances`]
          })
     })
 })
 
 
-export const {useCreateCashAdvanceMutation,useGetAllCashAdvanceQuery}=cashAdvancesApi
+export const {useCreateCashAdvanceMutation,useGetAllCashAdvanceQuery,useEditcashAdvancesforAnEmployeeMutation}=cashAdvancesApi

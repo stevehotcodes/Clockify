@@ -31,18 +31,7 @@ const Overtime = () => {
     const closeEditModal=()=>{
         setEditModalOpen(false)
     }
-    if(isFetching==false){
-        return (<>
-        
-        
-        <div className='status-loader-content'>
-            <p>Technical Error Occurred</p>
-      </div>
-        </>
-        
-        )
-      }
-    
+
     
 
   return (
@@ -97,7 +86,7 @@ const Overtime = () => {
                             <td>{item.created_on}</td>
                             <td> <button onClick={()=>openEditModal(item)}>Edit</button>
                            {isEditModalOpen?<Modal onClose={closeEditModal}>
-                                <EditOvertime overtime={selectedOvertime}/>
+                                <EditOvertime overtime={selectedOvertime} onClose={closeEditModal}/>
                             </Modal> :''
                             }
                             

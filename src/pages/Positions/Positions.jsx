@@ -40,17 +40,7 @@ const Positions = () => {
         alert("hey I am open ")
     }
 
-    if(isFetching==false){
-      return (<>
-      
-      
-      <div className='status-loader-content'>
-          <p>Technical Error Occurred</p>
-    </div>
-      </>
-      
-      )
-    }
+
 
   return (
     <div className='positions-container'>

@@ -45,8 +45,8 @@ export const getAllCashAdvancesServices=async()=>{
 }
 
 
-export const editcashAdvanceService=async(cashAdvances,user_id)=>{
-    const {amount}=cashAdvances
+export const editcashAdvanceService=async(amount,user_id)=>{
+    
 
     try {
     
@@ -61,7 +61,7 @@ export const editcashAdvanceService=async(cashAdvances,user_id)=>{
         `)
 
 
-         return response.recordset
+         return response
         
     } catch (error) {
         return error

@@ -1,6 +1,7 @@
-import { sendCreated, sendNotFound, sendServerError } from "../helpers/helper.functions.js"
+import { sendCreated, sendNotFound, sendServerError, sendSuccess } from "../helpers/helper.functions.js"
 import { createCashAdvancesService, editcashAdvanceService, getAllCashAdvancesServices } from "../services/cashAdvancesService.js"
-import { getOneEmployeeService } from "../services/userService.js"
+import { getOneEmployeeService, getUserById } from "../services/userService.js"
+import logger from "../utils/logger.js"
 
 export const createCashAdvances=async(req,res)=>{
     try{
@@ -49,16 +50,23 @@ export const getAllCashAdvances=async(req,res)=>{
 export const editcashAdvances=async(req,res)=>{
     try {
         const user_id=req.params.user_id;
-        const editedcashDeductionsDetails={
-            amount:req.body.amount          
+        const {amount}=req.body
         
+        const user=await getUserById(user_id);
+        console.log(user)
+        if(user[0]){   
+            const response=await editcashAdvanceService(amount, user_id);
+            if(response.rowsAffected>0){
+                console.log(response)
+                sendSuccess(res,`cash advance for ${user[0].firstname} ${user[0].lastname} has been edited successfully`)
+            }
+
+        }
+        else{
+            sendNotFound(res,`records of the employee not found`)
         }
 
-        const response=await editcashAdvanceService(editedcashDeductionsDetails, user_id)
-
-        console.log(response)
-        return res.status(200).json(response)
-      
+         
 
 
         

@@ -12,17 +12,6 @@ const EmployeeListing = () => {
 
 
 
-   if(isFetching==false){
-    return (<>
-    
-    
-    <div className='status-loader-content'>
-        <p>Technical Error Occurred</p>
-  </div>
-    </>
-    
-    )
-  }
 
   return (
     <div className='employee-listing-container'>
