@@ -15,7 +15,7 @@ CREATE TABLE tbl_user(
     phone_number INT DEFAULT 0,
     place_of_residence VARCHAR(MAX) DEFAULT 'no residence',
     course_of_study VARCHAR(MAX) DEFAULT 'not applicable',
-    institutiton VARCHAR (MAX) DEFAULT 'not applicable',
+    institution VARCHAR (MAX) DEFAULT 'not applicable',
     graduation_date DATETIME DEFAULT 0,
     employed_on DATETIME DEFAULT 0,
     role VARCHAR (MAX) DEFAULT 'user',

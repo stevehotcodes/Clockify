@@ -35,7 +35,7 @@ const port =process.env.API_PORT
 //configuring the middlewares
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
-app.use(cors(corsOptions))
+app.use(cors())
 
 
 app.get('/health',(req,res)=>{

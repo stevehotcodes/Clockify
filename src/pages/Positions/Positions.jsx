@@ -11,6 +11,7 @@ const Positions = () => {
 
     const [isModalOpen, setModalOpen] = useState(false);
     const [isEditModalOpen, setEditModalOpen]=useState(false)
+    const [selectedPosition, setSelectedPosition]=useState('')
     const {data:positions,isError,isLoading, isFetching }=useGetAllPositionsQuery();
 
     console.log(`data:${positions}, error:${isError},isLoading:${isLoading}`)
@@ -25,8 +26,8 @@ const Positions = () => {
       };
 
 
-      const openEditModal = (id) => {
-       
+      const openEditModal = (item) => {
+        setSelectedPosition(item)
         setEditModalOpen(true)
       };
     
@@ -82,11 +83,11 @@ const Positions = () => {
                         <tr key={index}>
                             <td>{item.position_description}</td>
                             <td>{item.gross_salary}</td>
-                            <td> <button onClick={(e)=>{e.stopPropagation(); openEditModal(item.position_id);}}>Edit</button>
+                            <td> <button onClick={()=>{openEditModal(item);}}>Edit</button>
                             {
                                 isEditModalOpen? (
-                                    <Modal onClose={closeModal}>
-                                      <EditPosition closeGroup={closeEditModal} position={item} />
+                                    <Modal onClose={closeEditModal}>
+                                      <EditPosition closeGroup={closeEditModal} position={selectedPosition} />
                                     </Modal> 
                                   ):''
                                 

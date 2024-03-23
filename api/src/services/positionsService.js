@@ -64,7 +64,7 @@ export const  editPositionService=async(position_id,updatedPositionDetails)=>{
          const result=await poolRequest()
          .input('position_id',mssql.VarChar,position_id)
          .input('position_description',mssql.VarChar,position_description)
-         .input('gross_salary', mssql.VarChar,gross_salary)
+         .input('gross_salary', mssql.Int,gross_salary)
          .query(`
                 UPDATE position
                 SET position_description=@position_description , gross_salary=@gross_salary

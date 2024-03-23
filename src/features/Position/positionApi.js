@@ -22,23 +22,29 @@ export const positionApi=createApi({
                 url:`position`,
                 method:"GET",
 
-            })
-        }),
-        editPosition:builder.mutation({
-            query:(position_id,positionDetails)=>({
-                url:`position/${position_id}`,
-                method:`PATCH`,
-                body:positionDetails
             }),
-            invalidatesTags:[`Position`]
-
+            providesTags:[`Positions`]
         }),
+
         getOnePosition:builder.query({
             query:(position_id)=>({
                 url:`position/${position_id}`,
                 method:`GET`
-            })
+            }),
+            providesTags:[`Positions`]
+        }),
+
+        editPosition:builder.mutation({
+            query:(positionDetails)=>({
+                url:`position/${positionDetails.position_id}`,
+                method:`PATCH`,
+                body:positionDetails
+            }),
+            invalidatesTags:[`Positions`]
+
         })
+
+        
 
 
 

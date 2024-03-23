@@ -33,10 +33,7 @@ export const createNewPosition=async(req, res)=>{
            }
 
            }
-
-
-
-          
+ 
 
           
         
@@ -94,13 +91,14 @@ export const editPosition=async(req, res)=>{
                 position_description:req.body.position_description,
                 gross_salary:req.body.gross_salary
             }
+            console.log("edited position details", editedPositionDetails)
 
 
             console.log("position id",position_id)
             const position=await getPositionByIdService(position_id);
             console.log("position", position)
 
-            if(position.length>0){
+            if(position[0]){
                 const response=await editPositionService(position_id,editedPositionDetails)
                 console.log(response)
                 if(response.rowsAffected>0){

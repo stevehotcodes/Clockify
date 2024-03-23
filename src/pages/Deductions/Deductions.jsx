@@ -37,10 +37,6 @@ const Deductions = () => {
       }
   
     
-     
-
-
-    
 
 
   return (

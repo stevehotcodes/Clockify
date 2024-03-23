@@ -79,7 +79,6 @@ const CashAdvances = () => {
                         <tr key={index}>
                         <td>{item.user_id}</td>
                         <td>{item.firstname}  {item.lastname}</td>
-                    
                         <td>{item.amount}</td>
                         <td>{item.created_on}</td>
                         <td><button  onClick={()=>openEditCashAdvanceModal(item)}   >Edit </button>
