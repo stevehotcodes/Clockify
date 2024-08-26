@@ -1,9 +1,10 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
+import { BASEURL } from '../../configs/environment.variables.js'
 
 
 export const cashAdvancesApi=createApi({
     reducerPath:'cashAdvancesApi',
-    baseQuery:fetchBaseQuery({baseUrl:`http://localhost:3000/api/`}),
+    baseQuery:fetchBaseQuery({baseUrl:`${BASEURL}`}),
     tagTypes:[`cashAdvances`],
     endpoints:(builder)=>({
          createCashAdvance:builder.mutation({

@@ -1,9 +1,10 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
+import { BASEURL } from '../../configs/environment.variables.js'
 
 
 export const payrollApi=createApi({
     reducerPath:'payrollApi',
-    baseQuery:fetchBaseQuery({baseUrl:`http://localhost:3000/api/`}),
+    baseQuery:fetchBaseQuery({baseUrl:`${BASEURL}`}),
     tagTypes:['Payroll'],
     endpoints:(builder)=>({
         getPayRollRecords:builder.query({

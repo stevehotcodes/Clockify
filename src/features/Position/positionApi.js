@@ -1,11 +1,10 @@
 import {createApi,fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-
-
+import { BASEURL } from '../../configs/environment.variables.js'
 
 
 export const positionApi=createApi({
     reducerPath:'positionApi',
-    baseQuery:fetchBaseQuery({baseUrl:`http://localhost:3000/api/`}),
+    baseQuery:fetchBaseQuery({baseUrl:`${BASEURL}`}),
     tagTypes:['Positions'],
     endpoints:(builder)=>({
         createNewPosition:builder.mutation({

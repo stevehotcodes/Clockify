@@ -6,7 +6,7 @@ const token = localStorage.getItem('token');
 export const profileApi=createApi({
     reducerPath:'profileApi',
     baseQuery:fetchBaseQuery({
-        baseUrl:`http://localhost:3000/api`,
+        baseUrl:`${BASEURL}`,
        
     }),
 
