@@ -9,14 +9,14 @@ const { SQL_USER,SQL_PASSWORD,SQL_SERVER,SQL_DB,
 
 
 const dbConfig={
-    user:SQL_USER,
-    database:SQL_DB,
-    server:SQL_SERVER,
-    password:SQL_PASSWORD,
-    port:Number(SQL_SERVER_PORT),
+    user:SQL_USER || 'sa',
+    database:SQL_DB || 'Clockify',
+    server:SQL_SERVER || 'localhost',        //SQL_USER='sa'
+    password:SQL_PASSWORD || 'Omosh123',
+    // port:Number(SQL_SERVER_PORT),
     options:{
-        encrypt:Boolean(SQL_ENCRYPT),
-        trustServerCertificate:Boolean(SQL_TRUST_SERVER_CERTIFICATE) 
+        encrypt:Boolean(SQL_ENCRYPT) || false,
+        trustServerCertificate:Boolean(SQL_TRUST_SERVER_CERTIFICATE)  || true
     }
 
 }

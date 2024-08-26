@@ -1,6 +1,26 @@
 -- CREATE DATABASE Clockify
 USE Clockify
 
+
+---create posititons table 
+CREATE TABLE position(
+    position_id VARCHAR(300) PRIMARY KEY,
+    position_description VARCHAR(MAX) DEFAULT 'no position',
+    gross_salary INT  DEFAULT 0,
+
+
+)
+
+---create schedules table 
+
+CREATE TABLE schedule(
+    schedule_id VARCHAR(300) PRIMARY KEY,
+    in_time TIME ,
+    out_time TIME ,
+     created_at DATETIME DEFAULT GETDATE()
+    
+)
+
 ---create  user table 
 CREATE TABLE tbl_user(
     user_id VARCHAR(300) PRIMARY KEY,
@@ -29,25 +49,7 @@ CREATE TABLE tbl_user(
 
 )
 
-SELECT * FROM tbl_user
----create posititons table 
-CREATE TABLE position(
-    position_id VARCHAR(300) PRIMARY KEY,
-    position_description VARCHAR(MAX) DEFAULT 'no position',
-    gross_salary INT  DEFAULT 0,
 
-
-)
-
----create schedules table 
-
-CREATE TABLE schedule(
-    schedule_id VARCHAR(300) PRIMARY KEY,
-    in_time TIME ,
-    out_time TIME ,
-     created_at DATETIME DEFAULT GETDATE()
-    
-)
 
 
 CREATE TABLE employee_schedule(
