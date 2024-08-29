@@ -1,4 +1,5 @@
 import {createApi,fetchBaseQuery} from '@reduxjs/toolkit/query/react'
+import {BASEURL} from '../../configs/environment.variables.js'
 
 
 

@@ -64,6 +64,7 @@ const Schedules = () => {
                         <th>Title</th>
                         <th>Actions</th>
                     </tr>
+                    {/* <input type="time" name="" id="" /> */}
                 </thead>
                 <tbody>
                     {schedule&&schedule.map((item, index)=>(

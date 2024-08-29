@@ -6,6 +6,9 @@ import { GrSchedules } from 'react-icons/gr'
 import { MdOutlinePayments } from 'react-icons/md'
 import { CiLogout } from 'react-icons/ci'
 import { NavLink } from 'react-router-dom'
+import useLocalStorage from '../../hooks/useLocalStorage'
+import { useNavigate } from 'react-router-dom'
+import { sassNull } from 'sass'
 
 const SideNavbarEmployee = () => {
     const sideNavbarEmployeeLinks=[
@@ -37,23 +40,60 @@ const SideNavbarEmployee = () => {
         },
         {
             icon: <CiLogout/>,
-            path:'/',
+            path:'/logout',
             linkContent:'Log out'
             
         }
 
     ]
+    const [userDetails, setUserDetails] = useLocalStorage('user');
+    // const [token, setToken] = useLocalStorage('token');
+
+
+
+    const handleLogout = () => {
+        setUserDetails(null);
+        setToken(null);
+        navigate('/'); 
+    }
+
+    const navigate=useNavigate()
+
+
+    const logOut=()=>{
+        const token=localStorage.getItem("token")
+       token? setToken('token'):''
+        localStorage.removeItem('user')
+        // setUserDetails(null)
+        // 
+        navigate('/')
+
+    }
   return (
-    // <div>SideNavbarEmployee</div>
+    
     <div className='sidenavbar-container'>
         <div>
             {sideNavbarEmployeeLinks && sideNavbarEmployeeLinks.map((item, index) => (
-            <NavLink className='nav-icon-wrapper' key={index} to={item.path}> 
+                item.path==='/logout'?(
+                    <NavLink
+                    className='nav-icon-wrapper' 
+                    key={index} 
+                    onClick={handleLogout}
+                >
                     {item.icon}
                     <span>{item.linkContent}</span>
-            </NavLink>
+                    </NavLink>
+
+
+                ):( 
+                    <NavLink className='nav-icon-wrapper' key={index} to={item.path}> 
+                    {item.icon}
+                    <span>{item.linkContent}</span>
+                   </NavLink>)
+           
             ))}
         </div>
+        <button onClick={logOut}>Log out </button>
     </div>
   )
 }

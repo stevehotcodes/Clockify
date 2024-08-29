@@ -47,7 +47,7 @@ const formattedTime = currentTime.toLocaleTimeString([], { hour12: true });
            <IoIosNotificationsOutline/>
           
           
-          <p className='logged-in-user'>{userDetails.firstname} {userDetails.lastname}</p>
+          <p className='logged-in-user'>{userDetails?.firstname} {userDetails?.lastname}</p>
 
       </div>
     

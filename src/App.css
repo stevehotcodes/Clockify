@@ -45,8 +45,24 @@
    margin:0;
    padding:0;
    box-sizing: border-box;
+   /* color: black; */
+  
 }
 
 *::-webkit-scrollbar {
   display: none;
+}
+input{
+ 
+  /* background-color: rgb(252, 252, 253); */
+  color:black;
+ 
+}
+
+button{
+  color:white;
+  background-color:#535bf2; ;
+}
+form{
+  color:black;
 }

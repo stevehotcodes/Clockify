@@ -23,8 +23,8 @@ const Login = () => {
     const [loginUser]=useLoginUserMutation()
     const [userDetails, setUserDetails] = useLocalStorage('user', null);
     const [token, setToken] = useLocalStorage('token ', null);
-    const[isAdmin, setAdmin]=useState('')
-    // console.log("user form the local storage ", userDetails,token )
+    const[isAdmin, setAdmin]=useState('');
+    console.log("user form the local storage ", userDetails,token )
     const navigate=useNavigate()
 
     const schema=yup.object().shape({
@@ -53,7 +53,7 @@ const Login = () => {
             setUserDetails(response.user);
             setToken(response.token)
             // navigate('/admin')
-            console.log("user details",userDetails.role,token )
+            console.log("user details",userDetails,token )
             
             // console.log(isAdmin)
             console.log("checking the user",(userDetails.role=='user'))

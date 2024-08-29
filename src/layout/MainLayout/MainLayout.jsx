@@ -4,6 +4,7 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 import { useState } from 'react';
 import EmployeeHome from '../EmployeeHome/EmployeeHome';
 import AdminHome from '../Admin-Home/AdminHome';
+import { PuffLoader } from 'react-spinners';
 
 const MainLayout = () => {
     const [userDetails, setUserDetails] = useLocalStorage('user', null);
@@ -11,14 +12,14 @@ const MainLayout = () => {
     const[isAdmin, setAdmin]=useState('')
 
 
-    console.log(`isAdmin:${isAdmin},token:${token},userDetails:${userDetails.role}`)
+    console.log(`isAdmin:${isAdmin},token:${token},userDetails:${userDetails?.role}`)
 
 
   return (
     <>
     {(token && userDetails?.role === 'user') ? <EmployeeHome/> : <AdminHome/>}
-    {(token==null) ? <div>Not Authorized</div> :
-        (userDetails && userDetails.role === 'user') ? 
+    {(token===null) ? <div>Not Authorized</div> :
+        (userDetails && userDetails?.role === 'user') ? 
             null : // If user is authorized and not a user, render nothing
             (!userDetails) ? 
                 <div className="status-loader">
